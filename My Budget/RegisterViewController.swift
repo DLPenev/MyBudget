@@ -18,6 +18,17 @@ class RegisterViewController: UIViewController {
     @IBOutlet var submitButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
     
+    @IBOutlet var usernameTextFieldLeftConstant: NSLayoutConstraint!
+    @IBOutlet var userNameTextFieldRightConstant: NSLayoutConstraint!
+    @IBOutlet var emailTextFieldRightConstant: NSLayoutConstraint!
+    @IBOutlet var emailTextFieldLeftConstant: NSLayoutConstraint!
+    @IBOutlet var passwordTextFieldLeftConstant: NSLayoutConstraint!
+    @IBOutlet var passwordTextFieldRightConstant: NSLayoutConstraint!
+    @IBOutlet var passwordAgainLeftConstant: NSLayoutConstraint!
+    @IBOutlet var passwordAgainRightConstant: NSLayoutConstraint!
+    
+    var textFieldspositionX: CGFloat!
+    
     @IBAction func submitButton(_ sender: Any) {
     }
     
@@ -30,44 +41,63 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         
       //  emailTextField.placeholder.color = "#4EB8CE"
-  
+       //   self.logInTopConstrain.constant = -300
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        usernameTextField.center.x -= view.bounds.width
-        emailTextField.center.x += view.bounds.width
-        passwordTextField.center.x -= view.bounds.width
-        passwordAgainTextField.center.x += view.bounds.width
-        cancelButton.center.x += view.bounds.width
-        cancelButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-        submitButton.center.x -= view.bounds.width
-        submitButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        textFieldspositionX              = self.usernameTextField.center.x
+
+        self.userNameTextFieldRightConstant.constant +=  400
+        self.emailTextFieldLeftConstant.constant += 400
+        self.passwordTextFieldRightConstant.constant += 400
+        self.passwordAgainLeftConstant.constant += 400
+
+        cancelButton.center.x           += view.bounds.width
+        cancelButton.transform          = CGAffineTransform(rotationAngle: CGFloat.pi)
+        submitButton.center.x           -= view.bounds.width
+        submitButton.transform          = CGAffineTransform(rotationAngle: CGFloat.pi)
+        
+        self.submitButton.alpha = 0
+        self.cancelButton.alpha = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         UIView.animate(withDuration: 0.5) {
-            self.usernameTextField.center.x += self.view.bounds.width
+          //  self.usernameTextFieldLeftConstant.constant = 50
+            self.userNameTextFieldRightConstant.constant -=  400
+            self.view.layoutIfNeeded()
         }
         UIView.animate(withDuration: 0.5, delay: 0.1, options: [], animations: {
-            self.emailTextField.center.x -= self.view.bounds.width
+         //   self.emailTextFieldRightConstant.constant = 50
+            self.emailTextFieldLeftConstant.constant -= 400
+            self.view.layoutIfNeeded()
         }, completion: nil)
         UIView.animate(withDuration: 0.5, delay: 0.2, options: [], animations: {
-            self.passwordTextField.center.x += self.view.bounds.width
+           // self.passwordTextFieldLeftConstant.constant = 50
+            self.passwordTextFieldRightConstant.constant -=  400
+            self.view.layoutIfNeeded()
         }, completion: nil)
         UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
-            self.passwordAgainTextField.center.x -= self.view.bounds.width
+            self.passwordAgainLeftConstant.constant -=  400
+            self.view.layoutIfNeeded()
         }, completion: nil)
-        UIView.animate(withDuration: 0.5, delay: 0.7, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
             self.submitButton.center.x += self.view.bounds.width
             self.submitButton.transform = CGAffineTransform.identity
         }, completion: nil)
-        UIView.animate(withDuration: 0.5, delay: 1, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.7, options: [], animations: {
             self.cancelButton.center.x -= self.view.bounds.width
             self.cancelButton.transform = CGAffineTransform.identity
         }, completion: nil)
+        
+        UIView.animate(withDuration: 1, delay: 0.5, options: [], animations: {
+            self.submitButton.alpha = 1
+            self.cancelButton.alpha = 1
+        }, completion: nil)
+        
     }
 
     /*

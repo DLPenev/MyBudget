@@ -7,8 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630E84C71FFBC3FF00C1DF77 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E84C61FFBC3FF00C1DF77 /* DBManager.swift */; };
+		630E84C91FFBCA6700C1DF77 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E84C81FFBCA6700C1DF77 /* GlobalVariables.swift */; };
+		630E84D21FFBD26200C1DF77 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 630E84D11FFBD26200C1DF77 /* libsqlite3.0.tbd */; };
+		630E84E01FFBD37300C1DF77 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E84D41FFBD37200C1DF77 /* FMDatabaseAdditions.m */; };
+		630E84E11FFBD37300C1DF77 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E84D51FFBD37200C1DF77 /* FMDatabase.m */; };
+		630E84E21FFBD37300C1DF77 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E84D71FFBD37200C1DF77 /* FMResultSet.m */; };
+		630E84E31FFBD37300C1DF77 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E84DB1FFBD37300C1DF77 /* FMDatabasePool.m */; };
+		630E84E41FFBD37300C1DF77 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E84DC1FFBD37300C1DF77 /* FMDatabaseQueue.m */; };
+		630E84E51FFBD37300C1DF77 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 630E84DE1FFBD37300C1DF77 /* Info.plist */; };
 		633B1F101FDACE85009FBB0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F0F1FDACE85009FBB0A /* AppDelegate.swift */; };
-		633B1F121FDACE85009FBB0A /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F111FDACE85009FBB0A /* LogInViewController.swift */; };
+		633B1F121FDACE85009FBB0A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F111FDACE85009FBB0A /* FirstViewController.swift */; };
 		633B1F151FDACE85009FBB0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 633B1F131FDACE85009FBB0A /* Main.storyboard */; };
 		633B1F171FDACE85009FBB0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 633B1F161FDACE85009FBB0A /* Assets.xcassets */; };
 		633B1F1A1FDACE85009FBB0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 633B1F181FDACE85009FBB0A /* LaunchScreen.storyboard */; };
@@ -16,6 +25,7 @@
 		633B1F301FDACE85009FBB0A /* My_BudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F2F1FDACE85009FBB0A /* My_BudgetUITests.swift */; };
 		633B1F401FDEB090009FBB0A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F3F1FDEB090009FBB0A /* RegisterViewController.swift */; };
 		63774D011FE11DA900933AA5 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63774D001FE11DA900933AA5 /* PopUpViewController.swift */; };
+		63B130B61FF6790600CEF561 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B130B51FF6790600CEF561 /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +46,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		630E84C61FFBC3FF00C1DF77 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		630E84C81FFBCA6700C1DF77 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		630E84CA1FFBD14F00C1DF77 /* My Budget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My Budget-Bridging-Header.h"; sourceTree = "<group>"; };
+		630E84D11FFBD26200C1DF77 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		630E84D41FFBD37200C1DF77 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		630E84D51FFBD37200C1DF77 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		630E84D61FFBD37200C1DF77 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		630E84D71FFBD37200C1DF77 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		630E84D81FFBD37200C1DF77 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		630E84D91FFBD37200C1DF77 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		630E84DA1FFBD37200C1DF77 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		630E84DB1FFBD37300C1DF77 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		630E84DC1FFBD37300C1DF77 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		630E84DD1FFBD37300C1DF77 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		630E84DE1FFBD37300C1DF77 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		630E84DF1FFBD37300C1DF77 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
 		633B1F0C1FDACE85009FBB0A /* My Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Budget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		633B1F0F1FDACE85009FBB0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		633B1F111FDACE85009FBB0A /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		633B1F111FDACE85009FBB0A /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		633B1F141FDACE85009FBB0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		633B1F161FDACE85009FBB0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		633B1F191FDACE85009FBB0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +77,7 @@
 		633B1F311FDACE85009FBB0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		633B1F3F1FDEB090009FBB0A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		63774D001FE11DA900933AA5 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		63B130B51FF6790600CEF561 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				630E84D21FFBD26200C1DF77 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,13 +106,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		630E84D01FFBD26200C1DF77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				630E84D11FFBD26200C1DF77 /* libsqlite3.0.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		630E84D31FFBD35E00C1DF77 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				630E84D91FFBD37200C1DF77 /* FMDatabase.h */,
+				630E84D51FFBD37200C1DF77 /* FMDatabase.m */,
+				630E84DA1FFBD37200C1DF77 /* FMDatabaseAdditions.h */,
+				630E84D41FFBD37200C1DF77 /* FMDatabaseAdditions.m */,
+				630E84DF1FFBD37300C1DF77 /* FMDatabasePool.h */,
+				630E84DB1FFBD37300C1DF77 /* FMDatabasePool.m */,
+				630E84D61FFBD37200C1DF77 /* FMDatabaseQueue.h */,
+				630E84DC1FFBD37300C1DF77 /* FMDatabaseQueue.m */,
+				630E84DD1FFBD37300C1DF77 /* FMDB.h */,
+				630E84D81FFBD37200C1DF77 /* FMResultSet.h */,
+				630E84D71FFBD37200C1DF77 /* FMResultSet.m */,
+				630E84DE1FFBD37300C1DF77 /* Info.plist */,
+			);
+			name = FMDB;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		633B1F031FDACE85009FBB0A = {
 			isa = PBXGroup;
 			children = (
+				630E84D31FFBD35E00C1DF77 /* FMDB */,
 				633B1F0E1FDACE85009FBB0A /* My Budget */,
 				633B1F231FDACE85009FBB0A /* My BudgetTests */,
 				633B1F2E1FDACE85009FBB0A /* My BudgetUITests */,
 				633B1F0D1FDACE85009FBB0A /* Products */,
+				630E84D01FFBD26200C1DF77 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,13 +160,17 @@
 			isa = PBXGroup;
 			children = (
 				633B1F0F1FDACE85009FBB0A /* AppDelegate.swift */,
-				633B1F111FDACE85009FBB0A /* LogInViewController.swift */,
+				633B1F111FDACE85009FBB0A /* FirstViewController.swift */,
 				63774D001FE11DA900933AA5 /* PopUpViewController.swift */,
+				63B130B51FF6790600CEF561 /* LogInViewController.swift */,
 				633B1F3F1FDEB090009FBB0A /* RegisterViewController.swift */,
+				630E84C81FFBCA6700C1DF77 /* GlobalVariables.swift */,
+				630E84C61FFBC3FF00C1DF77 /* DBManager.swift */,
 				633B1F131FDACE85009FBB0A /* Main.storyboard */,
 				633B1F161FDACE85009FBB0A /* Assets.xcassets */,
 				633B1F181FDACE85009FBB0A /* LaunchScreen.storyboard */,
 				633B1F1B1FDACE85009FBB0A /* Info.plist */,
+				630E84CA1FFBD14F00C1DF77 /* My Budget-Bridging-Header.h */,
 			);
 			path = "My Budget";
 			sourceTree = "<group>";
@@ -199,6 +261,7 @@
 				TargetAttributes = {
 					633B1F0B1FDACE85009FBB0A = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					633B1F1F1FDACE85009FBB0A = {
@@ -240,6 +303,7 @@
 			files = (
 				633B1F1A1FDACE85009FBB0A /* LaunchScreen.storyboard in Resources */,
 				633B1F171FDACE85009FBB0A /* Assets.xcassets in Resources */,
+				630E84E51FFBD37300C1DF77 /* Info.plist in Resources */,
 				633B1F151FDACE85009FBB0A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,9 +330,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				633B1F401FDEB090009FBB0A /* RegisterViewController.swift in Sources */,
-				633B1F121FDACE85009FBB0A /* LogInViewController.swift in Sources */,
+				630E84C71FFBC3FF00C1DF77 /* DBManager.swift in Sources */,
+				633B1F121FDACE85009FBB0A /* FirstViewController.swift in Sources */,
+				630E84E11FFBD37300C1DF77 /* FMDatabase.m in Sources */,
+				630E84E21FFBD37300C1DF77 /* FMResultSet.m in Sources */,
+				630E84E41FFBD37300C1DF77 /* FMDatabaseQueue.m in Sources */,
+				630E84E31FFBD37300C1DF77 /* FMDatabasePool.m in Sources */,
 				633B1F101FDACE85009FBB0A /* AppDelegate.swift in Sources */,
+				630E84C91FFBCA6700C1DF77 /* GlobalVariables.swift in Sources */,
+				63B130B61FF6790600CEF561 /* LogInViewController.swift in Sources */,
 				63774D011FE11DA900933AA5 /* PopUpViewController.swift in Sources */,
+				630E84E01FFBD37300C1DF77 /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,13 +506,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P2296L6VKM;
 				INFOPLIST_FILE = "My Budget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Penev.My-Budget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "My Budget/My Budget-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -448,13 +525,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P2296L6VKM;
 				INFOPLIST_FILE = "My Budget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Penev.My-Budget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "My Budget/My Budget-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
