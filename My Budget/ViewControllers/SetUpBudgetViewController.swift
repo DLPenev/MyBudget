@@ -52,6 +52,8 @@ class SetUpBudgetViewController: UIViewController {
 
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         DBManager.singleton.updateCashFlowValues(income: regularIncome, expense: regularExpence, savings: savingsProcent)
+      //  budgetCashFlowIsSet = true boolValue = UserDefaults.standard.bool(forKey: "sound")
+        UserDefaults.standard.set(true, forKey: "cashFlowIsSet")
     }
     
 
