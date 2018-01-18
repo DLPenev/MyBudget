@@ -15,7 +15,8 @@ class ChooseSubCategoryViewController: UIViewController, UITableViewDelegate, UI
     let subCategoryCellId = "subCategoryId"
     
     var selectedCategory: Int!
-    var subcategoriesArray: [String]!
+    var subcategoriesArray: [(Int,String)]!     //all subcategories from db in tuples PK and name
+    var selectedSubcategory: (Int,String)!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (subcategoriesArray?.count)!
@@ -23,9 +24,7 @@ class ChooseSubCategoryViewController: UIViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = subCategoryTableVIew?.dequeueReusableCell(withIdentifier: subCategoryCellId) as? SubCategoryTableViewCell {
-            cell.subCategoryLabel.text     = subcategoriesArray[indexPath.row]
-//            cell.categoryIconView.image = allCategoryesArray[indexPath.row].categoryIcon
-//            cell.categoryIconView.backgroundColor = allCategoryesArray[indexPath.row].categoryColor
+            cell.subCategoryLabel.text  = subcategoriesArray[indexPath.row].1
             return cell
         }
         return UITableViewCell()
@@ -40,9 +39,16 @@ class ChooseSubCategoryViewController: UIViewController, UITableViewDelegate, UI
       subcategoriesArray = DBManager.singleton.loadSubCategories(categoryId: selectedCategory+1)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if  segue.identifier == unwindToPopUpViewId{
+            let destination = segue.destination as? PopUpViewController
+            destination?.selectedSubCategory = selectedSubcategory
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedSubcategory = subcategoriesArray[indexPath.row]
+        performSegue(withIdentifier: unwindToPopUpViewId, sender: self)
     }
     
     @IBAction func backButton(_ sender: UIBarButtonItem) {

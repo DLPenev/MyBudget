@@ -39,8 +39,9 @@ let fieldRegularIncome    = "regular_Income"
 let fieldRegularExpence   = "regular_Expence"
 let fieldSavingProcentage = "savings_Procentage"
 
-let tabBarCOntrollerId = "tabBarViewControllerId"
-let segueToSubCategory = "segueToSubCategoryViewController"
+let tabBarCOntrollerId  = "tabBarViewControllerId"
+let segueToSubCategory  = "segueToSubCategoryViewController"
+let unwindToPopUpViewId = "unwindToPopUpViewControllerId"
 
 var allCategoryesArray = [Category]()
 

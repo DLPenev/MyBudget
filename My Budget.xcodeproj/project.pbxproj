@@ -23,7 +23,10 @@
 		633B1F251FDACE85009FBB0A /* My_BudgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F241FDACE85009FBB0A /* My_BudgetTests.swift */; };
 		633B1F301FDACE85009FBB0A /* My_BudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F2F1FDACE85009FBB0A /* My_BudgetUITests.swift */; };
 		633B1F401FDEB090009FBB0A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F3F1FDEB090009FBB0A /* RegisterViewController.swift */; };
+		634FC73A2010EC1A009BDE2B /* Expence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FC7392010EC1A009BDE2B /* Expence.swift */; };
 		63774D011FE11DA900933AA5 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63774D001FE11DA900933AA5 /* PopUpViewController.swift */; };
+		63836077200F3700002FF703 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63836076200F3700002FF703 /* OverviewViewController.swift */; };
+		63836079200F47F5002FF703 /* OneLabelOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63836078200F47F5002FF703 /* OneLabelOverviewCell.swift */; };
 		6397654B2008A41200993B7A /* SetUpBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */; };
 		6397C741200CD43C0031CA17 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6397C740200CD43C0031CA17 /* TabBarViewController.swift */; };
 		63B130B61FF6790600CEF561 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B130B51FF6790600CEF561 /* LogInViewController.swift */; };
@@ -83,7 +86,10 @@
 		633B1F2F1FDACE85009FBB0A /* My_BudgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_BudgetUITests.swift; sourceTree = "<group>"; };
 		633B1F311FDACE85009FBB0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		633B1F3F1FDEB090009FBB0A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		634FC7392010EC1A009BDE2B /* Expence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expence.swift; sourceTree = "<group>"; };
 		63774D001FE11DA900933AA5 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		63836076200F3700002FF703 /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
+		63836078200F47F5002FF703 /* OneLabelOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLabelOverviewCell.swift; sourceTree = "<group>"; };
 		6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpBudgetViewController.swift; sourceTree = "<group>"; };
 		6397C740200CD43C0031CA17 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		63B130B51FF6790600CEF561 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +220,7 @@
 				633B1F111FDACE85009FBB0A /* FirstViewController.swift */,
 				633B1F3F1FDEB090009FBB0A /* RegisterViewController.swift */,
 				63B130B51FF6790600CEF561 /* LogInViewController.swift */,
+				63836076200F3700002FF703 /* OverviewViewController.swift */,
 				63774D001FE11DA900933AA5 /* PopUpViewController.swift */,
 				63F1917A1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift */,
 				63F1917F2003718A00F4CF1A /* ChooseSubCategoryViewController.swift */,
@@ -228,6 +235,7 @@
 			children = (
 				63F1917D1FFFBDDA00F4CF1A /* CategoryViewCell.swift */,
 				63F1918420066F2D00F4CF1A /* SubCategoryTableViewCell.swift */,
+				63836078200F47F5002FF703 /* OneLabelOverviewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -236,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				63F191812004AABC00F4CF1A /* Category.swift */,
+				634FC7392010EC1A009BDE2B /* Expence.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -377,6 +386,7 @@
 			files = (
 				633B1F401FDEB090009FBB0A /* RegisterViewController.swift in Sources */,
 				630E85101FFD0CFB00C1DF77 /* FMDatabaseQueue.m in Sources */,
+				63836079200F47F5002FF703 /* OneLabelOverviewCell.swift in Sources */,
 				633B1F121FDACE85009FBB0A /* FirstViewController.swift in Sources */,
 				633B1F101FDACE85009FBB0A /* AppDelegate.swift in Sources */,
 				630E850E1FFD0CFB00C1DF77 /* FMDatabase.m in Sources */,
@@ -390,8 +400,10 @@
 				63B130B61FF6790600CEF561 /* LogInViewController.swift in Sources */,
 				6397C741200CD43C0031CA17 /* TabBarViewController.swift in Sources */,
 				6397654B2008A41200993B7A /* SetUpBudgetViewController.swift in Sources */,
+				634FC73A2010EC1A009BDE2B /* Expence.swift in Sources */,
 				63F1918520066F2D00F4CF1A /* SubCategoryTableViewCell.swift in Sources */,
 				63774D011FE11DA900933AA5 /* PopUpViewController.swift in Sources */,
+				63836077200F3700002FF703 /* OverviewViewController.swift in Sources */,
 				630E85131FFD0CFB00C1DF77 /* FMDatabaseAdditions.m in Sources */,
 				630E85201FFD138E00C1DF77 /* DBManager.swift in Sources */,
 			);

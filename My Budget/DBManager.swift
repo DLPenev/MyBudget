@@ -40,8 +40,7 @@ class DBManager: NSObject {
     
     func initDB(){
         
-//        let categoriesDefaultValues = ["Food & Drinks", "Shopping", "Housing", "Transportation", "Vehicle", "Life & Entertainment", "Communication, PC", "Financial expenses", "Investments", "Others"]
-        
+    
         let foodAndDrinksDefaultValues     = ["Groceries","Fast-food","Restaurant","Bar, cafe"]
         let shoppingDefaultValues          = ["Clothes & Shoes","Jewels, Accessories","Health and Beauty","Kids","Home, Garden","Pets, Animals","Electronics, Accessories","Gifts, Joy","Stationery, Tools","Free time","Drug-store, Chemist"]
         let housingDefaultValues           = ["Rent","Mortgage","Energy, Utilities","Services","Maintenance, Repairs"]
@@ -176,6 +175,27 @@ class DBManager: NSObject {
         }
     }
     
+    func insertInExpenceTable(value: Double, subcategory: Int){
+        
+       let timeInterval = Date().timeIntervalSince1970
+       let dateInMilliseconds = Int(timeInterval * 1000)
+        
+        if openDatabase() {
+            
+            let insertSQL = "INSERT INTO \(tableExpenses) (\(fieldDate), \(fieldValue), \(fieldSubcategoryId) ) VALUES (?,?,?)"
+            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [dateInMilliseconds, value, subcategory])
+            
+            if !result {
+                print("Error: \(budgetDB.lastErrorMessage())")
+            } else {
+                print ("Expence Added")
+            }
+            budgetDB.close()
+        } else {
+            print("Error: \(budgetDB.lastErrorMessage())")
+        }
+    }
+    
     func openDatabase() -> Bool {
         if budgetDB == nil {
             if FileManager.default.fileExists(atPath: pathToDatabase) {
@@ -190,8 +210,9 @@ class DBManager: NSObject {
         return false
     }
     
-    func loadSubCategories(categoryId: Int) -> [String] {
-        var categories: [String]!
+    func loadSubCategories(categoryId: Int) -> [(Int, String)] {
+
+        var categories:[(pk: Int, name: String)] = []
         if openDatabase() {
             let query = "select * from \(tableSubCategories) where \(fieldCategoryId) = \(categoryId)"
             
@@ -199,13 +220,7 @@ class DBManager: NSObject {
                 let results = try budgetDB.executeQuery(query, values: nil)
                 
                 while results.next() {
-                    
-                    let subCategoty = results.string(forColumn: fieldSubcategory)
-                    
-                    if categories == nil {
-                        categories = [String]()
-                    }
-                    categories.append(subCategoty!)
+                    categories.append((pk : Int(results.int(forColumn: fieldId)), name : results.string(forColumn: fieldSubcategory)!))
                 }
             }
             catch {

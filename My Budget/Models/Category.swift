@@ -11,8 +11,8 @@ import UIKit
 class Category: NSObject {
     var categoryEnumName: String
     var categoryFullName: String
-    var categoryIcon: UIImage
-    var categoryColor: UIColor
+    var categoryIcon:     UIImage
+    var categoryColor:    UIColor
     
     init(categoryEnumName: String, categoryFullName: String, categoryIcon: UIImage, categoryColor: UIColor) {
         self.categoryEnumName = categoryEnumName
