@@ -192,19 +192,52 @@
                                 <rect key="frame" x="0.0" y="170" width="320" height="291"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="105" id="0d8-vR-UXt">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="105"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="expenseRepresentCellId" rowHeight="69" id="0d8-vR-UXt" customClass="ExpenseRepresentOverviewCell" customModule="My_Budget" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0d8-vR-UXt" id="Lz0-eU-bD0">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="104.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="68.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OU2-dg-mGR">
+                                                    <rect key="frame" x="15" y="14" width="40" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cii-jy-jtM">
+                                                    <rect key="frame" x="63" y="11" width="150" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBE-qK-pmc">
+                                                    <rect key="frame" x="63" y="34" width="150" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                                    <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9999999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2p-Ik-OfQ">
+                                                    <rect key="frame" x="215" y="24" width="90" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryIconImageView" destination="OU2-dg-mGR" id="lhO-1A-P26"/>
+                                            <outlet property="categoryNameLabel" destination="cii-jy-jtM" id="pu2-as-FAU"/>
+                                            <outlet property="procentOfTotalExpenceLabel" destination="NBE-qK-pmc" id="iJp-RH-7s0"/>
+                                            <outlet property="valueOfExpenseLabel" destination="T2p-Ik-OfQ" id="s4Y-24-t5b"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="overviewCellWithOneLabelId" id="56E-8K-4zz" customClass="OneLabelOverviewCell" customModule="My_Budget" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="133" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="overviewCellWithOneLabelId" rowHeight="53" id="56E-8K-4zz" customClass="OneLabelOverviewCell" customModule="My_Budget" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="97" width="320" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="56E-8K-4zz" id="C5q-iu-lAn">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="52.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csD-8A-Y0y">
@@ -221,7 +254,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ctr-Os-HaZ">
-                                        <rect key="frame" x="0.0" y="177" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="150" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ctr-Os-HaZ" id="Bw1-Lo-NNy">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -249,6 +282,9 @@
                                         <rect key="frame" x="220" y="0.0" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="plusIcon"/>
+                                        <connections>
+                                            <action selector="addIncomePressed:" destination="k9u-Ge-6TR" eventType="touchUpInside" id="QZW-IY-Ehv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -261,7 +297,7 @@
                                 <segments>
                                     <segment title="Today"/>
                                     <segment title="This Week"/>
-                                    <segment title="This Mounth"/>
+                                    <segment title="This Month"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentChanged:" destination="k9u-Ge-6TR" eventType="valueChanged" id="07o-K1-O7W"/>
@@ -469,7 +505,7 @@
                                             <segue destination="XSb-pm-sMu" kind="presentation" id="efP-Wu-B26"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="income/expence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yI-6m-KhM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="income/expense" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yI-6m-KhM">
                                         <rect key="frame" x="1" y="0.0" width="213" height="41"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.2310012877" green="0.68806487319999998" blue="0.85101515049999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -485,7 +521,7 @@
                         <viewLayoutGuide key="safeArea" id="2P2-1u-JAp"/>
                     </view>
                     <connections>
-                        <outlet property="expenceValueTextField" destination="BJw-A7-IiM" id="0V7-Hl-uMU"/>
+                        <outlet property="expenseValueTextField" destination="BJw-A7-IiM" id="0V7-Hl-uMU"/>
                         <outlet property="popUpView" destination="wdU-UX-C7t" id="8F0-8q-IEt"/>
                         <outlet property="subCategoryLabel" destination="MtD-cF-QfH" id="WmA-em-lJE"/>
                     </connections>
@@ -789,7 +825,7 @@
                                     <constraint firstAttribute="height" constant="29" id="NN3-JM-yqs"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="expenceSliderChanged:" destination="I0D-it-cqI" eventType="valueChanged" id="2uG-SE-qli"/>
+                                    <action selector="expenseSliderChanged:" destination="I0D-it-cqI" eventType="valueChanged" id="2uG-SE-qli"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Qmn-lO-X0E">
@@ -819,8 +855,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regular expence :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkG-ta-c06">
-                                <rect key="frame" x="21" y="178" width="137" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regular expense :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkG-ta-c06">
+                                <rect key="frame" x="21" y="178" width="136" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="V0g-XB-Jlh"/>
                                 </constraints>
@@ -942,8 +978,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="HjY-PG-Vbl"/>
                     <connections>
-                        <outlet property="expenceSlider" destination="mMc-7g-KJR" id="RlB-hD-YCX"/>
-                        <outlet property="expenceValueLabel" destination="bZn-DY-6kb" id="5EI-YX-vMt"/>
+                        <outlet property="expenseSlider" destination="mMc-7g-KJR" id="RlB-hD-YCX"/>
+                        <outlet property="expenseValueLabel" destination="bZn-DY-6kb" id="5EI-YX-vMt"/>
                         <outlet property="imcomesSlider" destination="2jz-B4-jJa" id="rIS-Aq-Yg3"/>
                         <outlet property="incomeValueLabel" destination="SQ6-lI-7qM" id="uk0-lb-syy"/>
                         <outlet property="procentageValueLabel" destination="Pf5-SN-PIq" id="67o-zx-JeV"/>

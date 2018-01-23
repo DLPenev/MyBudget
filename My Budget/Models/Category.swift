@@ -1,21 +1,19 @@
 //
 //  CategoryConstructor.swift
-//  My Budget
-//
-//  Created by MacUSER on 9.01.18.
-//  Copyright © 2018 MacUSER. All rights reserved.
-//
+
+// - used to show list of all categories
 
 import UIKit
 
 class Category: NSObject {
-    var categoryEnumName: String
+    
+    var categoryPK:       Int
     var categoryFullName: String
     var categoryIcon:     UIImage
     var categoryColor:    UIColor
     
-    init(categoryEnumName: String, categoryFullName: String, categoryIcon: UIImage, categoryColor: UIColor) {
-        self.categoryEnumName = categoryEnumName
+    init(categoryPK: Int, categoryFullName: String, categoryIcon: UIImage, categoryColor: UIColor) {
+        self.categoryPK = categoryPK
         self.categoryFullName = categoryFullName
         self.categoryIcon     = categoryIcon
         self.categoryColor    = categoryColor

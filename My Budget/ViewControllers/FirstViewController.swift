@@ -33,7 +33,7 @@ class FirstViewController: UIViewController {
         if !DBManager.singleton.createDatabase(){
            //  DBManager.singleton.initDB()  //????????????????????????
         }
-        setDefaultCategories()
+        setupCategories()
       
     }
 
@@ -68,18 +68,18 @@ class FirstViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setDefaultCategories(){
+    func setupCategories(){
         if allCategoryesArray.count == 0 {
-            allCategoryesArray.append(Category(categoryEnumName: "foodAndDrinks", categoryFullName: "Food & Drinks", categoryIcon: #imageLiteral(resourceName: "category1Food"), categoryColor: colorRed))
-            allCategoryesArray.append(Category(categoryEnumName: "shopping", categoryFullName: "Shopping", categoryIcon: #imageLiteral(resourceName: "category2Shoping"), categoryColor: colorBlue))
-            allCategoryesArray.append(Category(categoryEnumName: "housing", categoryFullName: "Housing", categoryIcon: #imageLiteral(resourceName: "category3Housing"), categoryColor: colorOrange))
-            allCategoryesArray.append(Category(categoryEnumName: "transportation", categoryFullName: "Transportation", categoryIcon: #imageLiteral(resourceName: "category4Transportation"), categoryColor: colorDarkGray))
-            allCategoryesArray.append(Category(categoryEnumName: "vehicle", categoryFullName: "Vehicle", categoryIcon: #imageLiteral(resourceName: "category5Vehicle"), categoryColor: colorPurple))
-            allCategoryesArray.append(Category(categoryEnumName: "life", categoryFullName: "Life & Entertainment", categoryIcon: #imageLiteral(resourceName: "category6Life"), categoryColor: colorGreen))
-            allCategoryesArray.append(Category(categoryEnumName: "communication", categoryFullName: "Communication, PC", categoryIcon: #imageLiteral(resourceName: "category7Communication"), categoryColor: colorDarkBlue))
-            allCategoryesArray.append(Category(categoryEnumName: "financialExpenses", categoryFullName: "Financial expenses", categoryIcon: #imageLiteral(resourceName: "category8Financial"), categoryColor: colorSeaGreen))
-            allCategoryesArray.append(Category(categoryEnumName: "investments", categoryFullName: "Investments", categoryIcon: #imageLiteral(resourceName: "category9Investments"), categoryColor: colotPink))
-            allCategoryesArray.append(Category(categoryEnumName: "others", categoryFullName: "Others", categoryIcon: #imageLiteral(resourceName: "category10Other"), categoryColor: colorGray))
+            allCategoryesArray.append(Category(categoryPK: 1, categoryFullName: "Food & Drinks", categoryIcon: #imageLiteral(resourceName: "category1Food"), categoryColor: colorRed))
+            allCategoryesArray.append(Category(categoryPK: 2, categoryFullName: "Shopping", categoryIcon: #imageLiteral(resourceName: "category2Shoping"), categoryColor: colorBlue))
+            allCategoryesArray.append(Category(categoryPK: 3, categoryFullName: "Housing", categoryIcon: #imageLiteral(resourceName: "category3Housing"), categoryColor: colorOrange))
+            allCategoryesArray.append(Category(categoryPK: 4, categoryFullName: "Transportation", categoryIcon: #imageLiteral(resourceName: "category4Transportation"), categoryColor: colorDarkGray))
+            allCategoryesArray.append(Category(categoryPK: 5, categoryFullName: "Vehicle", categoryIcon: #imageLiteral(resourceName: "category5Vehicle"), categoryColor: colorPurple))
+            allCategoryesArray.append(Category(categoryPK: 6, categoryFullName: "Life & Entertainment", categoryIcon: #imageLiteral(resourceName: "category6Life"), categoryColor: colorGreen))
+            allCategoryesArray.append(Category(categoryPK: 7, categoryFullName: "Communication, PC", categoryIcon: #imageLiteral(resourceName: "category7Communication"), categoryColor: colorDarkBlue))
+            allCategoryesArray.append(Category(categoryPK: 8, categoryFullName: "Financial expenses", categoryIcon: #imageLiteral(resourceName: "category8Financial"), categoryColor: colorSeaGreen))
+            allCategoryesArray.append(Category(categoryPK: 9, categoryFullName: "Investments", categoryIcon: #imageLiteral(resourceName: "category9Investments"), categoryColor: colotPink))
+            allCategoryesArray.append(Category(categoryPK: 10, categoryFullName: "Others", categoryIcon: #imageLiteral(resourceName: "category10Other"), categoryColor: colorGray))
         }
 
  

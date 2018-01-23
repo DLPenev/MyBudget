@@ -15,7 +15,7 @@ class PopUpViewController: UIViewController {
     @IBAction func unwindToPopUpViewController(segue: UIStoryboardSegue){}
     @IBOutlet var subCategoryLabel: UILabel!
 
-    @IBOutlet var expenceValueTextField: UITextField!
+    @IBOutlet var expenseValueTextField: UITextField!
     
     var selectedSubCategory = (pk : 0 , "")
     
@@ -32,13 +32,15 @@ class PopUpViewController: UIViewController {
     }
     
     @IBAction func okPressed(_ sender: UIButton) {
-        if let valueEntered = expenceValueTextField.text {
+        if let valueEntered = expenseValueTextField.text {
             guard let value = Double(valueEntered) else {
                 print("no value")
                 return  //add alert value must be double
             }
             if selectedSubCategory.0 != 0 {
-                DBManager.singleton.insertInExpenceTable(value: value, subcategory: selectedSubCategory.pk)
+                DBManager.singleton.insertInExpenseTable(value: value, subcategory: selectedSubCategory.pk)
+//                let instanceOfOverviewControler : OverviewViewController!
+//                instanceOfOverviewControler.OverviewTableView.reloadData()
                 dismiss(animated: true, completion: nil)
             } else {
                 // shake animation

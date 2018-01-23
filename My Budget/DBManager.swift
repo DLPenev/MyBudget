@@ -132,9 +132,9 @@ class DBManager: NSObject {
 
         createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableSubCategories) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldSubcategory) TEXT, \(fieldCategoryId) INTEGER, foreign key(\(fieldCategoryId)) references \(tableCategories)(\(fieldId)) )")
         
-        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableExpenses) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldDate) INTEGER, \(fieldValue) DOUBLE, \(fieldSubcategoryId) INTEGER, FOREIGN KEY(\(fieldSubcategoryId)) REFERENCES \(tableSubCategories)(\(fieldId)) )")
+        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableExpenses) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldDate) INTEGER, \(fieldWeekOfYear) INTEGER, \(fieldValue) DOUBLE, \(fieldSubcategoryId) INTEGER, FOREIGN KEY(\(fieldSubcategoryId)) REFERENCES \(tableSubCategories)(\(fieldId)) )")
         
-        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableCashFlow) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldRegularIncome) INTEGER, \(fieldRegularExpence) INTEGER, \(fieldSavingProcentage) INTEGER  ) ")
+        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableCashFlow) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldRegularIncome) INTEGER, \(fieldRegularExpense) INTEGER, \(fieldSavingProcentage) INTEGER  ) ")
         
         insertCategoriesDefaultValues(table: tableCategories, categoriesArray: categoriesDefaultValues)
         insertSubCategoriesDefaultValues(table: tableSubCategories, allSubCategories: subCategoriesDefaultValues)
@@ -144,7 +144,7 @@ class DBManager: NSObject {
     func insertCashFlowDefaultValues(income: Int, expense: Int, savings: Int){
         if openDatabase() {
             
-            let insertSQL = "INSERT INTO \(tableCashFlow) (\(fieldRegularIncome), \(fieldRegularExpence), \(fieldSavingProcentage) ) VALUES (?,?,?)"
+            let insertSQL = "INSERT INTO \(tableCashFlow) (\(fieldRegularIncome), \(fieldRegularExpense), \(fieldSavingProcentage) ) VALUES (?,?,?)"
             let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [income, expense, savings])
             
             if !result {
@@ -161,7 +161,7 @@ class DBManager: NSObject {
     func updateCashFlowValues(income: Int, expense: Int, savings: Int){
         if openDatabase() {
             
-            let insertSQL = "UPDATE \(tableCashFlow) SET \(fieldRegularIncome) = ? , \(fieldRegularExpence) = ? , \(fieldSavingProcentage) = ?  WHERE ID = 1 "
+            let insertSQL = "UPDATE \(tableCashFlow) SET \(fieldRegularIncome) = ? , \(fieldRegularExpense) = ? , \(fieldSavingProcentage) = ?  WHERE ID = 1 "
             let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [income, expense, savings])
             
             if !result {
@@ -175,20 +175,22 @@ class DBManager: NSObject {
         }
     }
     
-    func insertInExpenceTable(value: Double, subcategory: Int){
+    func insertInExpenseTable(value: Double, subcategory: Int){
         
-       let timeInterval = Date().timeIntervalSince1970
-       let dateInMilliseconds = Int(timeInterval * 1000)
+//        let timeInterval = Date().timeIntervalSince1970
+//        let dateInMilliseconds = Int(timeInterval * 1000)
+//        let calendar = Calendar.current
+//        let weekOfYear = calendar.component(.weekOfYear, from: Date.init(timeIntervalSinceNow: 0))
         
         if openDatabase() {
             
-            let insertSQL = "INSERT INTO \(tableExpenses) (\(fieldDate), \(fieldValue), \(fieldSubcategoryId) ) VALUES (?,?,?)"
-            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [dateInMilliseconds, value, subcategory])
+            let insertSQL = "INSERT INTO \(tableExpenses) (\(fieldDate), \(fieldValue), \(fieldSubcategoryId), \(fieldWeekOfYear) ) VALUES (?,?,?,?)"
+            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [dateInMilliseconds, value, subcategory, thisWeek])
             
             if !result {
                 print("Error: \(budgetDB.lastErrorMessage())")
             } else {
-                print ("Expence Added")
+                print ("Expense Added")
             }
             budgetDB.close()
         } else {
@@ -229,6 +231,29 @@ class DBManager: NSObject {
             budgetDB.close()
         }
         return categories
+    }
+    
+    func loadExpenses() -> [Expense] {
+        
+        var expenses:[Expense] = []
+        if openDatabase() {
+//            "select expenses.id , expenses.date , expenses.value, expenses.subcategory_Id , subCategories.category_Id from expenses inner join subCategories on subCategories.id = expenses.subcategory_Id"
+          
+            let  query = "select \(tableExpenses).\(fieldId) ,\(tableExpenses).\(fieldDate), \(tableExpenses).\(fieldValue), \(tableExpenses).\(fieldSubcategoryId), \(tableSubCategories).\(fieldCategoryId) from \(tableExpenses) inner join \(tableSubCategories) on \(tableSubCategories).\(fieldId) = \(tableExpenses).\(fieldSubcategoryId) "
+            
+            do {
+                let results = try budgetDB.executeQuery(query, values: nil)
+                
+                while results.next() {
+                    expenses.append(Expense(fmresultSet: results))
+                }
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+            budgetDB.close()
+        }
+        return expenses
     }
     
 }

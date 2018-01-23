@@ -12,14 +12,14 @@ class SetUpBudgetViewController: UIViewController {
 
     
     @IBOutlet var imcomesSlider: UISlider!
-    @IBOutlet var expenceSlider: UISlider!
+    @IBOutlet var expenseSlider: UISlider!
     @IBOutlet var savingsSlider: UISlider!
     @IBOutlet var incomeValueLabel: UILabel!
-    @IBOutlet var expenceValueLabel: UILabel!
+    @IBOutlet var expenseValueLabel: UILabel!
     @IBOutlet var procentageValueLabel: UILabel!
     
     var regularIncome  = 0
-    var regularExpence = 0
+    var regularExpense = 0
     var savingsProcent = 0
     
     override func viewDidLoad() {
@@ -39,9 +39,9 @@ class SetUpBudgetViewController: UIViewController {
         incomeValueLabel.text = "\(regularIncome)"
     }
     
-    @IBAction func expenceSliderChanged(_ sender: UISlider) {
-        regularExpence = Int(sender.value)
-        expenceValueLabel.text = "\(regularExpence)"
+    @IBAction func expenseSliderChanged(_ sender: UISlider) {
+        regularExpense = Int(sender.value)
+        expenseValueLabel.text = "\(regularExpense)"
     }
     
     @IBAction func procentageValueChanged(_ sender: UISlider) {
@@ -51,7 +51,7 @@ class SetUpBudgetViewController: UIViewController {
     
 
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        DBManager.singleton.updateCashFlowValues(income: regularIncome, expense: regularExpence, savings: savingsProcent)
+        DBManager.singleton.updateCashFlowValues(income: regularIncome, expense: regularExpense, savings: savingsProcent)
         UserDefaults.standard.set(true, forKey: "cashFlowIsSet")
     }
     
