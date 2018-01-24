@@ -16,7 +16,7 @@ class SetUpBudgetViewController: UIViewController {
     @IBOutlet var savingsSlider: UISlider!
     @IBOutlet var incomeValueLabel: UILabel!
     @IBOutlet var expenseValueLabel: UILabel!
-    @IBOutlet var procentageValueLabel: UILabel!
+    @IBOutlet var percentageValueLabel: UILabel!
     
     var regularIncome  = 0
     var regularExpense = 0
@@ -44,9 +44,9 @@ class SetUpBudgetViewController: UIViewController {
         expenseValueLabel.text = "\(regularExpense)"
     }
     
-    @IBAction func procentageValueChanged(_ sender: UISlider) {
+    @IBAction func percentageValueChanged(_ sender: UISlider) {
         savingsProcent = Int(sender.value)
-        procentageValueLabel.text = "\(savingsProcent) %"
+        percentageValueLabel.text = "\(savingsProcent) %"
     }
     
 

@@ -13,9 +13,9 @@ class SumExpense: NSObject {
     var categoryColor:         UIColor
     var categoryFullName:      String
     var value:                 Double
-    var procentOfTotalExpense: Int
+    var procentOfTotalExpense: Double
     
-    init(categoryIcon: UIImage, categoryColor:UIColor, categoryFullName:String, value:Double, procentOfTotalExpense:Int ) {
+    init(categoryIcon: UIImage, categoryColor:UIColor, categoryFullName:String, value:Double, procentOfTotalExpense:Double ) {
             self.categoryIcon          = categoryIcon
             self.categoryColor         = categoryColor
             self.categoryFullName      = categoryFullName

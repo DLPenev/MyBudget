@@ -18,6 +18,7 @@ class PopUpViewController: UIViewController {
     @IBOutlet var expenseValueTextField: UITextField!
     
     var selectedSubCategory = (pk : 0 , "")
+    var myDelegate: testProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +40,7 @@ class PopUpViewController: UIViewController {
             }
             if selectedSubCategory.0 != 0 {
                 DBManager.singleton.insertInExpenseTable(value: value, subcategory: selectedSubCategory.pk)
-//                let instanceOfOverviewControler : OverviewViewController!
-//                instanceOfOverviewControler.OverviewTableView.reloadData()
+                myDelegate?.setStatusAndRefreshTableView()
                 dismiss(animated: true, completion: nil)
             } else {
                 // shake animation
@@ -50,6 +50,7 @@ class PopUpViewController: UIViewController {
     }
     
     @IBAction func cancelPopUp(_ sender: Any) {
+
         dismiss(animated: true)
     }
     

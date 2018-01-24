@@ -134,18 +134,20 @@ class DBManager: NSObject {
         
         createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableExpenses) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldDate) INTEGER, \(fieldWeekOfYear) INTEGER, \(fieldValue) DOUBLE, \(fieldSubcategoryId) INTEGER, FOREIGN KEY(\(fieldSubcategoryId)) REFERENCES \(tableSubCategories)(\(fieldId)) )")
         
-        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableCashFlow) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldRegularIncome) INTEGER, \(fieldRegularExpense) INTEGER, \(fieldSavingProcentage) INTEGER  ) ")
+        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableCashFlow) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldRegularIncome) INTEGER, \(fieldRegularExpense) INTEGER, \(fieldSavingPercentage) INTEGER ) ")
         
         insertCategoriesDefaultValues(table: tableCategories, categoriesArray: categoriesDefaultValues)
         insertSubCategoriesDefaultValues(table: tableSubCategories, allSubCategories: subCategoriesDefaultValues)
-        insertCashFlowDefaultValues(income: 0, expense: 0, savings: 0)
+        insertCashFlowDefaultValues()
     }
     
-    func insertCashFlowDefaultValues(income: Int, expense: Int, savings: Int){
+    func insertCashFlowDefaultValues(){
         if openDatabase() {
             
-            let insertSQL = "INSERT INTO \(tableCashFlow) (\(fieldRegularIncome), \(fieldRegularExpense), \(fieldSavingProcentage) ) VALUES (?,?,?)"
-            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [income, expense, savings])
+            let defaultValue = 0
+            
+            let insertSQL = "INSERT INTO \(tableCashFlow) (\(fieldRegularIncome), \(fieldRegularExpense), \(fieldSavingPercentage) ) VALUES (?,?,?)"
+            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [defaultValue, defaultValue, defaultValue])
             
             if !result {
                 print("Error: \(budgetDB.lastErrorMessage())")
@@ -161,7 +163,7 @@ class DBManager: NSObject {
     func updateCashFlowValues(income: Int, expense: Int, savings: Int){
         if openDatabase() {
             
-            let insertSQL = "UPDATE \(tableCashFlow) SET \(fieldRegularIncome) = ? , \(fieldRegularExpense) = ? , \(fieldSavingProcentage) = ?  WHERE ID = 1 "
+            let insertSQL = "UPDATE \(tableCashFlow) SET \(fieldRegularIncome) = ? , \(fieldRegularExpense) = ? , \(fieldSavingPercentage) = ?  WHERE ID = 1 "
             let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [income, expense, savings])
             
             if !result {
@@ -176,11 +178,6 @@ class DBManager: NSObject {
     }
     
     func insertInExpenseTable(value: Double, subcategory: Int){
-        
-//        let timeInterval = Date().timeIntervalSince1970
-//        let dateInMilliseconds = Int(timeInterval * 1000)
-//        let calendar = Calendar.current
-//        let weekOfYear = calendar.component(.weekOfYear, from: Date.init(timeIntervalSinceNow: 0))
         
         if openDatabase() {
             
@@ -254,6 +251,30 @@ class DBManager: NSObject {
             budgetDB.close()
         }
         return expenses
+    }
+    
+    func getCashFlow()->(income:Double,expense:Double,savingsPercentage:Double){
+        var income            = 0.0
+        var expense           = 0.0
+        var savingsPercentage = 0.0
+        
+        let query = "select * from \(tableCashFlow)"
+        
+        if openDatabase() {
+            do {
+                let result = try budgetDB.executeQuery(query, values: nil)
+                while result.next() {
+                    income            = Double(result.int(forColumn: fieldRegularIncome))
+                    expense           = Double(result.int(forColumn: fieldRegularExpense))
+                    savingsPercentage = Double(result.int(forColumn: fieldSavingPercentage))
+                }
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+            budgetDB.close()
+        }
+        return (income,expense,savingsPercentage)
     }
     
 }
