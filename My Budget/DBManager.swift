@@ -236,7 +236,7 @@ class DBManager: NSObject {
         if openDatabase() {
 //            "select expenses.id , expenses.date , expenses.value, expenses.subcategory_Id , subCategories.category_Id from expenses inner join subCategories on subCategories.id = expenses.subcategory_Id"
           
-            let  query = "select \(tableExpenses).\(fieldId) ,\(tableExpenses).\(fieldDate), \(tableExpenses).\(fieldValue), \(tableExpenses).\(fieldSubcategoryId), \(tableSubCategories).\(fieldCategoryId) from \(tableExpenses) inner join \(tableSubCategories) on \(tableSubCategories).\(fieldId) = \(tableExpenses).\(fieldSubcategoryId) "
+            let  query = "select \(tableExpenses).\(fieldId) ,\(tableExpenses).\(fieldDate), \(tableExpenses).\(fieldValue), \(tableExpenses).\(fieldSubcategoryId), \(tableSubCategories).\(fieldCategoryId) , \(tableSubCategories).\(fieldSubcategory) from \(tableExpenses) inner join \(tableSubCategories) on \(tableSubCategories).\(fieldId) = \(tableExpenses).\(fieldSubcategoryId) "
             
             do {
                 let results = try budgetDB.executeQuery(query, values: nil)

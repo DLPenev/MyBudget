@@ -25,15 +25,21 @@ let fieldRegularExpense   = "regular_Expense"
 let fieldSavingPercentage = "savings_Percentage"
 let fieldWeekOfYear       = "week_of_year"
 
-let tabBarCOntrollerId  = "tabBarViewControllerId"
-let segueToSubCategory  = "segueToSubCategoryViewController"
-let segueToPopup        = "showPopupSegueId"
-let unwindToPopUpViewId = "unwindToPopUpViewControllerId"
+let categoryCellId        = "categoryCellId"
+let tabBarCOntrollerId    = "tabBarViewControllerId"
+let segueToSubCategory    = "segueToSubCategoryViewController"
+let segueToPopup          = "showPopupSegueId"
+let unwindToPopUpViewId   = "unwindToPopUpViewControllerId"
+let segueToExpenseDetails = "goToExpenseDetailViewControllerId"
 
 let statusRich    = ("You are in the money" , #imageLiteral(resourceName: "richEmoji"))
 let statusGotSome = ("You still got some money" , #imageLiteral(resourceName: "gotSomeEmoji"))
 let statusPoor    = ("You are low on money" , #imageLiteral(resourceName: "poorEmoji"))
 let statusBroke   = ("You Are Broke" , #imageLiteral(resourceName: "brokeEmoji"))
+
+let dateFormatTime     = "hh:mm:ss a"
+let dateFormatWeekDay  = "EEEE"
+let dateFormatFullDate = "EEEE dd MMM"
 
 var allCategoryesArray = [Category]()
 
@@ -53,5 +59,12 @@ class Global: NSObject {
     
     func doubleFormater(value: Double)->String{
        return String(format: "%.02f", value)
+    }
+    
+    func getTimeOrDateInString(dateInMillisec: CLongLong, format: String)->String{
+        let date = Date(milliseconds: Int(dateInMillisec) )
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: date)
     }
 }

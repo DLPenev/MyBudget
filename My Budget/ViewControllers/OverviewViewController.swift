@@ -10,8 +10,6 @@ import UIKit
 
 class OverviewViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
-    
     @IBOutlet var OverviewTableView:   UITableView!
     @IBOutlet var emogiImageView:      UIImageView!
     @IBOutlet var budgetStatusLabel:   UILabel!
@@ -21,9 +19,14 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
     
     var segmentIndex = 0
     var allExpenses:       [Expense] = []
-    var todayExpenses:     [Expense] = []
-    var thisWeekExpenses:  [Expense] = []
-    var thisMonthExpenses: [Expense] = []
+    var selectedRowIndex = 0
+    
+    var allExpensesByPeriod: [[Expense]] = [[],[],[]] // allExpensesByPeriod[[today],[thisWeek],[thisMonth]]
+    
+//    var todayExpenses:     [Expense] = []
+//    var thisWeekExpenses:  [Expense] = []
+//    var thisMonthExpenses: [Expense] = []
+    
     var listOfExpensesByCategory: [SumExpense] = []
     
     
@@ -47,84 +50,59 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedRowIndex = indexPath.row
+        performSegue(withIdentifier: segueToExpenseDetails, sender: nil)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
-//        allExpenses = DBManager.singleton.loadExpenses()
-//        todayExpenses     = []
-//        thisWeekExpenses  = []
-//        thisMonthExpenses = []
-//        listOfExpensesByCategory = []
-//        sortExpenseByPeriod()
-//
-//        listOfExpensesByCategory = getExpensesByCategory()
-//
-//
-//        remainingValueLabel.text = String(getRemainingAndTotalBalance(period: segmentIndex).remainder)  //"34 remaining"
-//
-////        emogiImageView.image     = #imageLiteral(resourceName: "emojiGood")
-////        budgetStatusLabel.text   = "Status is good"
-//        OverviewTableView.reloadData()
-        
         setStatusAndRefreshTableView()
     }
 
 
     func sortExpenseByPeriod(){
-        todayExpenses = []
-        thisWeekExpenses = []
-        thisWeekExpenses = []
-        
-        
+
         for expense in allExpenses {
             let expenseDay  = calendar.component(.day , from: Date(milliseconds: Int(expense.date)))
             let expenseWeek = calendar.component(.weekOfYear, from: Date(milliseconds: Int(expense.date)))
             let expenseMonth = calendar.component(.month, from: Date(milliseconds: Int(expense.date)))
            
             if expenseDay == today {
-                todayExpenses.append(expense)
+                allExpensesByPeriod[0].append(expense)
             }
             
             if expenseWeek == thisWeek {
-                thisWeekExpenses.append(expense)
+                allExpensesByPeriod[1].append(expense)
             }
             
             if expenseMonth == thisMonth {
-                thisMonthExpenses.append(expense)
+                allExpensesByPeriod[2].append(expense)
             }
         }
     }
     
     func getExpensesByCategory()->[SumExpense]{
         
-        var period: [Expense]
+        let period = allExpensesByPeriod[segmentIndex]
         
-        if segmentIndex == 0 {
-            period = todayExpenses
-        } else if segmentIndex == 1 {
-            period = thisWeekExpenses
-        } else {
-           period = thisMonthExpenses
-        }
-        
-        var foodExpenses = 0.0
-        var shopingExpenses = 0.0
-        var housingExpenses = 0.0
+        var foodExpenses           = 0.0
+        var shopingExpenses        = 0.0
+        var housingExpenses        = 0.0
         var transportationExpenses = 0.0
-        var vehicleExpenses = 0.0
-        var lifeExpenses = 0.0
-        var communictionExpenses = 0.0
-        var financialExpenses = 0.0
-        var investmentExpenses = 0.0
-        var othersExpenses = 0.0
+        var vehicleExpenses        = 0.0
+        var lifeExpenses           = 0.0
+        var communictionExpenses   = 0.0
+        var financialExpenses      = 0.0
+        var investmentExpenses     = 0.0
+        var othersExpenses         = 0.0
         
         for expense in period {
             switch expense.categoryId {
@@ -152,7 +130,7 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
         for expenceValue in arrayOfSumExpenseValues {
             if expenceValue != 0.0 {
                 let procentOfTotal = expenceValue / totalExpenses * 100
-                arrayOfSumExpense.append(SumExpense(categoryIcon: allCategoryesArray[counter].categoryIcon, categoryColor: allCategoryesArray[counter].categoryColor, categoryFullName: allCategoryesArray[counter].categoryFullName, value: expenceValue, procentOfTotalExpense: procentOfTotal))
+                arrayOfSumExpense.append(SumExpense(categoryIcon: allCategoryesArray[counter].categoryIcon, categoryColor: allCategoryesArray[counter].categoryColor, categoryFullName: allCategoryesArray[counter].categoryFullName, value: expenceValue, procentOfTotalExpense: procentOfTotal, categoryPrimaryKey: allCategoryesArray[counter].categoryPK))
             }
             counter += 1
         }
@@ -180,45 +158,38 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
         
         var allExpenses = 0.0
         
-        if period == 0 {                         //today
-            for i in todayExpenses {
-                allExpenses += i.value
+        if period == 0 {
+            for expense in allExpensesByPeriod[0] {
+                allExpenses += expense.value
             }
-            
             return ((budgetTotal.today - allExpenses), budgetTotal.today)
-            
-        } else if period == 1 {                 //this week
-            for i in thisWeekExpenses {
-                allExpenses += i.value
+        } else if period == 1 {
+            for expense in allExpensesByPeriod[1] {
+                allExpenses += expense.value
             }
-            
             return (budgetTotal.thisWeek - allExpenses , budgetTotal.thisWeek)
-            
-        } else {                                //this month
-            for i in thisMonthExpenses {
-                allExpenses += i.value
+        } else {
+            for expense in allExpensesByPeriod[2] {
+                allExpenses += expense.value
             }
-            
             return (budgetTotal.thisMonth - allExpenses ,  budgetTotal.thisMonth)
         }
     }
     
     func getBudgetStatus(remainingAndTotalBalance: (total:Double, remainder:Double))->(status: String,emoji: UIImage){
-        //ремайнинг баланса който идва вече е за определен период
-         //tova da e tupyl da idva kato argument i da dyrji ostatyka i totala za iskaniq period
+
+        let oneThirdBudget = remainingAndTotalBalance.total / 3
+        let reminder = remainingAndTotalBalance.remainder
         
-       
-            let oneThirdbudget = remainingAndTotalBalance.total / 3
-            
-            if remainingAndTotalBalance.remainder > 2 * oneThirdbudget {
-                return statusRich
-            } else if remainingAndTotalBalance.remainder > oneThirdbudget {
-                return statusGotSome
-            } else if remainingAndTotalBalance.remainder < oneThirdbudget && remainingAndTotalBalance.remainder > 0 {
-                return statusPoor
-            } else {
-                return statusBroke
-            }
+        if reminder > 2 * oneThirdBudget {
+            return statusRich
+        } else if reminder > oneThirdBudget {
+            return statusGotSome
+        } else if reminder < oneThirdBudget && reminder > 0 {
+            return statusPoor
+        } else {
+            return statusBroke
+        }
 
     }
     
@@ -226,6 +197,30 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
         if  segue.identifier == segueToPopup{
             let destination = segue.destination as? PopUpViewController
             destination?.myDelegate = self
+        }
+        
+        if segue.identifier == segueToExpenseDetails{
+            let destination = segue.destination as? ExpenseDetailsViewController
+            destination?.segmentIndex  = segmentIndex
+            
+            let selectedCategoryId = listOfExpensesByCategory[selectedRowIndex].categoryPrimaryKey
+            var selectedCategory: Category!
+            
+            var listOfExpenseForSelectedCategoryAndPeriod: [Expense] = []
+            for expense in allExpensesByPeriod[segmentIndex] {
+                if expense.categoryId == selectedCategoryId {
+                    listOfExpenseForSelectedCategoryAndPeriod.append(expense)
+                }
+            }
+            for category in allCategoryesArray {
+                if category.categoryPK == selectedCategoryId {
+                    selectedCategory = category
+                }
+            }
+            
+            destination?.expenseList      = listOfExpenseForSelectedCategoryAndPeriod
+            destination?.selectedCategory = selectedCategory
+            //i category id-to na  izbranata kategoriq
         }
     }
     
@@ -245,11 +240,9 @@ extension OverviewViewController: testProtocol {
     func setStatusAndRefreshTableView() {
         var remainBalance: Double
         var totalBalance: Double
+
+        allExpensesByPeriod = [[],[],[]]
         
-        
-        todayExpenses     = []
-        thisWeekExpenses  = []
-        thisMonthExpenses = []
         listOfExpensesByCategory = []
         
         allExpenses = DBManager.singleton.loadExpenses()
@@ -257,7 +250,7 @@ extension OverviewViewController: testProtocol {
         listOfExpensesByCategory = getExpensesByCategory()
         remainBalance = getRemainingAndTotalBalance(period: segmentIndex).remainder
         totalBalance  = getRemainingAndTotalBalance(period: segmentIndex).total
-        remainingValueLabel.text = Global.singleton.doubleFormater(value: remainBalance)
+        remainingValueLabel.text = "Balance :  \(Global.singleton.doubleFormater(value: remainBalance))"
         let budgetStatus = getBudgetStatus(remainingAndTotalBalance: (total: totalBalance, remainder: remainBalance))
         emogiImageView.image     = budgetStatus.emoji
         budgetStatusLabel.text   = budgetStatus.status

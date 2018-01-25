@@ -17,6 +17,8 @@
 		630E85201FFD138E00C1DF77 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E851F1FFD138E00C1DF77 /* DBManager.swift */; };
 		6339742F2015E304001B811D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339742E2015E304001B811D /* Extensions.swift */; };
 		6339743320179A5D001B811D /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339743220179A5D001B811D /* Protocols.swift */; };
+		633974352018C587001B811D /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633974342018C587001B811D /* ExpenseDetailsViewController.swift */; };
+		633974392018F15F001B811D /* ExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633974382018F15F001B811D /* ExpensesCell.swift */; };
 		633B1F101FDACE85009FBB0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F0F1FDACE85009FBB0A /* AppDelegate.swift */; };
 		633B1F121FDACE85009FBB0A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F111FDACE85009FBB0A /* FirstViewController.swift */; };
 		633B1F151FDACE85009FBB0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 633B1F131FDACE85009FBB0A /* Main.storyboard */; };
@@ -33,6 +35,7 @@
 		6397654B2008A41200993B7A /* SetUpBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */; };
 		6397C741200CD43C0031CA17 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6397C740200CD43C0031CA17 /* TabBarViewController.swift */; };
 		63B130B61FF6790600CEF561 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B130B51FF6790600CEF561 /* LogInViewController.swift */; };
+		63BF070B2019DD750086C149 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BF070A2019DD750086C149 /* HeaderViewCell.swift */; };
 		63F191791FFD258300F4CF1A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F191781FFD258300F4CF1A /* Global.swift */; };
 		63F1917B1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F1917A1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift */; };
 		63F1917E1FFFBDDA00F4CF1A /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F1917D1FFFBDDA00F4CF1A /* CategoryViewCell.swift */; };
@@ -77,6 +80,8 @@
 		630E851F1FFD138E00C1DF77 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		6339742E2015E304001B811D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6339743220179A5D001B811D /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		633974342018C587001B811D /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
+		633974382018F15F001B811D /* ExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesCell.swift; sourceTree = "<group>"; };
 		633B1F0C1FDACE85009FBB0A /* My Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Budget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		633B1F0F1FDACE85009FBB0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		633B1F111FDACE85009FBB0A /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +104,7 @@
 		6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpBudgetViewController.swift; sourceTree = "<group>"; };
 		6397C740200CD43C0031CA17 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		63B130B51FF6790600CEF561 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		63BF070A2019DD750086C149 /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		63F191781FFD258300F4CF1A /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		63F1917A1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategoryViewController.swift; sourceTree = "<group>"; };
 		63F1917D1FFFBDDA00F4CF1A /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
@@ -230,6 +236,7 @@
 				63B130B51FF6790600CEF561 /* LogInViewController.swift */,
 				63836076200F3700002FF703 /* OverviewViewController.swift */,
 				63774D001FE11DA900933AA5 /* PopUpViewController.swift */,
+				633974342018C587001B811D /* ExpenseDetailsViewController.swift */,
 				63F1917A1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift */,
 				63F1917F2003718A00F4CF1A /* ChooseSubCategoryViewController.swift */,
 				6397C740200CD43C0031CA17 /* TabBarViewController.swift */,
@@ -244,6 +251,8 @@
 				63F1917D1FFFBDDA00F4CF1A /* CategoryViewCell.swift */,
 				63F1918420066F2D00F4CF1A /* SubCategoryTableViewCell.swift */,
 				63706D1420122B2700D0C68C /* ExpenseRepresentOverviewCell.swift */,
+				633974382018F15F001B811D /* ExpensesCell.swift */,
+				63BF070A2019DD750086C149 /* HeaderViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -393,9 +402,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633974392018F15F001B811D /* ExpensesCell.swift in Sources */,
 				633B1F401FDEB090009FBB0A /* RegisterViewController.swift in Sources */,
 				630E85101FFD0CFB00C1DF77 /* FMDatabaseQueue.m in Sources */,
 				633B1F121FDACE85009FBB0A /* FirstViewController.swift in Sources */,
+				63BF070B2019DD750086C149 /* HeaderViewCell.swift in Sources */,
 				633B1F101FDACE85009FBB0A /* AppDelegate.swift in Sources */,
 				630E850E1FFD0CFB00C1DF77 /* FMDatabase.m in Sources */,
 				6339743320179A5D001B811D /* Protocols.swift in Sources */,
@@ -411,6 +422,7 @@
 				6397654B2008A41200993B7A /* SetUpBudgetViewController.swift in Sources */,
 				63706D1920123A0400D0C68C /* SumExpense.swift in Sources */,
 				634FC73A2010EC1A009BDE2B /* Expense.swift in Sources */,
+				633974352018C587001B811D /* ExpenseDetailsViewController.swift in Sources */,
 				63F1918520066F2D00F4CF1A /* SubCategoryTableViewCell.swift in Sources */,
 				63774D011FE11DA900933AA5 /* PopUpViewController.swift in Sources */,
 				6339742F2015E304001B811D /* Extensions.swift in Sources */,

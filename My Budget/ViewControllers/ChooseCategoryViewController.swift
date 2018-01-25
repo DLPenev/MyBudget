@@ -13,7 +13,6 @@ class ChooseCategoryViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet var categoriesTableView: UITableView!
  
     let numberOfCategories = 10
-    let categoryCellId     = "categoryCellId"
     var categoryIndex: Int?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,7 +33,6 @@ class ChooseCategoryViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
