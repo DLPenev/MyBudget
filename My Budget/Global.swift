@@ -37,7 +37,7 @@ let statusGotSome = ("You still got some money" , #imageLiteral(resourceName: "g
 let statusPoor    = ("You are low on money" , #imageLiteral(resourceName: "poorEmoji"))
 let statusBroke   = ("You Are Broke" , #imageLiteral(resourceName: "brokeEmoji"))
 
-let dateFormatTime     = "hh:mm:ss a"
+let dateFormatTime     = "hh:mm a"
 let dateFormatWeekDay  = "EEEE"
 let dateFormatFullDate = "EEEE dd MMM"
 

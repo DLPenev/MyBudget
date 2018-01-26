@@ -15,8 +15,10 @@ class PopUpViewController: UIViewController {
     @IBAction func unwindToPopUpViewController(segue: UIStoryboardSegue){}
     @IBOutlet var subCategoryLabel: UILabel!
 
+    @IBOutlet var popoverTitle: UILabel!
     @IBOutlet var expenseValueTextField: UITextField!
     
+    var isExpensePopUp = true
     var selectedSubCategory = (pk : 0 , "")
     var myDelegate: testProtocol?
     
@@ -27,6 +29,13 @@ class PopUpViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        if isExpensePopUp {    //////made that short
+           popoverTitle.text = "Expense"
+        }  else {
+            popoverTitle.text = "Income"
+        }
+        
+        
         if selectedSubCategory.1 != "" {
             subCategoryLabel.text = selectedSubCategory.1
         }

@@ -196,6 +196,7 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  segue.identifier == segueToPopup{
             let destination = segue.destination as? PopUpViewController
+//            destination?.isExpensePopUp = sender as! Bool
             destination?.myDelegate = self
         }
         
@@ -220,7 +221,6 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
             
             destination?.expenseList      = listOfExpenseForSelectedCategoryAndPeriod
             destination?.selectedCategory = selectedCategory
-            //i category id-to na  izbranata kategoriq
         }
     }
     
@@ -230,8 +230,13 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
         setStatusAndRefreshTableView()
     }
     
+    
+    @IBAction func addExpenseTouchUpInside(_ sender: Any) {
+        performSegue(withIdentifier: segueToPopup, sender: true)
+    }
+    
     @IBAction func addIncomePressed(_ sender: UIButton) {
-       
+       performSegue(withIdentifier: segueToPopup, sender: false) //////////////////////////
     }
     
 }

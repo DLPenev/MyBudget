@@ -258,6 +258,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="minusButon"/>
                                         <connections>
+                                            <action selector="addExpenseTouchUpInside:" destination="k9u-Ge-6TR" eventType="touchUpInside" id="jYK-EO-m0u"/>
                                             <segue destination="JLo-33-vOF" kind="presentation" identifier="showPopupSegueId" id="qJn-k7-Qi8"/>
                                         </connections>
                                     </button>
@@ -345,7 +346,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="    Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFX-mn-zyW">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label   " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFX-mn-zyW">
                                                     <rect key="frame" x="0.0" y="1" width="320" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.83071468997964093" green="0.97768569047373222" blue="0.99400075165753432" alpha="0.7517925941780822" colorSpace="custom" customColorSpace="sRGB"/>
@@ -472,9 +473,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOl-YI-iUY">
-                                        <rect key="frame" x="0.0" y="189" width="97" height="40"/>
+                                        <rect key="frame" x="8" y="189" width="89" height="37"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <state key="normal" title="Ok" backgroundImage="button1">
+                                        <state key="normal" title="Ok" backgroundImage="buttonFrame">
                                             <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -482,9 +483,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Tc-fn-iEu">
-                                        <rect key="frame" x="116" y="189" width="97" height="40"/>
+                                        <rect key="frame" x="116" y="189" width="89" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
-                                        <state key="normal" title="Cancel" backgroundImage="button1">
+                                        <state key="normal" title="Cancel" backgroundImage="buttonFrame">
                                             <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -501,14 +502,14 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtD-cF-QfH">
                                         <rect key="frame" x="8" y="131" width="198" height="36"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.30475181340000002" green="0.72103410960000003" blue="0.80967724320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.97269580462718686" green="0.97418152979150596" blue="0.98466534599187816" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-xv-MaV">
                                         <rect key="frame" x="8" y="131" width="198" height="36"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="buttonFrame"/>
                                         <connections>
                                             <segue destination="XSb-pm-sMu" kind="presentation" id="efP-Wu-B26"/>
                                         </connections>
@@ -516,13 +517,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="income/expense" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yI-6m-KhM">
                                         <rect key="frame" x="1" y="0.0" width="213" height="41"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.2310012877" green="0.68806487319999998" blue="0.85101515049999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.29847356677055359" green="0.73553544282913208" blue="0.88202935457229614" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.97916546993326914" green="0.98250950670675408" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.28319131940850911" green="0.82504210298328029" blue="0.86096129441624369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.28685453534126282" green="0.37427020072937012" blue="0.4947589635848999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="0.65504601883561642" colorSpace="custom" customColorSpace="sRGB"/>
@@ -531,12 +532,13 @@
                     <connections>
                         <outlet property="expenseValueTextField" destination="BJw-A7-IiM" id="0V7-Hl-uMU"/>
                         <outlet property="popUpView" destination="wdU-UX-C7t" id="8F0-8q-IEt"/>
+                        <outlet property="popoverTitle" destination="2yI-6m-KhM" id="O2Q-Xl-9nB"/>
                         <outlet property="subCategoryLabel" destination="MtD-cF-QfH" id="WmA-em-lJE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfr-Uc-aHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="145" y="1241"/>
+            <point key="canvasLocation" x="144.375" y="1240.1408450704225"/>
         </scene>
         <!--Choose Category View Controller-->
         <scene sceneID="KH5-lI-rhY">
@@ -996,11 +998,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9V-K2-M2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1069" y="-376"/>
+            <point key="canvasLocation" x="1056" y="-263"/>
         </scene>
     </scenes>
     <resources>
-        <image name="button1" width="305" height="123"/>
         <image name="buttonFrame" width="489" height="122"/>
         <image name="house" width="48" height="48"/>
         <image name="minusButon" width="620" height="620"/>

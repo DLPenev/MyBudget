@@ -86,4 +86,21 @@ extension ExpenseDetailsViewController:  UITableViewDelegate, UITableViewDataSou
         return cellHeight
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let edit = UITableViewRowAction(style : .normal, title: "Edit", handler: { action , indexPath in
+            print("more click")
+        })
+        
+        let delete = UITableViewRowAction(style : .destructive, title: "Delete", handler: { action , indexPath in
+            print("delete touchup inside")
+
+            DBManager.singleton.deleteAttribute(table: tableExpenses, attributeID: self.expenseList[indexPath.row].expenseId)
+            self.expenseList.remove(at: indexPath.row)
+            self.listOfExpenseForPeriodTableView.deleteRows(at: [indexPath], with: .automatic)
+        })
+        
+        return [delete, edit]
+    }
+    
+    
 }

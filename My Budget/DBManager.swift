@@ -277,4 +277,23 @@ class DBManager: NSObject {
         return (income,expense,savingsPercentage)
     }
     
+    func deleteAttribute(table:String,attributeID:Int){
+        
+        if openDatabase() {
+            
+            let deleteSQL = "delete from \(table) where id = \(attributeID)"
+            
+            let result = budgetDB.executeUpdate(deleteSQL, withArgumentsIn: [])
+            
+            if !result {
+                print("Error: \(budgetDB.lastErrorMessage())")
+            } else {
+                print ("Attribute deleted")
+            }
+            budgetDB.close()
+        } else {
+            print("Error: \(budgetDB.lastErrorMessage())")
+        }
+    }
+    
 }
