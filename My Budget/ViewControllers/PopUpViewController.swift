@@ -111,24 +111,22 @@ class PopUpViewController: UIViewController {
     
     // MARK: - PopoverEdit func and actions
     
-    @IBAction func expenseValueEditingDidEnd(_ sender: UITextField) {
-        print("end editing")
+
+    
+    @IBAction func editOkTouchUpInside(_ sender: UIButton) {
         if let hasValue = editNewValueTextField.text {
             guard let newValue = Double(hasValue) else {
                 print("no value")
+                editNewValueTextField.attributedPlaceholder = NSAttributedString(string: "Enter Value", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
                 return
             }
             editedExpense.value = newValue
         }
-    }
-    
-    @IBAction func editOkTouchUpInside(_ sender: UIButton) {
         DBManager.singleton.updateExpense(value: editedExpense.value, subcategory: editedExpense.subCategoryId, date: editedExpense.date, expenseId: editedExpense.expenseId)
-       popupDelegate?.setNewValuesAndRefreshTableView()
+        popupDelegate?.setNewValuesAndRefreshTableView()
         dismiss(animated: true)
     }
     
-
     @IBAction func editCancelTouchUpInside(_ sender: UIButton) {
         dismiss(animated: true)
     }
@@ -153,13 +151,13 @@ class PopUpViewController: UIViewController {
     
     func customPopupUI(viewIndex: Int){
         
-        if viewIndex == 0 {         //popupAddExpense
+        if viewIndex == popupIndexExpense {
             self.view.addSubview(popupAddExpense)
             self.popupAddExpense.center = CGPoint(x: view.frame.size.width / 2, y : view.frame.size.height / 3)
             popupAddExpense.layer.cornerRadius   = cornerRadius
             popupAddExpense.layer.masksToBounds  = true
             
-        } else if viewIndex == 1 {  //popupAddIncome
+        } else if viewIndex == popupIndexIncome {
             self.view.addSubview(popupAddIncome)
             self.popupAddIncome.center = CGPoint(x: view.frame.size.width / 2, y : view.frame.size.height / 3)
             popupAddIncome.layer.cornerRadius    = cornerRadius
