@@ -20,6 +20,7 @@ let fieldSubcategoryId    = "subcategory_Id"
 let fieldCategory         = "category"
 let fieldCategoryId       = "category_Id"
 let fieldId               = "id"
+let fieldCurrency         = "currency"
 let fieldRegularIncome    = "regular_Income"
 let fieldRegularExpense   = "regular_Expense"
 let fieldSavingPercentage = "savings_Percentage"
@@ -46,6 +47,7 @@ let popupIndexExpense = 0
 let popupIndexIncome  = 1
 let popupIndexEdit    = 2
 
+var usedCurrensy       = (UserDefaults.standard.string(forKey: "currency")) ?? ""
 var allCategoryesArray = [Category]()
 
 let timeInterval       = Date().timeIntervalSince1970

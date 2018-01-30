@@ -43,6 +43,7 @@ class ChooseSubCategoryViewController: UIViewController, UITableViewDelegate, UI
         if  segue.identifier == unwindToPopUpViewId{
             let destination = segue.destination as? PopUpViewController
             destination?.selectedSubCategory = selectedSubcategory
+            destination?.subCategoryLabel.textColor = UIColor.white
         }
     }
     

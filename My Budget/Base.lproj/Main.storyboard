@@ -355,14 +355,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SB-WC-A1j">
-                                                    <rect key="frame" x="15" y="32" width="199" height="21"/>
+                                                    <rect key="frame" x="15" y="32" width="180" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xC3-bk-s0n">
-                                                    <rect key="frame" x="235" y="32" width="70" height="21"/>
+                                                    <rect key="frame" x="215" y="32" width="90" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -513,7 +513,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtD-cF-QfH">
                             <rect key="frame" x="8" y="131" width="198" height="36"/>
@@ -568,7 +568,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick Subcategory" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J79-DR-Qyd">
                             <rect key="frame" x="7" y="99" width="198" height="30"/>
@@ -613,7 +613,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick Subcategory" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3kg-JI-Syz">
                             <rect key="frame" x="8" y="100" width="198" height="30"/>
@@ -1051,7 +1051,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pt1-14-lcg">
-                                <rect key="frame" x="129" y="441" width="62" height="30"/>
+                                <rect key="frame" x="129" y="474" width="62" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="bWm-yc-3RE"/>
                                 </constraints>
@@ -1060,6 +1060,23 @@
                                     <action selector="saveButtonPressed:" destination="I0D-it-cqI" eventType="touchUpInside" id="gBH-SB-5QP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Currency : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1S6-v2-CDV">
+                                <rect key="frame" x="37" y="413" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="pick currency" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A2Z-un-r0p">
+                                <rect key="frame" x="167" y="408" width="122" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="pickCurencyEditingDidBegin:" destination="I0D-it-cqI" eventType="editingDidBegin" id="s6q-vS-FOO"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1097,7 +1114,7 @@
                             <constraint firstItem="JLw-Q3-o1t" firstAttribute="trailing" secondItem="mMc-7g-KJR" secondAttribute="trailing" constant="38" id="gZV-hp-2Za"/>
                             <constraint firstItem="JLw-Q3-o1t" firstAttribute="trailing" secondItem="Tma-jr-FGB" secondAttribute="trailing" constant="44" id="hYP-43-ewF"/>
                             <constraint firstItem="Tma-jr-FGB" firstAttribute="leading" secondItem="JLw-Q3-o1t" secondAttribute="leading" constant="42" id="iT5-uo-Uig"/>
-                            <constraint firstItem="pt1-14-lcg" firstAttribute="top" secondItem="Qmn-lO-X0E" secondAttribute="bottom" constant="57" id="kBc-C1-4dm"/>
+                            <constraint firstItem="pt1-14-lcg" firstAttribute="top" secondItem="Qmn-lO-X0E" secondAttribute="bottom" constant="90" id="kBc-C1-4dm"/>
                             <constraint firstItem="2jz-B4-jJa" firstAttribute="top" secondItem="xIF-xb-PkF" secondAttribute="bottom" constant="8" id="khJ-Y0-FkU"/>
                             <constraint firstItem="2jz-B4-jJa" firstAttribute="leading" secondItem="JLw-Q3-o1t" secondAttribute="leading" constant="37" id="l2M-Xt-bI5"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NW6-Qq-Fsh" secondAttribute="trailing" constant="20" symbolic="YES" id="qns-Dj-vd5"/>
@@ -1110,6 +1127,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="HjY-PG-Vbl"/>
                     <connections>
+                        <outlet property="currencyTextField" destination="A2Z-un-r0p" id="BmI-ER-DCT"/>
                         <outlet property="expenseSlider" destination="mMc-7g-KJR" id="RlB-hD-YCX"/>
                         <outlet property="expenseValueLabel" destination="bZn-DY-6kb" id="5EI-YX-vMt"/>
                         <outlet property="imcomesSlider" destination="2jz-B4-jJa" id="rIS-Aq-Yg3"/>
@@ -1120,7 +1138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9V-K2-M2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1056" y="-263"/>
+            <point key="canvasLocation" x="1055.625" y="-263.02816901408448"/>
         </scene>
     </scenes>
     <resources>

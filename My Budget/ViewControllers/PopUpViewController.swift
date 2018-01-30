@@ -77,8 +77,9 @@ class PopUpViewController: UIViewController {
     // MARK: - PopoverAddExpense func and actions
     
     @IBAction func addExpenseOkPressed(_ sender: UIButton) {
+
         if let valueEntered = expenseValueTextField.text {
-            guard let value = Double(valueEntered) else {
+            guard let value = NumberFormatter().number(from: valueEntered)?.doubleValue else {
                 print("no value")
                 return  //add alert value must be double
             }
@@ -87,7 +88,7 @@ class PopUpViewController: UIViewController {
                 popupDelegate?.setNewValuesAndRefreshTableView()
                 dismiss(animated: true, completion: nil)
             } else {
-                // shake animation
+                subCategoryLabel.textColor = UIColor.red
                 print("did not select category")
             }
         }
@@ -115,7 +116,7 @@ class PopUpViewController: UIViewController {
     
     @IBAction func editOkTouchUpInside(_ sender: UIButton) {
         if let hasValue = editNewValueTextField.text {
-            guard let newValue = Double(hasValue) else {
+            guard let newValue = NumberFormatter().number(from: hasValue)?.doubleValue else {
                 print("no value")
                 editNewValueTextField.attributedPlaceholder = NSAttributedString(string: "Enter Value", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
                 return

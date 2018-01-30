@@ -42,7 +42,7 @@ class DBManager: NSObject {
         
     
         let foodAndDrinksDefaultValues     = ["Groceries","Fast-food","Restaurant","Bar, cafe"]
-        let shoppingDefaultValues          = ["Clothes & Shoes","Jewels, Accessories","Health and Beauty","Kids","Home, Garden","Pets, Animals","Electronics, Accessories","Gifts, Joy","Stationery, Tools","Free time","Drug-store, Chemist"]
+        let shoppingDefaultValues          = ["Clothes & Shoes","Jewels, Accessories","Health and Beauty","Kids","Home, Garden","Pets, Animals","Accessories","Gifts, Joy","Stationery, Tools","Free time","Drug-store, Chemist"]
         let housingDefaultValues           = ["Rent","Mortgage","Energy, Utilities","Services","Maintenance, Repairs"]
         let transportationDefaultValues    = ["Public transport","Taxi","Long distance","Business trips"]
         let vehicleDefaultValues           = ["Fuel","Parking","Vehicle maintenance","Rentals","Vehicle insurance","Leasing"]
@@ -134,7 +134,7 @@ class DBManager: NSObject {
         
         createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableExpenses) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldDate) INTEGER, \(fieldWeekOfYear) INTEGER, \(fieldValue) DOUBLE, \(fieldSubcategoryId) INTEGER, FOREIGN KEY(\(fieldSubcategoryId)) REFERENCES \(tableSubCategories)(\(fieldId)) )")
         
-        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableCashFlow) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldRegularIncome) INTEGER, \(fieldRegularExpense) INTEGER, \(fieldSavingPercentage) INTEGER ) ")
+        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableCashFlow) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldRegularIncome) INTEGER, \(fieldRegularExpense) INTEGER, \(fieldSavingPercentage) INTEGER, \(fieldCurrency) STRING ) ")
         
         insertCategoriesDefaultValues(table: tableCategories, categoriesArray: categoriesDefaultValues)
         insertSubCategoriesDefaultValues(table: tableSubCategories, allSubCategories: subCategoriesDefaultValues)
@@ -160,11 +160,11 @@ class DBManager: NSObject {
         }
     }
     
-    func updateCashFlowValues(income: Int, expense: Int, savings: Int){
+    func updateCashFlowValues(income: Int, expense: Int, savings: Int, currensy: String){
         if openDatabase() {
             
-            let insertSQL = "UPDATE \(tableCashFlow) SET \(fieldRegularIncome) = ? , \(fieldRegularExpense) = ? , \(fieldSavingPercentage) = ?  WHERE ID = 1 "
-            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [income, expense, savings])
+            let insertSQL = "UPDATE \(tableCashFlow) SET \(fieldRegularIncome) = ? , \(fieldRegularExpense) = ? , \(fieldSavingPercentage) = ?, \(fieldCurrency) = ?  WHERE ID = 1 "
+            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [income, expense, savings, currensy])
             
             if !result {
                 print("Error: \(budgetDB.lastErrorMessage())")

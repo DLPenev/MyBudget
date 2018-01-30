@@ -248,7 +248,7 @@ extension OverviewViewController: PopupDelegate {
         listOfExpensesByCategory = getExpensesByCategory()
         remainBalance = getRemainingAndTotalBalance(period: segmentIndex).remainder
         totalBalance  = getRemainingAndTotalBalance(period: segmentIndex).total
-        remainingValueLabel.text = "Balance :  \(Global.singleton.doubleFormater(value: remainBalance))"
+        remainingValueLabel.text = "Balance :  \(Global.singleton.doubleFormater(value: remainBalance)) \(usedCurrensy) "
         let budgetStatus = getBudgetStatus(remainingAndTotalBalance: (total: totalBalance, remainder: remainBalance))
         emogiImageView.image     = budgetStatus.emoji
         budgetStatusLabel.text   = budgetStatus.status

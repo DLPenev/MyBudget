@@ -82,10 +82,11 @@ extension ExpenseDetailsViewController:  UITableViewDelegate, UITableViewDataSou
     }
     
     func createExpenseViewCell(dateOrTime: String, indexPathRow: Int)->UITableViewCell{
+        let expenseValue = Global.singleton.doubleFormater(value: expenseList[indexPathRow].value)
         if let expenseViewCell = listOfExpenseForPeriodTableView.dequeueReusableCell(withIdentifier: expensesViewCellId) as? ExpensesCell {
             expenseViewCell.dayOfWeekLabel.text = "    \(dateOrTime)"
             expenseViewCell.subcategoryNameLabel.text = expenseList[indexPathRow].subcategoryName
-            expenseViewCell.expenseValueLabel.text = Global.singleton.doubleFormater(value: expenseList[indexPathRow].value)
+            expenseViewCell.expenseValueLabel.text = "\(expenseValue) \(usedCurrensy)"
             return expenseViewCell
         }
         return UITableViewCell()
