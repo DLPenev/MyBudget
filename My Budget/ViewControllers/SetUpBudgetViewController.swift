@@ -10,7 +10,6 @@ import UIKit
 
 class SetUpBudgetViewController: UIViewController {
 
-    
     @IBOutlet var imcomesSlider: UISlider!
     @IBOutlet var expenseSlider: UISlider!
     @IBOutlet var savingsSlider: UISlider!
@@ -24,9 +23,6 @@ class SetUpBudgetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        // 
     }
 
     override func didReceiveMemoryWarning() {

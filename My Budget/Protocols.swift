@@ -8,6 +8,8 @@
 
 import Foundation
 
-protocol testProtocol {
-   func setStatusAndRefreshTableView()
+protocol PopupDelegate {
+   func setNewValuesAndRefreshTableView()
 }
+
+

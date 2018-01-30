@@ -177,6 +177,25 @@ class DBManager: NSObject {
         }
     }
     
+    func updateExpense(value: Double, subcategory: Int, date: CLongLong, expenseId: Int ){
+        if openDatabase() {
+            
+            let weekOfYear = Global.singleton.getWeekOfYearFromDateInMillisec(dateInMillisec: date)
+            
+            let insertSQL = "UPDATE \(tableExpenses) SET \(fieldValue) = ? ,\(fieldWeekOfYear) = ? , \(fieldSubcategoryId) = ? , \(fieldDate) = ?  WHERE ID = \(expenseId) "
+            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [value, weekOfYear, subcategory, date, expenseId])
+            
+            if !result {
+                print("Error: \(budgetDB.lastErrorMessage())")
+            } else {
+                print ("Expense Updated")
+            }
+            budgetDB.close()
+        } else {
+            print("Error: \(budgetDB.lastErrorMessage())")
+        }
+    }
+    
     func insertInExpenseTable(value: Double, subcategory: Int){
         
         if openDatabase() {
@@ -209,9 +228,9 @@ class DBManager: NSObject {
         return false
     }
     
-    func loadSubCategories(categoryId: Int) -> [(Int, String)] {
+    func loadSubCategories(categoryId: Int) -> [(subcategoryId: Int,subcategoryName: String)] {
 
-        var categories:[(pk: Int, name: String)] = []
+        var categories:[(Int,  String)] = []
         if openDatabase() {
             let query = "select * from \(tableSubCategories) where \(fieldCategoryId) = \(categoryId)"
             
@@ -219,7 +238,7 @@ class DBManager: NSObject {
                 let results = try budgetDB.executeQuery(query, values: nil)
                 
                 while results.next() {
-                    categories.append((pk : Int(results.int(forColumn: fieldId)), name : results.string(forColumn: fieldSubcategory)!))
+                    categories.append(( Int(results.int(forColumn: fieldId)), results.string(forColumn: fieldSubcategory)!))
                 }
             }
             catch {
@@ -234,7 +253,6 @@ class DBManager: NSObject {
         
         var expenses:[Expense] = []
         if openDatabase() {
-//            "select expenses.id , expenses.date , expenses.value, expenses.subcategory_Id , subCategories.category_Id from expenses inner join subCategories on subCategories.id = expenses.subcategory_Id"
           
             let  query = "select \(tableExpenses).\(fieldId) ,\(tableExpenses).\(fieldDate), \(tableExpenses).\(fieldValue), \(tableExpenses).\(fieldSubcategoryId), \(tableSubCategories).\(fieldCategoryId) , \(tableSubCategories).\(fieldSubcategory) from \(tableExpenses) inner join \(tableSubCategories) on \(tableSubCategories).\(fieldId) = \(tableExpenses).\(fieldSubcategoryId) "
             

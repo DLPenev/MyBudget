@@ -16,13 +16,6 @@ class Expense: NSObject {
     var weekOfYear:      Int
     var subcategoryName: String
     
-//    init(date: CLongLong, value: Double, categoryId: Int, subCategoryId: Int, expenseId: Int) {
-//        self.expenseId      = expenseId
-//        self.date           = date
-//        self.value          = value
-//        self.categoryId     = categoryId
-//        self.subCategoryId  = subCategoryId
-//    }
     
     init(fmresultSet: FMResultSet) {
         self.expenseId       = Int(fmresultSet.int(forColumn: fieldId))
@@ -31,8 +24,7 @@ class Expense: NSObject {
         self.categoryId      = Int(fmresultSet.int(forColumn: fieldCategoryId))
         self.subCategoryId   = Int(fmresultSet.int(forColumn: fieldSubcategoryId))
         self.weekOfYear      = Int(fmresultSet.int(forColumn: fieldWeekOfYear))
-        self.subcategoryName = fmresultSet.string(forColumn: fieldSubcategory) ?? "./."
-        
+        self.subcategoryName = fmresultSet.string(forColumn: fieldSubcategory)!
     }
     
 }

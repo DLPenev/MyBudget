@@ -30,11 +30,8 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !DBManager.singleton.createDatabase(){
-           //  DBManager.singleton.initDB()  //????????????????????????
-        }
+        DBManager.singleton.createDatabase()
         setupCategories()
-      
     }
 
     override func viewWillAppear(_ animated: Bool) {

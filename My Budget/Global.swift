@@ -26,7 +26,8 @@ let fieldSavingPercentage = "savings_Percentage"
 let fieldWeekOfYear       = "week_of_year"
 
 let categoryCellId        = "categoryCellId"
-let tabBarCOntrollerId    = "tabBarViewControllerId"
+let tabBarControllerId    = "tabBarViewControllerId"
+let popupControllerId     = "popupViewControllerId"
 let segueToSubCategory    = "segueToSubCategoryViewController"
 let segueToPopup          = "showPopupSegueId"
 let unwindToPopUpViewId   = "unwindToPopUpViewControllerId"
@@ -40,6 +41,10 @@ let statusBroke   = ("You Are Broke" , #imageLiteral(resourceName: "brokeEmoji")
 let dateFormatTime     = "hh:mm a"
 let dateFormatWeekDay  = "EEEE"
 let dateFormatFullDate = "EEEE dd MMM"
+
+let popupIndexExpense = 0
+let popupIndexIncome  = 1
+let popupIndexEdit    = 2
 
 var allCategoryesArray = [Category]()
 
@@ -61,10 +66,16 @@ class Global: NSObject {
        return String(format: "%.02f", value)
     }
     
-    func getTimeOrDateInString(dateInMillisec: CLongLong, format: String)->String{
-        let date = Date(milliseconds: Int(dateInMillisec) )
+    func getTimeOrDateToString(dateInMillisec: CLongLong, format: String)->String{
+        let date = Date(milliseconds: Int(dateInMillisec))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: date)
+    }
+    
+    func getWeekOfYearFromDateInMillisec(dateInMillisec: CLongLong)->Int{
+        let date = Date(milliseconds: Int(dateInMillisec))
+        let weekOfYear = calendar.component(.weekOfYear, from: date)
+        return weekOfYear
     }
 }

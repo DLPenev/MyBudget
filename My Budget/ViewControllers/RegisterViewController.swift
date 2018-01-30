@@ -39,9 +39,6 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-      //  emailTextField.placeholder.color = "#4EB8CE"
-       //   self.logInTopConstrain.constant = -300
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,17 +63,14 @@ class RegisterViewController: UIViewController {
         super.viewDidAppear(animated)
         
         UIView.animate(withDuration: 0.5) {
-          //  self.usernameTextFieldLeftConstant.constant = 50
             self.userNameTextFieldRightConstant.constant -=  400
             self.view.layoutIfNeeded()
         }
         UIView.animate(withDuration: 0.5, delay: 0.1, options: [], animations: {
-         //   self.emailTextFieldRightConstant.constant = 50
             self.emailTextFieldLeftConstant.constant -= 400
             self.view.layoutIfNeeded()
         }, completion: nil)
         UIView.animate(withDuration: 0.5, delay: 0.2, options: [], animations: {
-           // self.passwordTextFieldLeftConstant.constant = 50
             self.passwordTextFieldRightConstant.constant -=  400
             self.view.layoutIfNeeded()
         }, completion: nil)
@@ -100,14 +94,5 @@ class RegisterViewController: UIViewController {
         
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

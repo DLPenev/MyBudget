@@ -20,15 +20,11 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
     var segmentIndex = 0
     var allExpenses:       [Expense] = []
     var selectedRowIndex = 0
+    var butonIndex = 0
     
     var allExpensesByPeriod: [[Expense]] = [[],[],[]] // allExpensesByPeriod[[today],[thisWeek],[thisMonth]]
     
-//    var todayExpenses:     [Expense] = []
-//    var thisWeekExpenses:  [Expense] = []
-//    var thisMonthExpenses: [Expense] = []
-    
     var listOfExpensesByCategory: [SumExpense] = []
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  listOfExpensesByCategory.count
@@ -64,9 +60,8 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setStatusAndRefreshTableView()
+        setNewValuesAndRefreshTableView()
     }
-
 
     func sortExpenseByPeriod(){
 
@@ -134,7 +129,6 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
             }
             counter += 1
         }
-
         return arrayOfSumExpense
     }
  
@@ -190,14 +184,13 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             return statusBroke
         }
-
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  segue.identifier == segueToPopup{
             let destination = segue.destination as? PopUpViewController
-//            destination?.isExpensePopUp = sender as! Bool
-            destination?.myDelegate = self
+            destination?.popupViewIndex = butonIndex
+            destination?.popupDelegate = self
         }
         
         if segue.identifier == segueToExpenseDetails{
@@ -205,7 +198,6 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
             destination?.segmentIndex  = segmentIndex
             
             let selectedCategoryId = listOfExpensesByCategory[selectedRowIndex].categoryPrimaryKey
-            var selectedCategory: Category!
             
             var listOfExpenseForSelectedCategoryAndPeriod: [Expense] = []
             for expense in allExpensesByPeriod[segmentIndex] {
@@ -215,34 +207,35 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
             }
             for category in allCategoryesArray {
                 if category.categoryPK == selectedCategoryId {
-                    selectedCategory = category
+                    destination?.selectedCategory = category
                 }
             }
+            destination?.expenseList  = listOfExpenseForSelectedCategoryAndPeriod
             
-            destination?.expenseList      = listOfExpenseForSelectedCategoryAndPeriod
-            destination?.selectedCategory = selectedCategory
         }
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         
         segmentIndex = sender.selectedSegmentIndex        
-        setStatusAndRefreshTableView()
+        setNewValuesAndRefreshTableView()
     }
-    
     
     @IBAction func addExpenseTouchUpInside(_ sender: Any) {
-        performSegue(withIdentifier: segueToPopup, sender: true)
+        butonIndex = popupIndexExpense
+        performSegue(withIdentifier: segueToPopup, sender: nil)
     }
     
-    @IBAction func addIncomePressed(_ sender: UIButton) {
-       performSegue(withIdentifier: segueToPopup, sender: false) //////////////////////////
+    @IBAction func addIncomePressed(_ sender: Int) {
+        butonIndex = popupIndexIncome
+        performSegue(withIdentifier: segueToPopup, sender: nil)
     }
     
 }
 
-extension OverviewViewController: testProtocol {
-    func setStatusAndRefreshTableView() {
+extension OverviewViewController: PopupDelegate {
+
+    func setNewValuesAndRefreshTableView() {
         var remainBalance: Double
         var totalBalance: Double
 
@@ -261,7 +254,6 @@ extension OverviewViewController: testProtocol {
         budgetStatusLabel.text   = budgetStatus.status
         OverviewTableView.reloadData()
     }
-    
     
 }
 

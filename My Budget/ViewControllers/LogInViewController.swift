@@ -13,7 +13,6 @@ class LogInViewController: UIViewController {
     let overviewTabViewControllerIndex      = 0
     let setUpCashFlowTabViewControllerIndex = 1
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,9 +24,8 @@ class LogInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
     func goToTabBar(){
-        let tabBarController = storyboard?.instantiateViewController(withIdentifier: tabBarCOntrollerId) as! TabBarViewController
+        let tabBarController = storyboard?.instantiateViewController(withIdentifier: tabBarControllerId) as! TabBarViewController
         let budgetCashFlowIsSet = UserDefaults.standard.bool(forKey: "cashFlowIsSet")
         tabBarController.selectedViewController = tabBarController.viewControllers?[budgetCashFlowIsSet ? overviewTabViewControllerIndex : setUpCashFlowTabViewControllerIndex]
         present(tabBarController, animated: true, completion: nil)
