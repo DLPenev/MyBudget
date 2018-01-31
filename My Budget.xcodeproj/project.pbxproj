@@ -28,6 +28,7 @@
 		633B1F301FDACE85009FBB0A /* My_BudgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F2F1FDACE85009FBB0A /* My_BudgetUITests.swift */; };
 		633B1F401FDEB090009FBB0A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B1F3F1FDEB090009FBB0A /* RegisterViewController.swift */; };
 		634FC73A2010EC1A009BDE2B /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FC7392010EC1A009BDE2B /* Expense.swift */; };
+		636EA0C72020A05A005F85B9 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636EA0C62020A05A005F85B9 /* Regex.swift */; };
 		63706D1620122B2700D0C68C /* ExpenseRepresentOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63706D1420122B2700D0C68C /* ExpenseRepresentOverviewCell.swift */; };
 		63706D1920123A0400D0C68C /* SumExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63706D1820123A0400D0C68C /* SumExpense.swift */; };
 		63774D011FE11DA900933AA5 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63774D001FE11DA900933AA5 /* PopUpViewController.swift */; };
@@ -97,6 +98,7 @@
 		633B1F311FDACE85009FBB0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		633B1F3F1FDEB090009FBB0A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		634FC7392010EC1A009BDE2B /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		636EA0C62020A05A005F85B9 /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		63706D1420122B2700D0C68C /* ExpenseRepresentOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRepresentOverviewCell.swift; sourceTree = "<group>"; };
 		63706D1820123A0400D0C68C /* SumExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumExpense.swift; sourceTree = "<group>"; };
 		63774D001FE11DA900933AA5 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				63F191781FFD258300F4CF1A /* Global.swift */,
 				630E851F1FFD138E00C1DF77 /* DBManager.swift */,
 				6339743220179A5D001B811D /* Protocols.swift */,
+				636EA0C62020A05A005F85B9 /* Regex.swift */,
 				6339742E2015E304001B811D /* Extensions.swift */,
 				633B1F0F1FDACE85009FBB0A /* AppDelegate.swift */,
 				633B1F161FDACE85009FBB0A /* Assets.xcassets */,
@@ -429,6 +432,7 @@
 				63706D1620122B2700D0C68C /* ExpenseRepresentOverviewCell.swift in Sources */,
 				63836077200F3700002FF703 /* OverviewViewController.swift in Sources */,
 				630E85131FFD0CFB00C1DF77 /* FMDatabaseAdditions.m in Sources */,
+				636EA0C72020A05A005F85B9 /* Regex.swift in Sources */,
 				630E85201FFD138E00C1DF77 /* DBManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

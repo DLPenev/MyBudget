@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopUpViewController: UIViewController {
+class PopUpViewController: UIViewController, UITextFieldDelegate {
     
    // MARK: - general outlets and variables
     
@@ -18,13 +18,12 @@ class PopUpViewController: UIViewController {
     @IBAction func unwindToPopUpViewController(segue: UIStoryboardSegue){}
     let cornerRadius: CGFloat = 20
     
-
-
     var popupDelegate: PopupDelegate?
  
-   
     var popupViewIndex = popupIndexEdit
-
+    
+    
+    
     // MARK: - pickerview outlets and variables
     var subCategoryList: [(subcategoryId: Int,subcategoryName: String)] = []
     var pickedSubCategory = (subcategoryId: 0,subcategoryName: "")
@@ -59,8 +58,9 @@ class PopUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        expenseValueTextField.delegate = self
         customPopupUI(viewIndex: popupViewIndex)
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -77,21 +77,41 @@ class PopUpViewController: UIViewController {
     // MARK: - PopoverAddExpense func and actions
     
     @IBAction func addExpenseOkPressed(_ sender: UIButton) {
-
+        
         if let valueEntered = expenseValueTextField.text {
-            guard let value = NumberFormatter().number(from: valueEntered)?.doubleValue else {
-                print("no value")
-                return  //add alert value must be double
-            }
-            if selectedSubCategory.pk != 0 {
-                DBManager.singleton.insertInExpenseTable(value: value, subcategory: selectedSubCategory.pk)
-                popupDelegate?.setNewValuesAndRefreshTableView()
-                dismiss(animated: true, completion: nil)
+            if valueEntered.isValidExpense  {
+                guard let newValue = NumberFormatter().number(from: valueEntered)?.doubleValue else {
+                    expenseValueTextField.textColor = UIColor.red
+                    print("fail cast string to double")
+                    return
+                }
+                
+                if newValue == 0 {
+                    print("value is 0")
+                    expenseValueTextField.textColor = UIColor.red
+                    return
+                }
+                
+                if selectedSubCategory.pk != 0 {
+                    DBManager.singleton.insertInExpenseTable(value: newValue, subcategory: selectedSubCategory.pk)
+                    popupDelegate?.setNewValuesAndRefreshTableView()
+                    dismiss(animated: true, completion: nil)
+                } else {
+                    
+                    subCategoryLabel.textColor = UIColor.red
+                    print("did not select category")
+                }
+                
             } else {
-                subCategoryLabel.textColor = UIColor.red
-                print("did not select category")
+                expenseValueTextField.attributedPlaceholder = NSAttributedString(string: "Enter Value", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+                expenseValueTextField.textColor = UIColor.red
+                print("fail regex")
             }
         }
+    }
+    
+    @IBAction func enterValueTextFieldEditingChanged(_ sender: UITextField) {
+        expenseValueTextField.textColor = .black
     }
     
     @IBAction func AddExpenseCanselTouchUpInside(_ sender: Any) {
@@ -115,18 +135,39 @@ class PopUpViewController: UIViewController {
 
     
     @IBAction func editOkTouchUpInside(_ sender: UIButton) {
+        
         if let hasValue = editNewValueTextField.text {
-            guard let newValue = NumberFormatter().number(from: hasValue)?.doubleValue else {
-                print("no value")
+            if hasValue.isValidExpense {
+                guard let newValue = NumberFormatter().number(from: hasValue)?.doubleValue else {
+                    editNewValueTextField.textColor = UIColor.red
+                    print("fail cast string to double")
+                    return
+                }
+                
+                if newValue == 0 {
+                    print("value is 0")
+                    editNewValueTextField.textColor = .red
+                    return
+                }
+                editedExpense.value = newValue
+            } else {
+                print("invalid value")
                 editNewValueTextField.attributedPlaceholder = NSAttributedString(string: "Enter Value", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+                editNewValueTextField.textColor = .red
                 return
             }
-            editedExpense.value = newValue
         }
+        
         DBManager.singleton.updateExpense(value: editedExpense.value, subcategory: editedExpense.subCategoryId, date: editedExpense.date, expenseId: editedExpense.expenseId)
         popupDelegate?.setNewValuesAndRefreshTableView()
         dismiss(animated: true)
+        
     }
+    
+    @IBAction func editValueTextFieldChange(_ sender: UITextField) {
+        editNewValueTextField.textColor = .black
+    }
+    
     
     @IBAction func editCancelTouchUpInside(_ sender: UIButton) {
         dismiss(animated: true)
