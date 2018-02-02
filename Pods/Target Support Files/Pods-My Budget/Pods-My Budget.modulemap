@@ -1,0 +1,6 @@
+framework module Pods_My_Budget {
+  umbrella header "Pods-My Budget-umbrella.h"
+
+  export *
+  module * { export * }
+}

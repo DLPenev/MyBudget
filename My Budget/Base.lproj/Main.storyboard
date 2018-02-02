@@ -91,6 +91,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="45A-dt-sXH"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="HCN-vJ-OIQ" id="SKA-Ls-gRb"/>
+                        <outlet property="passwordTextField" destination="5pm-5t-Ja5" id="GOP-AJ-OSS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJj-kb-sPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="OCE-hg-Px8" userLabel="Exit" sceneMemberID="exit"/>
