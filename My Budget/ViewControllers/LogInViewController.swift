@@ -8,14 +8,13 @@
 
 import UIKit
 import XMPPFramework
+import GoogleSignIn
+import FirebaseAuth
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate {
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
-    
-    let overviewTabViewControllerIndex      = 0
-    let setUpCashFlowTabViewControllerIndex = 1
     
     var xmppStream: XMPPStream!
     let hostName: String = "xmpp.ipay.eu"
@@ -25,11 +24,16 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+        emailTextField.delegate    = self
+        passwordTextField.delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     func streamConnect(jid: String){
@@ -46,6 +50,7 @@ class LogInViewController: UIViewController {
             print("error occured in connecting")
         }
     }
+    
     
     func streamAuth(password: String) {
         
@@ -69,13 +74,20 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func loginClicked(_ sender: UIButton) {
-      
-        guard let jid = emailTextField.text, let pass = passwordTextField.text else {
+        
+        guard let jid  = emailTextField.text, let pass = passwordTextField.text  else {
+            return
+        }
+    
+        if  jid != "" &&  pass != "" {
+            
+            password = pass
+            streamConnect(jid: jid)
+        } else {
             print("no email and/or pass")
             return
         }
-        password = pass
-        streamConnect(jid: jid)
+
     }
 }
 
@@ -94,3 +106,5 @@ extension LogInViewController: XMPPStreamDelegate {
         print("DidDisconnect")
     }
 }
+
+

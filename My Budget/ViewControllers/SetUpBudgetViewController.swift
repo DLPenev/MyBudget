@@ -10,13 +10,14 @@ import UIKit
 
 class SetUpBudgetViewController: UIViewController {
 
-    @IBOutlet var imcomesSlider: UISlider!
+    @IBOutlet var incomesSlider: UISlider!
     @IBOutlet var expenseSlider: UISlider!
     @IBOutlet var savingsSlider: UISlider!
     @IBOutlet var incomeValueLabel: UILabel!
     @IBOutlet var expenseValueLabel: UILabel!
     @IBOutlet var percentageValueLabel: UILabel!
     @IBOutlet var currencyTextField: UITextField!
+    
     
     var pickedCurrency = ""
     let currencyList = ["$","€","лв","£","¥","CHF","₽","฿"]
@@ -29,11 +30,10 @@ class SetUpBudgetViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        setSlidersIfThereIsChashFlow()
     }
-    
+
     func createCurrencyPickerView(){
         let currencyPickerView = UIPickerView()
         currencyPickerView.delegate = self
@@ -50,6 +50,25 @@ class SetUpBudgetViewController: UIViewController {
         toolBar.isUserInteractionEnabled = true
         
         currencyTextField.inputAccessoryView = toolBar
+        
+    }
+    
+    func setSlidersIfThereIsChashFlow(){
+        let budgetCashFlowIsSet = UserDefaults.standard.bool(forKey: "cashFlowIsSet")
+        if budgetCashFlowIsSet {
+            let cashFlow = DBManager.singleton.getCashFlow()
+            regularIncome = Int(cashFlow.income)
+            regularExpense = Int(cashFlow.expense)
+            savingsProcent = Int(cashFlow.savingsPercentage)
+            
+            incomesSlider.setValue(Float(regularIncome), animated: true)
+            expenseSlider.setValue(Float(regularExpense), animated: true)
+            savingsSlider.setValue(Float(savingsProcent), animated: true)
+            incomeValueLabel.text = String(regularIncome)
+            expenseValueLabel.text = String(regularExpense)
+            percentageValueLabel.text = String(savingsProcent)
+            currencyTextField.text = cashFlow.currency
+        }
         
     }
     
@@ -79,12 +98,12 @@ class SetUpBudgetViewController: UIViewController {
         percentageValueLabel.text = "\(savingsProcent) %"
     }
     
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
+    @IBAction func updateButtonPressed(_ sender: UIButton) {
         DBManager.singleton.updateCashFlowValues(income: regularIncome, expense: regularExpense, savings: savingsProcent, currensy: pickedCurrency)
         UserDefaults.standard.set(true, forKey: "cashFlowIsSet")
         UserDefaults.standard.set(pickedCurrency, forKey: "currency")
+        tabBarController?.selectedIndex = tabBarOverviewIndex
     }
-    
     
     @IBAction func pickCurencyEditingDidBegin(_ sender: UITextField) {
         createCurrencyPickerView()

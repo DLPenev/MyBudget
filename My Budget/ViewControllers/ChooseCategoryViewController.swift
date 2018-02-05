@@ -29,7 +29,6 @@ class ChooseCategoryViewController: UIViewController, UITableViewDelegate, UITab
         return UITableViewCell()
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,7 +55,5 @@ class ChooseCategoryViewController: UIViewController, UITableViewDelegate, UITab
             destination?.selectedCategory = categoryIndex
         }
     }
-
-    
 
 }

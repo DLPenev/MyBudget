@@ -78,7 +78,6 @@ extension ExpenseDetailsViewController:  UITableViewDelegate, UITableViewDataSou
             let fullDate = Global.singleton.getTimeOrDateToString(dateInMillisec: expenseList[indexPath.row].date, format: dateFormatFullDate)
             return createExpenseViewCell(dateOrTime: fullDate, indexPathRow: indexPath.row)
         }
-
     }
     
     func createExpenseViewCell(dateOrTime: String, indexPathRow: Int)->UITableViewCell{
@@ -118,7 +117,6 @@ extension ExpenseDetailsViewController:  UITableViewDelegate, UITableViewDataSou
     }
     
 }
-
 
 extension ExpenseDetailsViewController: PopupDelegate {
     func setNewValuesAndRefreshTableView() {

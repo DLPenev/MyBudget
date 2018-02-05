@@ -23,19 +23,15 @@ class DBManager: NSObject {
         pathToDatabase = documentsDirectory.appending("/\(databaseFileName)")
     }
     
-    func createDatabase() -> Bool {
-        var created = false
+    func createDatabaseIfNotExists(){
         
         if !FileManager.default.fileExists(atPath: pathToDatabase) {
             budgetDB = FMDatabase(path: pathToDatabase!)
             if budgetDB != nil {
                 initDB()
-               // openDatabase()
-                created = true
             }
         }
         print(pathToDatabase)
-        return created
     }
     
     func initDB(){
@@ -271,10 +267,11 @@ class DBManager: NSObject {
         return expenses
     }
     
-    func getCashFlow()->(income:Double,expense:Double,savingsPercentage:Double){
+    func getCashFlow()->(income:Double,expense:Double,savingsPercentage:Double, currency: String){
         var income            = 0.0
         var expense           = 0.0
         var savingsPercentage = 0.0
+        var currency          = ""
         
         let query = "select * from \(tableCashFlow)"
         
@@ -285,6 +282,7 @@ class DBManager: NSObject {
                     income            = Double(result.int(forColumn: fieldRegularIncome))
                     expense           = Double(result.int(forColumn: fieldRegularExpense))
                     savingsPercentage = Double(result.int(forColumn: fieldSavingPercentage))
+                    currency          = result.string(forColumn: fieldCurrency) ?? "cant get currancy?"
                 }
             }
             catch {
@@ -292,7 +290,7 @@ class DBManager: NSObject {
             }
             budgetDB.close()
         }
-        return (income,expense,savingsPercentage)
+        return (income,expense,savingsPercentage, currency)
     }
     
     func deleteAttribute(table:String,attributeID:Int){

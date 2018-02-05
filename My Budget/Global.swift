@@ -28,6 +28,7 @@ let fieldWeekOfYear       = "week_of_year"
 
 let categoryCellId        = "categoryCellId"
 let tabBarControllerId    = "tabBarViewControllerId"
+let firstViewControllerId = "FirstViewControllerId"
 let popupControllerId     = "popupViewControllerId"
 let segueToSubCategory    = "segueToSubCategoryViewController"
 let segueToPopup          = "showPopupSegueId"
@@ -46,6 +47,11 @@ let dateFormatFullDate = "EEEE dd MMM"
 let popupIndexExpense = 0
 let popupIndexIncome  = 1
 let popupIndexEdit    = 2
+
+let overviewTabViewControllerIndex      = 0
+let setUpCashFlowTabViewControllerIndex = 1
+
+let tabBarOverviewIndex = 0
 
 var usedCurrensy       = (UserDefaults.standard.string(forKey: "currency")) ?? ""
 var allCategoryesArray = [Category]()

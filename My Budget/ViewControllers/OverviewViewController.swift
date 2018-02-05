@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import GoogleSignIn
 
 class OverviewViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -229,6 +231,26 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func addIncomePressed(_ sender: Int) {
         butonIndex = popupIndexIncome
         performSegue(withIdentifier: segueToPopup, sender: nil)
+    }
+    
+    @IBAction func logOutTouchUpInside(_ sender: UIButton) {
+        print("logOutTouchUpInside")
+        googleLogout()
+        let firstViewController = storyboard?.instantiateViewController(withIdentifier: firstViewControllerId) as! FirstViewController
+        present(firstViewController, animated: true, completion: nil)
+    }
+    
+    func googleLogout(){
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            print("signOut?")
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        GIDSignIn.sharedInstance().signOut()
+    
     }
     
 }

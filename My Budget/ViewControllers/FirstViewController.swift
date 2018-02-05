@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class FirstViewController: UIViewController {
 
     @IBOutlet var logInButton: UIButton!
@@ -30,8 +31,9 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        DBManager.singleton.createDatabase()
+        DBManager.singleton.createDatabaseIfNotExists()
         setupCategories()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -79,10 +81,9 @@ class FirstViewController: UIViewController {
             allCategoryesArray.append(Category(categoryPK: 10, categoryFullName: "Others", categoryIcon: #imageLiteral(resourceName: "category10Other"), categoryColor: colorGray))
         }
 
- 
-        
     }
 
-
 }
+
+
 

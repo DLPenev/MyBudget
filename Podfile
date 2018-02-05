@@ -7,7 +7,10 @@ target 'My Budget' do
 
   # Pods for My Budget
   pod 'XMPPFramework', :git => "https://github.com/robbiehanson/XMPPFramework.git", :branch => 'master'
-
+  
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
 
   target 'My BudgetTests' do
     inherit! :search_paths

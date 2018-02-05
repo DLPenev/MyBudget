@@ -22,8 +22,6 @@ class PopUpViewController: UIViewController, UITextFieldDelegate {
  
     var popupViewIndex = popupIndexEdit
     
-    
-    
     // MARK: - pickerview outlets and variables
     var subCategoryList: [(subcategoryId: Int,subcategoryName: String)] = []
     var pickedSubCategory = (subcategoryId: 0,subcategoryName: "")

@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +25,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pm-5t-Ja5">
                                 <rect key="frame" x="35" y="293" width="250" height="30"/>
@@ -33,7 +34,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rio-Sj-kXs">
                                 <rect key="frame" x="60" y="367" width="200" height="30"/>
@@ -70,6 +71,11 @@
                                     <color key="titleColor" red="0.23100128769874573" green="0.68806487321853638" blue="0.85101515054702759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wSy-XN-Tvy" customClass="GIDSignInButton">
+                                <rect key="frame" x="105" y="487" width="111" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.28685453534126282" green="0.37427020072937012" blue="0.4947589635848999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -99,12 +105,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJj-kb-sPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="OCE-hg-Px8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-808" y="-263"/>
+            <point key="canvasLocation" x="-808.125" y="-263.02816901408448"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="Wjo-Ya-s2y">
             <objects>
-                <viewController id="YaV-PJ-Ai3" customClass="FirstViewController" customModule="My_Budget" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstViewControllerId" id="YaV-PJ-Ai3" customClass="FirstViewController" customModule="My_Budget" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c5M-QA-QG3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -193,7 +199,7 @@
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="N8K-Cf-EX6">
-                                <rect key="frame" x="10" y="25" width="300" height="29"/>
+                                <rect key="frame" x="10" y="25" width="260" height="29"/>
                                 <segments>
                                     <segment title="Today"/>
                                     <segment title="This Week"/>
@@ -281,19 +287,35 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="avx-nQ-SjJ"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TG9-QS-ib8">
+                                <rect key="frame" x="278" y="24" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="TG9-QS-ib8" secondAttribute="height" multiplier="1:1" id="AaK-FC-4mt"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="logOutIcon"/>
+                                <connections>
+                                    <action selector="logOutTouchUpInside:" destination="k9u-Ge-6TR" eventType="touchUpInside" id="qtY-7b-VfJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="npi-Mc-dF1" firstAttribute="leading" secondItem="mew-wz-xFg" secondAttribute="leading" id="0Sz-Vt-jYS"/>
                             <constraint firstItem="mgF-4p-WKn" firstAttribute="trailing" secondItem="mew-wz-xFg" secondAttribute="trailing" id="17M-uL-mNU"/>
                             <constraint firstItem="mgF-4p-WKn" firstAttribute="leading" secondItem="mew-wz-xFg" secondAttribute="leading" id="2S8-9P-yui"/>
+                            <constraint firstItem="TG9-QS-ib8" firstAttribute="top" secondItem="mew-wz-xFg" secondAttribute="top" constant="4" id="3Yn-IS-3Lo"/>
+                            <constraint firstItem="mew-wz-xFg" firstAttribute="trailing" secondItem="TG9-QS-ib8" secondAttribute="trailing" constant="12" id="KTg-vZ-8An"/>
+                            <constraint firstItem="TG9-QS-ib8" firstAttribute="top" secondItem="mew-wz-xFg" secondAttribute="top" constant="4" id="Kv5-g1-iEE"/>
                             <constraint firstItem="N8K-Cf-EX6" firstAttribute="top" secondItem="WE1-HJ-gPE" secondAttribute="top" constant="25" id="LES-0E-6BZ"/>
+                            <constraint firstItem="TG9-QS-ib8" firstAttribute="leading" secondItem="N8K-Cf-EX6" secondAttribute="trailing" constant="8" id="OW3-xM-WtK"/>
+                            <constraint firstItem="mew-wz-xFg" firstAttribute="trailing" secondItem="TG9-QS-ib8" secondAttribute="trailing" constant="12" id="Oh6-Yj-pjn"/>
                             <constraint firstItem="N8K-Cf-EX6" firstAttribute="leading" secondItem="mew-wz-xFg" secondAttribute="leading" constant="10" id="S4k-TG-mEm"/>
+                            <constraint firstItem="TG9-QS-ib8" firstAttribute="leading" secondItem="N8K-Cf-EX6" secondAttribute="trailing" constant="8" id="TfI-Kp-itS"/>
                             <constraint firstItem="Zf2-Uq-Wp8" firstAttribute="trailing" secondItem="mew-wz-xFg" secondAttribute="trailing" id="YuM-hd-FNc"/>
                             <constraint firstItem="Zf2-Uq-Wp8" firstAttribute="leading" secondItem="mew-wz-xFg" secondAttribute="leading" id="ZuM-pz-6dA"/>
                             <constraint firstItem="npi-Mc-dF1" firstAttribute="bottom" secondItem="mew-wz-xFg" secondAttribute="bottom" id="oKT-To-HZf"/>
                             <constraint firstItem="mgF-4p-WKn" firstAttribute="top" secondItem="N8K-Cf-EX6" secondAttribute="bottom" constant="8" id="qGB-QS-hzl"/>
-                            <constraint firstItem="mew-wz-xFg" firstAttribute="trailing" secondItem="N8K-Cf-EX6" secondAttribute="trailing" constant="10" id="rCU-bB-9wm"/>
+                            <constraint firstItem="mew-wz-xFg" firstAttribute="trailing" secondItem="N8K-Cf-EX6" secondAttribute="trailing" constant="50" id="rCU-bB-9wm"/>
                             <constraint firstItem="npi-Mc-dF1" firstAttribute="top" secondItem="mgF-4p-WKn" secondAttribute="bottom" id="rLR-lf-4WX"/>
                             <constraint firstItem="npi-Mc-dF1" firstAttribute="trailing" secondItem="mew-wz-xFg" secondAttribute="trailing" id="v61-JB-rrY"/>
                             <constraint firstItem="Zf2-Uq-Wp8" firstAttribute="bottom" secondItem="mew-wz-xFg" secondAttribute="bottom" id="xk4-iI-2bE"/>
@@ -1068,7 +1090,7 @@
                                 </constraints>
                                 <state key="normal" title="Update"/>
                                 <connections>
-                                    <action selector="saveButtonPressed:" destination="I0D-it-cqI" eventType="touchUpInside" id="gBH-SB-5QP"/>
+                                    <action selector="updateButtonPressed:" destination="I0D-it-cqI" eventType="touchUpInside" id="gBH-SB-5QP"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Currency : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1S6-v2-CDV">
@@ -1141,8 +1163,8 @@
                         <outlet property="currencyTextField" destination="A2Z-un-r0p" id="BmI-ER-DCT"/>
                         <outlet property="expenseSlider" destination="mMc-7g-KJR" id="RlB-hD-YCX"/>
                         <outlet property="expenseValueLabel" destination="bZn-DY-6kb" id="5EI-YX-vMt"/>
-                        <outlet property="imcomesSlider" destination="2jz-B4-jJa" id="rIS-Aq-Yg3"/>
                         <outlet property="incomeValueLabel" destination="SQ6-lI-7qM" id="uk0-lb-syy"/>
+                        <outlet property="incomesSlider" destination="2jz-B4-jJa" id="rIS-Aq-Yg3"/>
                         <outlet property="percentageValueLabel" destination="Pf5-SN-PIq" id="67o-zx-JeV"/>
                         <outlet property="savingsSlider" destination="Qmn-lO-X0E" id="C4i-Op-EST"/>
                     </connections>
@@ -1155,6 +1177,7 @@
     <resources>
         <image name="buttonFrame" width="489" height="122"/>
         <image name="house" width="48" height="48"/>
+        <image name="logOutIcon" width="71" height="71"/>
         <image name="minusButon" width="620" height="620"/>
         <image name="plusButton" width="620" height="620"/>
     </resources>
