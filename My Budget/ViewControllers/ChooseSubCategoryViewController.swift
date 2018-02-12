@@ -14,17 +14,17 @@ class ChooseSubCategoryViewController: UIViewController, UITableViewDelegate, UI
     
     let subCategoryCellId = "subCategoryId"
     
-    var selectedCategory: Int!
-    var subcategoriesArray: [(Int,String)]!     //all subcategories from db in tuples PK and name
-    var selectedSubcategory: (Int,String)!
+    var selectedCategory    = Int()
+    var subcategoriesArray  = [(Int(),String())]   //all subcategories from db in tuples PK and name
+    var selectedSubcategory = (Int(),String())
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (subcategoriesArray?.count)!
+        return (self.subcategoriesArray.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = subCategoryTableVIew?.dequeueReusableCell(withIdentifier: subCategoryCellId) as? SubCategoryTableViewCell {
-            cell.subCategoryLabel.text  = subcategoriesArray[indexPath.row].1
+            cell.categoryLabel.text  = self.subcategoriesArray[indexPath.row].1
             return cell
         }
         return UITableViewCell()
@@ -36,20 +36,19 @@ class ChooseSubCategoryViewController: UIViewController, UITableViewDelegate, UI
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      subcategoriesArray = DBManager.singleton.loadSubCategories(categoryId: selectedCategory+1)
+      self.subcategoriesArray = DBManager.singleton.loadSubCategories(categoryId: selectedCategory+1)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == unwindToPopUpViewId{
+        if  segue.identifier == globalIdentificators.unwindToPopUpViewId {
             let destination = segue.destination as? PopUpViewController
-            destination?.selectedSubCategory = selectedSubcategory
-            destination?.subCategoryLabel.textColor = UIColor.white
+            destination?.selectedSubCategory = self.selectedSubcategory
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedSubcategory = subcategoriesArray[indexPath.row]
-        performSegue(withIdentifier: unwindToPopUpViewId, sender: self)
+        self.selectedSubcategory = self.subcategoriesArray[indexPath.row]
+        performSegue(withIdentifier: globalIdentificators.unwindToPopUpViewId, sender: self)
     }
     
     @IBAction func backButton(_ sender: UIBarButtonItem) {

@@ -27,7 +27,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet var passwordAgainLeftConstant: NSLayoutConstraint!
     @IBOutlet var passwordAgainRightConstant: NSLayoutConstraint!
     
-    var textFieldspositionX: CGFloat!
+    var textFieldspositionX = CGFloat()
+    
     
     @IBAction func submitButton(_ sender: Any) {
     }
@@ -43,17 +44,20 @@ class RegisterViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        textFieldspositionX              = self.usernameTextField.center.x
+        
+        let distanseToMove = view.bounds.width * 2   
+        
+        self.textFieldspositionX              = self.usernameTextField.center.x
 
-        self.userNameTextFieldRightConstant.constant +=  400
-        self.emailTextFieldLeftConstant.constant += 400
-        self.passwordTextFieldRightConstant.constant += 400
-        self.passwordAgainLeftConstant.constant += 400
+        self.userNameTextFieldRightConstant.constant += distanseToMove
+        self.emailTextFieldLeftConstant.constant     += distanseToMove
+        self.passwordTextFieldRightConstant.constant += distanseToMove
+        self.passwordAgainLeftConstant.constant      += distanseToMove
 
-        cancelButton.center.x           += view.bounds.width
-        cancelButton.transform          = CGAffineTransform(rotationAngle: CGFloat.pi)
-        submitButton.center.x           -= view.bounds.width
-        submitButton.transform          = CGAffineTransform(rotationAngle: CGFloat.pi)
+        self.cancelButton.center.x           += view.bounds.width
+        self.cancelButton.transform          = CGAffineTransform(rotationAngle: CGFloat.pi)
+        self.submitButton.center.x           -= view.bounds.width
+        self.submitButton.transform          = CGAffineTransform(rotationAngle: CGFloat.pi)
         
         self.submitButton.alpha = 0
         self.cancelButton.alpha = 0
@@ -62,20 +66,22 @@ class RegisterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        let distanseToMove = view.bounds.width * 2  
+        
         UIView.animate(withDuration: 0.5) {
-            self.userNameTextFieldRightConstant.constant -=  400
+            self.userNameTextFieldRightConstant.constant -=  distanseToMove
             self.view.layoutIfNeeded()
         }
         UIView.animate(withDuration: 0.5, delay: 0.1, options: [], animations: {
-            self.emailTextFieldLeftConstant.constant -= 400
+            self.emailTextFieldLeftConstant.constant -= distanseToMove
             self.view.layoutIfNeeded()
         }, completion: nil)
         UIView.animate(withDuration: 0.5, delay: 0.2, options: [], animations: {
-            self.passwordTextFieldRightConstant.constant -=  400
+            self.passwordTextFieldRightConstant.constant -=  distanseToMove
             self.view.layoutIfNeeded()
         }, completion: nil)
         UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {
-            self.passwordAgainLeftConstant.constant -=  400
+            self.passwordAgainLeftConstant.constant -=  distanseToMove
             self.view.layoutIfNeeded()
         }, completion: nil)
         UIView.animate(withDuration: 0.5, delay: 0.3, options: [], animations: {

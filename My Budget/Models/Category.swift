@@ -5,7 +5,7 @@
 
 import UIKit
 
-class Category: NSObject {
+struct Category {
     
     var categoryPK:       Int
     var categoryFullName: String
@@ -18,4 +18,12 @@ class Category: NSObject {
         self.categoryIcon     = categoryIcon
         self.categoryColor    = categoryColor
     }
+    
+    init() {
+        self.categoryPK       =  0
+        self.categoryFullName =  ""
+        self.categoryIcon     =  UIImage()
+        self.categoryColor    =  UIColor()
+    }
+    
 }

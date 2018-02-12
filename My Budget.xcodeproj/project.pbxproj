@@ -16,6 +16,9 @@
 		630E851C1FFD0EC500C1DF77 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 630E851B1FFD0EC400C1DF77 /* libsqlite3.tbd */; };
 		630E851E1FFD0F2400C1DF77 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 630E851D1FFD0F2400C1DF77 /* libsqlite3.0.tbd */; };
 		630E85201FFD138E00C1DF77 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E851F1FFD138E00C1DF77 /* DBManager.swift */; };
+		6333413E20298FC3006C733C /* SendFileOrUploadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333413D20298FC3006C733C /* SendFileOrUploadPhotoViewController.swift */; };
+		633341402029C6E9006C733C /* XmppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333413F2029C6E9006C733C /* XmppManager.swift */; };
+		63334149202DC134006C733C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6333414B202DC134006C733C /* Localizable.strings */; };
 		6339742F2015E304001B811D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339742E2015E304001B811D /* Extensions.swift */; };
 		6339743320179A5D001B811D /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339743220179A5D001B811D /* Protocols.swift */; };
 		633974352018C587001B811D /* ExpenseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633974342018C587001B811D /* ExpenseDetailsViewController.swift */; };
@@ -37,7 +40,6 @@
 		6397654B2008A41200993B7A /* SetUpBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */; };
 		6397C741200CD43C0031CA17 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6397C740200CD43C0031CA17 /* TabBarViewController.swift */; };
 		63B130B61FF6790600CEF561 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B130B51FF6790600CEF561 /* LogInViewController.swift */; };
-		63BF070B2019DD750086C149 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BF070A2019DD750086C149 /* HeaderViewCell.swift */; };
 		63F191791FFD258300F4CF1A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F191781FFD258300F4CF1A /* Global.swift */; };
 		63F1917B1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F1917A1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift */; };
 		63F1917E1FFFBDDA00F4CF1A /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F1917D1FFFBDDA00F4CF1A /* CategoryViewCell.swift */; };
@@ -87,6 +89,14 @@
 		630E851B1FFD0EC400C1DF77 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		630E851D1FFD0F2400C1DF77 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		630E851F1FFD138E00C1DF77 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		6333413D20298FC3006C733C /* SendFileOrUploadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFileOrUploadPhotoViewController.swift; sourceTree = "<group>"; };
+		6333413F2029C6E9006C733C /* XmppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XmppManager.swift; sourceTree = "<group>"; };
+		63334146202DA397006C733C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		6333414A202DC134006C733C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6333414D202DD808006C733C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6333414E202DE485006C733C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		6333414F202DE485006C733C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		63334150202DE485006C733C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6339742E2015E304001B811D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6339743220179A5D001B811D /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		633974342018C587001B811D /* ExpenseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailsViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +124,6 @@
 		6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpBudgetViewController.swift; sourceTree = "<group>"; };
 		6397C740200CD43C0031CA17 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		63B130B51FF6790600CEF561 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		63BF070A2019DD750086C149 /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		63F191781FFD258300F4CF1A /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		63F1917A1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategoryViewController.swift; sourceTree = "<group>"; };
 		63F1917D1FFFBDDA00F4CF1A /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
@@ -233,7 +242,9 @@
 				63F1917C1FFFBDAD00F4CF1A /* Cells */,
 				63F191832004AAC500F4CF1A /* Models */,
 				633B1F131FDACE85009FBB0A /* Main.storyboard */,
+				6333414B202DC134006C733C /* Localizable.strings */,
 				63F191781FFD258300F4CF1A /* Global.swift */,
+				6333413F2029C6E9006C733C /* XmppManager.swift */,
 				630E851F1FFD138E00C1DF77 /* DBManager.swift */,
 				6339743220179A5D001B811D /* Protocols.swift */,
 				636EA0C62020A05A005F85B9 /* Regex.swift */,
@@ -277,6 +288,7 @@
 				633974342018C587001B811D /* ExpenseDetailsViewController.swift */,
 				63F1917A1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift */,
 				63F1917F2003718A00F4CF1A /* ChooseSubCategoryViewController.swift */,
+				6333413D20298FC3006C733C /* SendFileOrUploadPhotoViewController.swift */,
 				6397C740200CD43C0031CA17 /* TabBarViewController.swift */,
 				6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */,
 			);
@@ -290,7 +302,6 @@
 				63F1918420066F2D00F4CF1A /* SubCategoryTableViewCell.swift */,
 				63706D1420122B2700D0C68C /* ExpenseRepresentOverviewCell.swift */,
 				633974382018F15F001B811D /* ExpensesCell.swift */,
-				63BF070A2019DD750086C149 /* HeaderViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -404,6 +415,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 633B1F031FDACE85009FBB0A;
 			productRefGroup = 633B1F0D1FDACE85009FBB0A /* Products */;
@@ -423,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				633B1F1A1FDACE85009FBB0A /* LaunchScreen.storyboard in Resources */,
+				63334149202DC134006C733C /* Localizable.strings in Resources */,
 				63F857FE2024C676003F1492 /* GoogleService-Info.plist in Resources */,
 				633B1F171FDACE85009FBB0A /* Assets.xcassets in Resources */,
 				633B1F151FDACE85009FBB0A /* Main.storyboard in Resources */,
@@ -623,13 +636,13 @@
 				633B1F401FDEB090009FBB0A /* RegisterViewController.swift in Sources */,
 				630E85101FFD0CFB00C1DF77 /* FMDatabaseQueue.m in Sources */,
 				633B1F121FDACE85009FBB0A /* FirstViewController.swift in Sources */,
-				63BF070B2019DD750086C149 /* HeaderViewCell.swift in Sources */,
 				633B1F101FDACE85009FBB0A /* AppDelegate.swift in Sources */,
 				630E850E1FFD0CFB00C1DF77 /* FMDatabase.m in Sources */,
 				6339743320179A5D001B811D /* Protocols.swift in Sources */,
 				630E850F1FFD0CFB00C1DF77 /* FMDatabasePool.m in Sources */,
 				63F1917E1FFFBDDA00F4CF1A /* CategoryViewCell.swift in Sources */,
 				63F1917B1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift in Sources */,
+				633341402029C6E9006C733C /* XmppManager.swift in Sources */,
 				63F191822004AABC00F4CF1A /* Category.swift in Sources */,
 				63F191791FFD258300F4CF1A /* Global.swift in Sources */,
 				63F191802003718A00F4CF1A /* ChooseSubCategoryViewController.swift in Sources */,
@@ -646,6 +659,7 @@
 				63706D1620122B2700D0C68C /* ExpenseRepresentOverviewCell.swift in Sources */,
 				63836077200F3700002FF703 /* OverviewViewController.swift in Sources */,
 				630E85131FFD0CFB00C1DF77 /* FMDatabaseAdditions.m in Sources */,
+				6333413E20298FC3006C733C /* SendFileOrUploadPhotoViewController.swift in Sources */,
 				636EA0C72020A05A005F85B9 /* Regex.swift in Sources */,
 				630E85201FFD138E00C1DF77 /* DBManager.swift in Sources */,
 			);
@@ -683,10 +697,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		6333414B202DC134006C733C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6333414A202DC134006C733C /* en */,
+				6333414D202DD808006C733C /* Base */,
+				63334150202DE485006C733C /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		633B1F131FDACE85009FBB0A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				633B1F141FDACE85009FBB0A /* Base */,
+				63334146202DA397006C733C /* en */,
+				6333414E202DE485006C733C /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -695,6 +721,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				633B1F191FDACE85009FBB0A /* Base */,
+				6333414F202DE485006C733C /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -706,6 +733,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -750,7 +778,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -763,6 +791,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -801,7 +830,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -815,6 +844,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2296L6VKM;
 				INFOPLIST_FILE = "My Budget/Info.plist";
@@ -822,6 +852,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Penev.My-Budget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "My Budget/My Budget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -835,6 +866,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2296L6VKM;
 				INFOPLIST_FILE = "My Budget/Info.plist";
@@ -842,6 +874,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Penev.My-Budget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "My Budget/My Budget-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

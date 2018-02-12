@@ -11,24 +11,22 @@ import XMPPFramework
 import GoogleSignIn
 import FirebaseAuth
 
-class LogInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate {
+class LogInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate  {
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     
-    var xmppStream: XMPPStream!
-    let hostName: String = "xmpp.ipay.eu"
-    let hostPort: UInt16 = 5222
     
-    var password: String!
+    var password = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        emailTextField.delegate    = self
-        passwordTextField.delegate = self
+        
+        self.emailTextField.delegate    = self
+        self.passwordTextField.delegate = self
+        
         GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signIn()
+        XmppManager.singleton.xmppStream.addDelegate(self, delegateQueue: DispatchQueue.main)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -36,36 +34,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDel
         return false
     }
     
-    func streamConnect(jid: String){
-        xmppStream = XMPPStream()
-        self.xmppStream.hostName = hostName
-        self.xmppStream.hostPort = hostPort
-        xmppStream.addDelegate(self, delegateQueue: DispatchQueue.main)
-        xmppStream.myJID = XMPPJID(string: jid)
-        
-        do {
-            try xmppStream.connect(withTimeout: 30)
-        }
-        catch {
-            print("error occured in connecting")
-        }
-    }
-    
-    
-    func streamAuth(password: String) {
-        
-        do {
-            try xmppStream.authenticate(withPassword: password)
-        }
-        catch {
-            print("catch")
-        }
-    }
-    
     func goToTabBar(){
-        let tabBarController = storyboard?.instantiateViewController(withIdentifier: tabBarControllerId) as! TabBarViewController
-        let budgetCashFlowIsSet = UserDefaults.standard.bool(forKey: "cashFlowIsSet")
-        tabBarController.selectedViewController = tabBarController.viewControllers?[budgetCashFlowIsSet ? overviewTabViewControllerIndex : setUpCashFlowTabViewControllerIndex]
+        let tabBarController = storyboard?.instantiateViewController(withIdentifier: globalIdentificators.tabBarControllerId) as! TabBarViewController
+        
+        tabBarController.selectedViewController = tabBarController.viewControllers?[globalUserDefaults.cashFlowIsSet ? globalIndexes.overviewViewController : globalIndexes.setUpCashFlowViewController]
         present(tabBarController, animated: true, completion: nil)
     }
     
@@ -80,21 +52,23 @@ class LogInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDel
         }
     
         if  jid != "" &&  pass != "" {
+       let easyLogIn = "info-\(jid)-systems-com@xmpp.ipay.eu" // i will remove this later
             
-            password = pass
-            streamConnect(jid: jid)
+            XmppManager.singleton.xmppStream.myJID = XMPPJID(string: easyLogIn)  // replace easyLogIn with jid
+            self.password = pass
+            XmppManager.singleton.streamConnect()
         } else {
             print("no email and/or pass")
             return
         }
-
     }
 }
 
 extension LogInViewController: XMPPStreamDelegate {
+    
     func xmppStreamDidConnect(_ sender: XMPPStream) {
+        XmppManager.singleton.streamAuth(password: password)
         print("DidConnect")
-        streamAuth(password: password)
     }
     
     func xmppStreamDidAuthenticate(_ sender: XMPPStream) {
@@ -105,6 +79,6 @@ extension LogInViewController: XMPPStreamDelegate {
     func xmppStreamDidDisconnect(_ sender: XMPPStream, withError error: Error?) {
         print("DidDisconnect")
     }
-}
 
+}
 

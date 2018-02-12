@@ -19,11 +19,11 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
     
     let expenseRepresentCellId = "expenseRepresentCellId"
     
-    var segmentIndex = 0
-    var allExpenses:       [Expense] = []
-    var selectedRowIndex = 0
-    var butonIndex = 0
-    
+    var segmentIndex           = 0
+    var allExpenses: [Expense] = []
+    var selectedRowIndex       = 0
+    var butonIndex             = 0
+
     var allExpensesByPeriod: [[Expense]] = [[],[],[]] // allExpensesByPeriod[[today],[thisWeek],[thisMonth]]
     
     var listOfExpensesByCategory: [SumExpense] = []
@@ -34,23 +34,25 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let formatedProcent = Global.singleton.doubleFormater(value: listOfExpensesByCategory[indexPath.row].procentOfTotalExpense)
-        let formatedValue   = Global.singleton.doubleFormater(value: listOfExpensesByCategory[indexPath.row].value)
+        let sumExpense = listOfExpensesByCategory[indexPath.row]
         
+        let formatedProcent = "".doubleFormater(value: sumExpense.procentOfTotalExpense)
+        let formatedValue   = "".doubleFormater(value: sumExpense.value)
+
         if let cell = OverviewTableView?.dequeueReusableCell(withIdentifier: expenseRepresentCellId) as? ExpenseRepresentOverviewCell {
-            cell.categoryNameLabel.text  = listOfExpensesByCategory[indexPath.row].categoryFullName
-            cell.categoryIconImageView.image = listOfExpensesByCategory[indexPath.row].categoryIcon
-            cell.categoryIconImageView.backgroundColor = listOfExpensesByCategory[indexPath.row].categoryColor
+            cell.categoryNameLabel.text  = sumExpense.categoryFullName
+            cell.categoryIconImageView.image = sumExpense.categoryIcon
+            cell.categoryIconImageView.backgroundColor = sumExpense.categoryColor
             cell.procentOfTotalExpenceLabel.text = "\(formatedProcent) %"
-            cell.valueOfExpenseLabel.text = formatedValue
+            cell.valueOfExpenseLabel.text = "\(formatedValue) \(globalUserDefaults.userCurrecy)"
             return cell
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRowIndex = indexPath.row
-        performSegue(withIdentifier: segueToExpenseDetails, sender: nil)
+        self.selectedRowIndex = indexPath.row
+        performSegue(withIdentifier: globalIdentificators.segueToExpenseDetails, sender: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -59,28 +61,27 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        setNewValuesAndRefreshTableView()
+
+        self.setNewValuesAndRefreshTableView()
+        
     }
 
     func sortExpenseByPeriod(){
 
         for expense in allExpenses {
-            let expenseDay  = calendar.component(.day , from: Date(milliseconds: Int(expense.date)))
-            let expenseWeek = calendar.component(.weekOfYear, from: Date(milliseconds: Int(expense.date)))
-            let expenseMonth = calendar.component(.month, from: Date(milliseconds: Int(expense.date)))
+            let expenseDay  = globalDateStruct.calendar.component(.day , from: Date(milliseconds: Int(expense.date)))
+            let expenseWeek = globalDateStruct.calendar.component(.weekOfYear, from: Date(milliseconds: Int(expense.date)))
+            let expenseMonth = globalDateStruct.calendar.component(.month, from: Date(milliseconds: Int(expense.date)))
            
-            if expenseDay == today {
+            if expenseDay == globalDateStruct.today {
                 allExpensesByPeriod[0].append(expense)
             }
             
-            if expenseWeek == thisWeek {
+            if expenseWeek == globalDateStruct.thisWeek {
                 allExpensesByPeriod[1].append(expense)
             }
             
-            if expenseMonth == thisMonth {
+            if expenseMonth == globalDateStruct.thisMonth {
                 allExpensesByPeriod[2].append(expense)
             }
         }
@@ -178,24 +179,24 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
         let reminder = remainingAndTotalBalance.remainder
         
         if reminder > 2 * oneThirdBudget {
-            return statusRich
+            return globalCashStatus.statusRich
         } else if reminder > oneThirdBudget {
-            return statusGotSome
+            return globalCashStatus.statusGotSome
         } else if reminder < oneThirdBudget && reminder > 0 {
-            return statusPoor
+            return globalCashStatus.statusPoor
         } else {
-            return statusBroke
+            return globalCashStatus.statusBroke
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == segueToPopup{
+        if  segue.identifier == globalIdentificators.segueToPopup{
             let destination = segue.destination as? PopUpViewController
             destination?.popupViewIndex = butonIndex
             destination?.popupDelegate = self
         }
         
-        if segue.identifier == segueToExpenseDetails{
+        if segue.identifier == globalIdentificators.segueToExpenseDetails {
             let destination = segue.destination as? ExpenseDetailsViewController
             destination?.segmentIndex  = segmentIndex
             
@@ -213,7 +214,6 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
             destination?.expenseList  = listOfExpenseForSelectedCategoryAndPeriod
-            
         }
     }
     
@@ -224,19 +224,19 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func addExpenseTouchUpInside(_ sender: Any) {
-        butonIndex = popupIndexExpense
-        performSegue(withIdentifier: segueToPopup, sender: nil)
+        butonIndex = globalIndexes.popupIndexExpense
+        performSegue(withIdentifier: globalIdentificators.segueToPopup, sender: nil)
     }
     
     @IBAction func addIncomePressed(_ sender: Int) {
-        butonIndex = popupIndexIncome
-        performSegue(withIdentifier: segueToPopup, sender: nil)
+        butonIndex = globalIndexes.popupIndexIncome
+        performSegue(withIdentifier: globalIdentificators.segueToPopup, sender: nil)
     }
     
     @IBAction func logOutTouchUpInside(_ sender: UIButton) {
         print("logOutTouchUpInside")
-        googleLogout()
-        let firstViewController = storyboard?.instantiateViewController(withIdentifier: firstViewControllerId) as! FirstViewController
+        self.googleLogout()
+        let firstViewController = storyboard?.instantiateViewController(withIdentifier: globalIdentificators.firstViewControllerId) as! FirstViewController
         present(firstViewController, animated: true, completion: nil)
     }
     
@@ -244,37 +244,40 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            print("signOut?")
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        
         GIDSignIn.sharedInstance().signOut()
-    
     }
-    
 }
 
 extension OverviewViewController: PopupDelegate {
 
     func setNewValuesAndRefreshTableView() {
-        var remainBalance: Double
-        var totalBalance: Double
 
-        allExpensesByPeriod = [[],[],[]]
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            var remainBalance: Double
+            var totalBalance: Double
+            self.allExpensesByPeriod = [[],[],[]]
+            
+            self.listOfExpensesByCategory = []
+            
+            self.allExpenses = DBManager.singleton.loadExpenses()
+            self.sortExpenseByPeriod()
+            self.listOfExpensesByCategory = self.getExpensesByCategory()
+            remainBalance =  self.getRemainingAndTotalBalance(period:  self.segmentIndex).remainder
+            totalBalance  =  self.getRemainingAndTotalBalance(period:  self.segmentIndex).total
+            
+            DispatchQueue.main.async {
+                let budgetStatus =  self.getBudgetStatus(remainingAndTotalBalance: (total: totalBalance, remainder: remainBalance))
+                self.emogiImageView.image     = budgetStatus.emoji
+                self.budgetStatusLabel.text   = budgetStatus.status
+                self.remainingValueLabel.text = "Balance :  \("".doubleFormater(value: remainBalance)) \(globalUserDefaults.userCurrecy) "
+                self.OverviewTableView.reloadData()
+            }
+        }
         
-        listOfExpensesByCategory = []
-        
-        allExpenses = DBManager.singleton.loadExpenses()
-        sortExpenseByPeriod()
-        listOfExpensesByCategory = getExpensesByCategory()
-        remainBalance = getRemainingAndTotalBalance(period: segmentIndex).remainder
-        totalBalance  = getRemainingAndTotalBalance(period: segmentIndex).total
-        remainingValueLabel.text = "Balance :  \(Global.singleton.doubleFormater(value: remainBalance)) \(usedCurrensy) "
-        let budgetStatus = getBudgetStatus(remainingAndTotalBalance: (total: totalBalance, remainder: remainBalance))
-        emogiImageView.image     = budgetStatus.emoji
-        budgetStatusLabel.text   = budgetStatus.status
-        OverviewTableView.reloadData()
     }
     
 }

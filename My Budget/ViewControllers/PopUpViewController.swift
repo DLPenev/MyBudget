@@ -20,7 +20,7 @@ class PopUpViewController: UIViewController, UITextFieldDelegate {
     
     var popupDelegate: PopupDelegate?
  
-    var popupViewIndex = popupIndexEdit
+    var popupViewIndex = globalIndexes.popupIndexEdit
     
     // MARK: - pickerview outlets and variables
     var subCategoryList: [(subcategoryId: Int,subcategoryName: String)] = []
@@ -51,24 +51,21 @@ class PopUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var editNewDateTextField: UITextField!
     
     let datePickerView = UIDatePicker()
-    var editedExpense: Expense!
-    var isDatePicker: Bool!
+    var editedExpense = Expense()
+    var isDatePicker = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        expenseValueTextField.delegate = self
-        customPopupUI(viewIndex: popupViewIndex)
+        self.expenseValueTextField.delegate = self
+        self.customPopupUI(viewIndex: popupViewIndex)
         
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        if popupViewIndex == popupIndexExpense {
-            willAppearAddExpensePopup()
-        } else if popupViewIndex == popupIndexIncome {
+        if popupViewIndex == globalIndexes.popupIndexExpense {
+            self.showAddExpensePopup()
+        } else if popupViewIndex == globalIndexes.popupIndexIncome {     // popup income
             
-        } else {                            // popup edit
-            willAppearEditPopup()
-            subCategoryList = DBManager.singleton.loadSubCategories(categoryId: editedExpense.categoryId)
+        } else {                                                         // popup edit
+            self.showEditPopup()
+            self.subCategoryList = DBManager.singleton.loadSubCategories(categoryId: editedExpense.categoryId)
         }
     }
     
@@ -79,150 +76,153 @@ class PopUpViewController: UIViewController, UITextFieldDelegate {
         if let valueEntered = expenseValueTextField.text {
             if valueEntered.isValidExpense  {
                 guard let newValue = NumberFormatter().number(from: valueEntered)?.doubleValue else {
-                    expenseValueTextField.textColor = UIColor.red
+                   self.expenseValueTextField.textColor = UIColor.red
                     print("fail cast string to double")
                     return
                 }
                 
                 if newValue == 0 {
                     print("value is 0")
-                    expenseValueTextField.textColor = UIColor.red
+                    self.expenseValueTextField.textColor = UIColor.red
                     return
                 }
                 
                 if selectedSubCategory.pk != 0 {
                     DBManager.singleton.insertInExpenseTable(value: newValue, subcategory: selectedSubCategory.pk)
-                    popupDelegate?.setNewValuesAndRefreshTableView()
+                    self.popupDelegate?.setNewValuesAndRefreshTableView()
                     dismiss(animated: true, completion: nil)
                 } else {
                     
-                    subCategoryLabel.textColor = UIColor.red
+                    self.subCategoryLabel.textColor = UIColor.red
                     print("did not select category")
                 }
                 
             } else {
-                expenseValueTextField.attributedPlaceholder = NSAttributedString(string: "Enter Value", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
-                expenseValueTextField.textColor = UIColor.red
+                self.expenseValueTextField.attributedPlaceholder = NSAttributedString(string: "Enter Value", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+                self.expenseValueTextField.textColor = UIColor.red
                 print("fail regex")
             }
         }
     }
     
+    @IBAction func pickCategoryTouchUpInside(_ sender: UIButton) {
+        self.subCategoryLabel.textColor = UIColor.white
+        performSegue(withIdentifier: globalIdentificators.segueToChooseCategoryId, sender: nil)
+    }
+    
+    
     @IBAction func enterValueTextFieldEditingChanged(_ sender: UITextField) {
-        expenseValueTextField.textColor = .black
+        self.expenseValueTextField.textColor = .black
     }
     
     @IBAction func AddExpenseCanselTouchUpInside(_ sender: Any) {
         dismiss(animated: true)
     }
     
-    func willAppearAddExpensePopup(){
+    func showAddExpensePopup(){
         if selectedSubCategory.name != "" {
-            subCategoryLabel.text = selectedSubCategory.name
+            self.subCategoryLabel.text = selectedSubCategory.name
         }
     }
     
     // MARK: - PopoverAddIncome func and actions
     
     @IBAction func addIncomeCancelTouchUpInside(_ sender: UIButton) {
+        
         dismiss(animated: true)
     }
     
     // MARK: - PopoverEdit func and actions
-    
-
     
     @IBAction func editOkTouchUpInside(_ sender: UIButton) {
         
         if let hasValue = editNewValueTextField.text {
             if hasValue.isValidExpense {
                 guard let newValue = NumberFormatter().number(from: hasValue)?.doubleValue else {
-                    editNewValueTextField.textColor = UIColor.red
+                    self.editNewValueTextField.textColor = UIColor.red
                     print("fail cast string to double")
                     return
                 }
                 
                 if newValue == 0 {
                     print("value is 0")
-                    editNewValueTextField.textColor = .red
+                    self.editNewValueTextField.textColor = .red
                     return
                 }
-                editedExpense.value = newValue
+                self.editedExpense.value = newValue
             } else {
                 print("invalid value")
-                editNewValueTextField.attributedPlaceholder = NSAttributedString(string: "Enter Value", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
-                editNewValueTextField.textColor = .red
+                self.editNewValueTextField.attributedPlaceholder = NSAttributedString(string: "Enter Value", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+                self.editNewValueTextField.textColor = .red
                 return
             }
         }
         
         DBManager.singleton.updateExpense(value: editedExpense.value, subcategory: editedExpense.subCategoryId, date: editedExpense.date, expenseId: editedExpense.expenseId)
-        popupDelegate?.setNewValuesAndRefreshTableView()
+        self.popupDelegate?.setNewValuesAndRefreshTableView()
         dismiss(animated: true)
-        
     }
     
     @IBAction func editValueTextFieldChange(_ sender: UITextField) {
-        editNewValueTextField.textColor = .black
+        self.editNewValueTextField.textColor = .black
     }
-    
     
     @IBAction func editCancelTouchUpInside(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
     @IBAction func editSubcategoryTextFiledDidBegin(_ sender: UITextField) {
-        isDatePicker = false
-        createSubcategoryPickerView()
+        self.isDatePicker = false
+        self.createSubcategoryPickerView()
     }
     
     @IBAction func editDateTextFieldDidBegin(_ sender: UITextField) {
-        isDatePicker = true
-        createDatePicker()
+        self.isDatePicker = true
+        self.createDatePicker()
     }
     
-    func willAppearEditPopup(){
-        editNewValueTextField.text = Global.singleton.doubleFormater(value: editedExpense.value)
-        editNewSubcategoryTextField.text = editedExpense.subcategoryName
-        editNewDateTextField.text = Global.singleton.getTimeOrDateToString(dateInMillisec:  editedExpense.date, format: dateFormatFullDate)
+    func showEditPopup(){
+        self.editNewValueTextField.text = "".doubleFormater(value: editedExpense.value)
+        self.editNewSubcategoryTextField.text = editedExpense.subcategoryName
+        self.editNewDateTextField.text = "".getTimeOrDateToString(dateInMillisec: editedExpense.date, format: globalDateFormats.dateFormatFullDate)
     }
     
     // MARK: - func and actions for All Popovers
     
     func customPopupUI(viewIndex: Int){
         
-        if viewIndex == popupIndexExpense {
+        if viewIndex == globalIndexes.popupIndexExpense {
             self.view.addSubview(popupAddExpense)
             self.popupAddExpense.center = CGPoint(x: view.frame.size.width / 2, y : view.frame.size.height / 3)
-            popupAddExpense.layer.cornerRadius   = cornerRadius
-            popupAddExpense.layer.masksToBounds  = true
+            self.popupAddExpense.layer.cornerRadius   = cornerRadius
+            self.popupAddExpense.layer.masksToBounds  = true
             
-        } else if viewIndex == popupIndexIncome {
+        } else if viewIndex == globalIndexes.popupIndexIncome {
             self.view.addSubview(popupAddIncome)
             self.popupAddIncome.center = CGPoint(x: view.frame.size.width / 2, y : view.frame.size.height / 3)
-            popupAddIncome.layer.cornerRadius    = cornerRadius
-            popupAddIncome.layer.masksToBounds   = true
+            self.popupAddIncome.layer.cornerRadius    = cornerRadius
+            self.popupAddIncome.layer.masksToBounds   = true
             
         } else {                    //popupEditExpense
             self.view.addSubview(popupEditExpense)
             self.popupEditExpense.center = CGPoint(x: view.frame.size.width / 2, y : view.frame.size.height / 3)
-            popupEditExpense.layer.cornerRadius  = cornerRadius
-            popupEditExpense.layer.masksToBounds = true
+            self.popupEditExpense.layer.cornerRadius  = cornerRadius
+            self.popupEditExpense.layer.masksToBounds = true
         }
     }
     
     func createSubcategoryPickerView(){
         let subCategoryView = UIPickerView()
         subCategoryView.delegate = self
-        editNewSubcategoryTextField.inputView = subCategoryView
-        createToolbar()
+        self.editNewSubcategoryTextField.inputView = subCategoryView
+        self.createToolbar()
     }
     
     func createDatePicker(){
-        datePickerView.datePickerMode = .date
-        datePickerView.maximumDate = Date()
-        editNewDateTextField.inputView = datePickerView
-        createToolbar()
+        self.datePickerView.datePickerMode = .date
+        self.datePickerView.maximumDate = Date()
+        self.editNewDateTextField.inputView = datePickerView
+        self.createToolbar()
     }
     
     func createToolbar() {
@@ -237,27 +237,33 @@ class PopUpViewController: UIViewController, UITextFieldDelegate {
         toolBar.setItems([doneButton, cancelButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         
-        editNewSubcategoryTextField.inputAccessoryView = toolBar
-        editNewDateTextField.inputAccessoryView = toolBar
+        self.editNewSubcategoryTextField.inputAccessoryView = toolBar
+        self.editNewDateTextField.inputAccessoryView = toolBar
     }
     
     @objc func doneBarButtonItem(){
         
         if !isDatePicker {
-            editedExpense.subCategoryId = pickedSubCategory.subcategoryId
-            editedExpense.subcategoryName = pickedSubCategory.subcategoryName
-            editNewSubcategoryTextField.text = pickedSubCategory.subcategoryName
+            self.editedExpense.subCategoryId      = pickedSubCategory.subcategoryId
+            self.editedExpense.subcategoryName    = pickedSubCategory.subcategoryName
+            self.editNewSubcategoryTextField.text = pickedSubCategory.subcategoryName
         } else {
-            editedExpense.date = (CLongLong(datePickerView.date.millisecondsSince1970))
-            editNewDateTextField.text = Global.singleton.getTimeOrDateToString(dateInMillisec: editedExpense.date, format: dateFormatFullDate)
+            self.editedExpense.date = (CLongLong(datePickerView.date.millisecondsSince1970))
+            self.editNewDateTextField.text = "".getTimeOrDateToString(dateInMillisec: editedExpense.date, format: globalDateFormats.dateFormatFullDate)
+            
         }
-
         view.endEditing(true)
     }
     
     @objc func dismissToolbar(){
-        editNewSubcategoryTextField.endEditing(true)
-        editNewDateTextField.endEditing(true)
+        self.editNewSubcategoryTextField.endEditing(true)
+        self.editNewDateTextField.endEditing(true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == globalIdentificators.segueToChooseCategoryId {
+            
+        }
     }
 }
 
@@ -268,14 +274,14 @@ extension PopUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {   
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return subCategoryList.count
+        return self.subCategoryList.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return  subCategoryList[row].subcategoryName
+        return  self.subCategoryList[row].subcategoryName
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickedSubCategory = subCategoryList[row]
+        self.pickedSubCategory = subCategoryList[row]
     }
 }

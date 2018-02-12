@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SumExpense: NSObject {
+struct SumExpense {
 
     var categoryIcon:          UIImage
     var categoryColor:         UIColor
@@ -25,5 +25,12 @@ class SumExpense: NSObject {
             self.categoryPrimaryKey    = categoryPrimaryKey
         }
     
-
+    init() {
+        self.categoryIcon          = UIImage()
+        self.categoryColor         = UIColor()
+        self.categoryFullName      = String()
+        self.value                 = 0
+        self.procentOfTotalExpense = 0
+        self.categoryPrimaryKey    = 0
+    }
 }

@@ -9,7 +9,8 @@
 import Foundation
 
 protocol PopupDelegate {
-   func setNewValuesAndRefreshTableView()
+    func setNewValuesAndRefreshTableView()
+
 }
 
 

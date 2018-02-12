@@ -10,14 +10,23 @@ import UIKit
 
 class SetUpBudgetViewController: UIViewController {
 
-    @IBOutlet var incomesSlider: UISlider!
-    @IBOutlet var expenseSlider: UISlider!
-    @IBOutlet var savingsSlider: UISlider!
-    @IBOutlet var incomeValueLabel: UILabel!
-    @IBOutlet var expenseValueLabel: UILabel!
-    @IBOutlet var percentageValueLabel: UILabel!
-    @IBOutlet var currencyTextField: UITextField!
     
+    
+    @IBOutlet var regularIncomeLabel: UILabel!
+    @IBOutlet var incomesSlider: UISlider!
+    @IBOutlet var incomeValueLabel: UILabel!
+    
+    @IBOutlet var regularExpenseLabel: UILabel!
+    @IBOutlet var expenseSlider: UISlider!
+    @IBOutlet var expenseValueLabel: UILabel!
+    
+    
+    @IBOutlet var savingsProcentageLabel: UILabel!
+    @IBOutlet var savingsSlider: UISlider!
+    @IBOutlet var percentageValueLabel: UILabel!
+
+    @IBOutlet var currencyLabel: UILabel!
+    @IBOutlet var currencyTextField: UITextField!
     
     var pickedCurrency = ""
     let currencyList = ["$","€","лв","£","¥","CHF","₽","฿"]
@@ -28,6 +37,9 @@ class SetUpBudgetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      //  regularIncomeLabel.text = NSLocalizedString(, comment: "some")
+        
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,27 +66,27 @@ class SetUpBudgetViewController: UIViewController {
     }
     
     func setSlidersIfThereIsChashFlow(){
-        let budgetCashFlowIsSet = UserDefaults.standard.bool(forKey: "cashFlowIsSet")
-        if budgetCashFlowIsSet {
+
+        if globalUserDefaults.cashFlowIsSet {
             let cashFlow = DBManager.singleton.getCashFlow()
-            regularIncome = Int(cashFlow.income)
-            regularExpense = Int(cashFlow.expense)
-            savingsProcent = Int(cashFlow.savingsPercentage)
+            self.regularIncome = Int(cashFlow.income)
+            self.regularExpense = Int(cashFlow.expense)
+            self.savingsProcent = Int(cashFlow.savingsPercentage)
             
-            incomesSlider.setValue(Float(regularIncome), animated: true)
-            expenseSlider.setValue(Float(regularExpense), animated: true)
-            savingsSlider.setValue(Float(savingsProcent), animated: true)
-            incomeValueLabel.text = String(regularIncome)
-            expenseValueLabel.text = String(regularExpense)
-            percentageValueLabel.text = String(savingsProcent)
-            currencyTextField.text = cashFlow.currency
+            self.incomesSlider.setValue(Float(regularIncome), animated: true)
+            self.expenseSlider.setValue(Float(regularExpense), animated: true)
+            self.savingsSlider.setValue(Float(savingsProcent), animated: true)
+            self.incomeValueLabel.text = String(regularIncome)
+            self.expenseValueLabel.text = String(regularExpense)
+            self.percentageValueLabel.text = String(savingsProcent)
+            self.currencyTextField.text = cashFlow.currency
         }
         
     }
     
     @objc func doneBarButtonItem(){
-        currencyTextField.text = pickedCurrency
-        usedCurrensy = pickedCurrency
+        self.currencyTextField.text = pickedCurrency
+        globalUserDefaults.userCurrecy = pickedCurrency
 
         view.endEditing(true)
     }
@@ -84,29 +96,31 @@ class SetUpBudgetViewController: UIViewController {
     }
     
     @IBAction func incomeSliderChanged(_ sender: UISlider) {
-        regularIncome = Int(sender.value)
-        incomeValueLabel.text = "\(regularIncome)"
+        self.regularIncome = Int(sender.value)
+        self.incomeValueLabel.text = "\(regularIncome)"
     }
     
     @IBAction func expenseSliderChanged(_ sender: UISlider) {
-        regularExpense = Int(sender.value)
-        expenseValueLabel.text = "\(regularExpense)"
+        self.regularExpense = Int(sender.value)
+        self.expenseValueLabel.text = "\(regularExpense)"
     }
     
     @IBAction func percentageValueChanged(_ sender: UISlider) {
-        savingsProcent = Int(sender.value)
-        percentageValueLabel.text = "\(savingsProcent) %"
+        self.savingsProcent = Int(sender.value)
+        self.percentageValueLabel.text = "\(savingsProcent) %"
     }
     
     @IBAction func updateButtonPressed(_ sender: UIButton) {
         DBManager.singleton.updateCashFlowValues(income: regularIncome, expense: regularExpense, savings: savingsProcent, currensy: pickedCurrency)
-        UserDefaults.standard.set(true, forKey: "cashFlowIsSet")
-        UserDefaults.standard.set(pickedCurrency, forKey: "currency")
-        tabBarController?.selectedIndex = tabBarOverviewIndex
+
+        UserDefaults.standard.set(true, forKey: globalUserDefaults.cashFlowIsSetKey)
+        UserDefaults.standard.set(pickedCurrency, forKey: globalUserDefaults.userCurrecyKey)
+        
+        tabBarController?.selectedIndex = globalIndexes.tabBarOverviewIndex
     }
     
     @IBAction func pickCurencyEditingDidBegin(_ sender: UITextField) {
-        createCurrencyPickerView()
+        self.createCurrencyPickerView()
     }
     
 }
@@ -118,15 +132,15 @@ extension SetUpBudgetViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return currencyList.count
+        return self.currencyList.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return  currencyList[row]
+        return  self.currencyList[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickedCurrency = currencyList[row]
+        self.pickedCurrency = self.currencyList[row]
     }
 }
 

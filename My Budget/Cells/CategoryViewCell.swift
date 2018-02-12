@@ -8,9 +8,8 @@
 
 import UIKit
 
-class CategoryViewCell: UITableViewCell {
+class CategoryViewCell: SubCategoryTableViewCell {
 
-    @IBOutlet var categoryLabel: UILabel!
     @IBOutlet var categoryIconView: UIImageView!
     
     override func awakeFromNib() {
@@ -25,3 +24,5 @@ class CategoryViewCell: UITableViewCell {
     }
 
 }
+
+

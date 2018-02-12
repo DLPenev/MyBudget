@@ -19,27 +19,25 @@ class ExpenseDetailsViewController: UIViewController {
     
     let expensesViewCellId  = "expensesViewCellId"
 
-    var segmentIndex:     Int!
-    var expenseList:     [Expense]!
-    var selectedCategory: Category!
+    var segmentIndex =   Int()
+    var expenseList  =  [Expense()]
+    var selectedCategory = Category()
 
     let cellHeight: CGFloat = 60
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupHeaderView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setupHeaderView()
-        
     }
     
     func setupHeaderView() {
-        headerViewCategoryNameLabel.text = selectedCategory.categoryFullName
-        headerViewCategoryNameLabel.textColor = UIColor.white
-        headerCateryIconImageView.image = selectedCategory.categoryIcon
-        headerTableView.backgroundColor = selectedCategory.categoryColor
+        self.headerViewCategoryNameLabel.text = selectedCategory.categoryFullName
+        self.headerViewCategoryNameLabel.textColor = UIColor.white
+        self.headerCateryIconImageView.image = selectedCategory.categoryIcon
+        self.headerTableView.backgroundColor = selectedCategory.categoryColor
     }
     
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
@@ -47,7 +45,7 @@ class ExpenseDetailsViewController: UIViewController {
     }
 
     func presentPopupEdit(expenseIndex: Int){
-        let editPopup = storyboard?.instantiateViewController(withIdentifier: popupControllerId) as! PopUpViewController
+        let editPopup = storyboard?.instantiateViewController(withIdentifier: globalIdentificators.popupControllerId) as! PopUpViewController
         editPopup.editedExpense = expenseList[expenseIndex]
         editPopup.popupDelegate = self
         present(editPopup, animated: true, completion: nil)
@@ -64,28 +62,32 @@ extension ExpenseDetailsViewController:  UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
   
+        let expense = expenseList[indexPath.row]
+        
         if segmentIndex == 0 {
-            titleOutlet.title = "Today"
-            let time = Global.singleton.getTimeOrDateToString(dateInMillisec: expenseList[indexPath.row].date, format: dateFormatTime)
+            self.titleOutlet.title = NSLocalizedString(globalStringsKeys.today , comment: "")
+            let time = "".getTimeOrDateToString(dateInMillisec: expense.date, format: globalDateFormats.dateFormatTime)
             return createExpenseViewCell(dateOrTime: time, indexPathRow: indexPath.row)
         } else if segmentIndex == 1 {
-            titleOutlet.title = "This Week"
-            let weekday = Global.singleton.getTimeOrDateToString(dateInMillisec: expenseList[indexPath.row].date, format: dateFormatWeekDay)
+            self.titleOutlet.title = NSLocalizedString(globalStringsKeys.thisWeek, comment: "")
+            let weekday = "".getTimeOrDateToString(dateInMillisec: expense.date, format: globalDateFormats.dateFormatWeekDay)
            return createExpenseViewCell(dateOrTime: weekday, indexPathRow: indexPath.row)
 
         } else {
-            titleOutlet.title = "This Month"
-            let fullDate = Global.singleton.getTimeOrDateToString(dateInMillisec: expenseList[indexPath.row].date, format: dateFormatFullDate)
+            self.titleOutlet.title = NSLocalizedString(globalStringsKeys.thisMonth, comment: "")
+            let fullDate = "".getTimeOrDateToString(dateInMillisec: expense.date, format: globalDateFormats.dateFormatFullDate)
             return createExpenseViewCell(dateOrTime: fullDate, indexPathRow: indexPath.row)
         }
     }
     
     func createExpenseViewCell(dateOrTime: String, indexPathRow: Int)->UITableViewCell{
-        let expenseValue = Global.singleton.doubleFormater(value: expenseList[indexPathRow].value)
+        let expense = expenseList[indexPathRow]
+        
+        let expenseValue = "".doubleFormater(value: expenseList[indexPathRow].value)
         if let expenseViewCell = listOfExpenseForPeriodTableView.dequeueReusableCell(withIdentifier: expensesViewCellId) as? ExpensesCell {
-            expenseViewCell.dayOfWeekLabel.text = "    \(dateOrTime)"
-            expenseViewCell.subcategoryNameLabel.text = expenseList[indexPathRow].subcategoryName
-            expenseViewCell.expenseValueLabel.text = "\(expenseValue) \(usedCurrensy)"
+            expenseViewCell.dayOfWeekLabel.text       = "    \(dateOrTime)"
+            expenseViewCell.subcategoryNameLabel.text = expense.subcategoryName
+            expenseViewCell.expenseValueLabel.text    = "\(expenseValue) \(globalUserDefaults.userCurrecy)"
             return expenseViewCell
         }
         return UITableViewCell()
@@ -96,20 +98,25 @@ extension ExpenseDetailsViewController:  UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let edit = UITableViewRowAction(style : .normal, title: "Edit", handler: { action , indexPath in
+        let editTitle   = NSLocalizedString(globalStringsKeys.buttonEdit, comment: "")
+        let deleteTitle = NSLocalizedString(globalStringsKeys.buttonDelete, comment: "")
+        
+        let edit = UITableViewRowAction(style : .normal, title: editTitle, handler: { action , indexPath in
             print("edit click")
 
             self.presentPopupEdit(expenseIndex: indexPath.row)
         })
         
-        let delete = UITableViewRowAction(style : .destructive, title: "Delete", handler: { action , indexPath in
+        let delete = UITableViewRowAction(style : .destructive, title: deleteTitle, handler: { action , indexPath in
             print("delete touchup inside")
 
-            DBManager.singleton.deleteAttribute(table: tableExpenses, attributeID: self.expenseList[indexPath.row].expenseId)
+            DBManager.singleton.deleteAttribute(table: globalTableConsts.tableExpenses, attributeID: self.expenseList[indexPath.row].expenseId)
             self.expenseList.remove(at: indexPath.row)
             self.listOfExpenseForPeriodTableView.deleteRows(at: [indexPath], with: .automatic)
             if self.expenseList.count < 1 {
-                self.dismiss(animated: true)
+                let tabBarController = self.storyboard?.instantiateViewController(withIdentifier: globalIdentificators.tabBarControllerId) as! TabBarViewController
+                tabBarController.selectedViewController = tabBarController.viewControllers?[globalIndexes.overviewViewController]
+                self.present(tabBarController, animated: true, completion: nil)
             }
         })
         
@@ -119,11 +126,12 @@ extension ExpenseDetailsViewController:  UITableViewDelegate, UITableViewDataSou
 }
 
 extension ExpenseDetailsViewController: PopupDelegate {
+
     func setNewValuesAndRefreshTableView() {
-        if expenseList.count < 1 {
+        if self.expenseList.count < 1 {
             dismiss(animated: true)
         } else {
-            listOfExpenseForPeriodTableView.reloadData()
+            self.listOfExpenseForPeriodTableView.reloadData()
         }
     }
     

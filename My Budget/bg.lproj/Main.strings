@@ -1,0 +1,207 @@
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "0Tc-fn-iEu"; */
+"0Tc-fn-iEu.normalTitle" = "Cancel";
+
+/* Class = "UIBarButtonItem"; title = "↩ Back"; ObjectID = "11H-Uu-hqT"; */
+"11H-Uu-hqT.title" = "↩ Back";
+
+/* Class = "UILabel"; text = "Currency : "; ObjectID = "1S6-v2-CDV"; */
+"1S6-v2-CDV.text" = "Currency : ";
+
+/* Class = "UIButton"; normalTitle = "Ok"; ObjectID = "1V0-Sv-KUt"; */
+"1V0-Sv-KUt.normalTitle" = "Ok";
+
+/* Class = "UITabBarItem"; title = "OverView"; ObjectID = "1rU-3D-J8e"; */
+"1rU-3D-J8e.title" = "OverView";
+
+/* Class = "UILabel"; text = "Expense"; ObjectID = "2yI-6m-KhM"; */
+"2yI-6m-KhM.text" = "Expense";
+
+/* Class = "UILabel"; text = "Category Name"; ObjectID = "3Ov-yG-dtm"; */
+"3Ov-yG-dtm.text" = "Category Name";
+
+/* Class = "UITextField"; placeholder = "Pick Subcategory"; ObjectID = "3kg-JI-Syz"; */
+"3kg-JI-Syz.placeholder" = "Pick Subcategory";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "5kD-kI-Hyh"; */
+"5kD-kI-Hyh.placeholder" = "Username";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "5pm-5t-Ja5"; */
+"5pm-5t-Ja5.placeholder" = "password";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6mk-gT-qyG"; */
+"6mk-gT-qyG.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7SB-WC-A1j"; */
+"7SB-WC-A1j.text" = "Label";
+
+/* Class = "UILabel"; text = "Income"; ObjectID = "8VH-jd-gD4"; */
+"8VH-jd-gD4.text" = "Income";
+
+/* Class = "UITextField"; placeholder = "pick currency"; ObjectID = "A2Z-un-r0p"; */
+"A2Z-un-r0p.placeholder" = "pick currency";
+
+/* Class = "UITextField"; placeholder = "enter amount"; ObjectID = "BJw-A7-IiM"; */
+"BJw-A7-IiM.placeholder" = "enter amount";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "Eu0-3M-86t"; */
+"Eu0-3M-86t.normalTitle" = "Cancel";
+
+/* Class = "UITextField"; placeholder = "email"; ObjectID = "HCN-vJ-OIQ"; */
+"HCN-vJ-OIQ.placeholder" = "email";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "HjY-PG-Vbl"; */
+"HjY-PG-Vbl.title" = "Settings";
+
+/* Class = "UITextField"; placeholder = "Value"; ObjectID = "J6E-CG-GdB"; */
+"J6E-CG-GdB.placeholder" = "Value";
+
+/* Class = "UITextField"; placeholder = "Pick Subcategory"; ObjectID = "J79-DR-Qyd"; */
+"J79-DR-Qyd.placeholder" = "Pick Subcategory";
+
+/* Class = "UITextField"; placeholder = "Pick Date"; ObjectID = "Jsp-HD-OYD"; */
+"Jsp-HD-OYD.placeholder" = "Pick Date";
+
+/* Class = "UIBarButtonItem"; title = "↩ Back"; ObjectID = "L6k-Pe-XOB"; */
+"L6k-Pe-XOB.title" = "↩ Back";
+
+/* Class = "UITextField"; placeholder = "email"; ObjectID = "LQM-v4-cUm"; */
+"LQM-v4-cUm.placeholder" = "email";
+
+/* Class = "UITextField"; placeholder = "Value"; ObjectID = "Lv6-8k-BKa"; */
+"Lv6-8k-BKa.placeholder" = "Value";
+
+/* Class = "UILabel"; text = "Pick Category"; ObjectID = "MtD-cF-QfH"; */
+"MtD-cF-QfH.text" = "Pick Category";
+
+/* Class = "UITextField"; placeholder = "Pick Date"; ObjectID = "N3y-Ws-cEv"; */
+"N3y-Ws-cEv.placeholder" = "Pick Date";
+
+/* Class = "UISegmentedControl"; N8K-Cf-EX6.segmentTitles[0] = "Today"; ObjectID = "N8K-Cf-EX6"; */
+"N8K-Cf-EX6.segmentTitles[0]" = "Today";
+
+/* Class = "UISegmentedControl"; N8K-Cf-EX6.segmentTitles[1] = "This Week"; ObjectID = "N8K-Cf-EX6"; */
+"N8K-Cf-EX6.segmentTitles[1]" = "This Week";
+
+/* Class = "UISegmentedControl"; N8K-Cf-EX6.segmentTitles[2] = "This Month"; ObjectID = "N8K-Cf-EX6"; */
+"N8K-Cf-EX6.segmentTitles[2]" = "This Month";
+
+/* Class = "UILabel"; text = "100%"; ObjectID = "NBE-qK-pmc"; */
+"NBE-qK-pmc.text" = "100%";
+
+/* Class = "UILabel"; text = "Saving percentage :"; ObjectID = "NW6-Qq-Fsh"; */
+"NW6-Qq-Fsh.text" = "Saving percentage :";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "O0T-cr-LD5"; */
+"O0T-cr-LD5.placeholder" = "password";
+
+/* Class = "UIBarButtonItem"; title = "↩ Back"; ObjectID = "OF0-Hu-xEk"; */
+"OF0-Hu-xEk.title" = "↩ Back";
+
+/* Class = "UILabel"; text = "0 %"; ObjectID = "Pf5-SN-PIq"; */
+"Pf5-SN-PIq.text" = "0 %";
+
+/* Class = "UILabel"; text = "receiver"; ObjectID = "PlC-dD-NAM"; */
+"PlC-dD-NAM.text" = "receiver";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Rty-bz-ouG"; */
+"Rty-bz-ouG.text" = "Label";
+
+/* Class = "UILabel"; text = "Edit"; ObjectID = "SPD-4g-Jfd"; */
+"SPD-4g-Jfd.text" = "Edit";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "SQ6-lI-7qM"; */
+"SQ6-lI-7qM.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Registration"; ObjectID = "SjF-hx-jsp"; */
+"SjF-hx-jsp.normalTitle" = "Registration";
+
+/* Class = "UILabel"; text = "9999999"; ObjectID = "T2p-Ik-OfQ"; */
+"T2p-Ik-OfQ.text" = "9999999";
+
+/* Class = "UILabel"; text = "   (Like rent, electrysity est.)"; ObjectID = "Tma-jr-FGB"; */
+"Tma-jr-FGB.text" = "   (Like rent, electrysity est.)";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "XfY-eL-8mx"; */
+"XfY-eL-8mx.normalTitle" = "Send";
+
+/* Class = "UILabel"; text = "Send file"; ObjectID = "YJ1-uC-80f"; */
+"YJ1-uC-80f.text" = "Send file";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "YV7-Tj-x4K"; */
+"YV7-Tj-x4K.normalTitle" = "Submit";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YjP-Km-NsO"; */
+"YjP-Km-NsO.text" = "Label";
+
+/* Class = "UILabel"; text = "   (recomented value is between 10% ~ 20%)"; ObjectID = "ZGO-RW-npW"; */
+"ZGO-RW-npW.text" = "   (recomented value is between 10% ~ 20%)";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "ab8-Tt-ioe"; */
+"ab8-Tt-ioe.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "bZn-DY-6kb"; */
+"bZn-DY-6kb.text" = "0";
+
+/* Class = "UILabel"; text = "Label   "; ObjectID = "cFX-mn-zyW"; */
+"cFX-mn-zyW.text" = "Label   ";
+
+/* Class = "UILabel"; text = "Category"; ObjectID = "cii-jy-jtM"; */
+"cii-jy-jtM.text" = "Category";
+
+/* Class = "UIButton"; normalTitle = "forgot password"; ObjectID = "dSJ-Ff-BO9"; */
+"dSJ-Ff-BO9.normalTitle" = "forgot password";
+
+/* Class = "UIButton"; normalTitle = "Ok"; ObjectID = "eHW-xi-e5C"; */
+"eHW-xi-e5C.normalTitle" = "Ok";
+
+/* Class = "UIButton"; normalTitle = "Ok"; ObjectID = "eOl-YI-iUY"; */
+"eOl-YI-iUY.normalTitle" = "Ok";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fBO-i7-7il"; */
+"fBO-i7-7il.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "fRw-FL-EzK"; */
+"fRw-FL-EzK.normalTitle" = "Log in";
+
+/* Class = "UILabel"; text = "Some category"; ObjectID = "i3y-lS-taz"; */
+"i3y-lS-taz.text" = "Some category";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "i8Q-N9-RPJ"; */
+"i8Q-N9-RPJ.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "Regular incomes :"; ObjectID = "iF0-ds-CU0"; */
+"iF0-ds-CU0.text" = "Regular incomes :";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "k8m-bg-ITN"; */
+"k8m-bg-ITN.normalTitle" = "Cancel";
+
+/* Class = "UITextField"; placeholder = "password again"; ObjectID = "otL-qy-gjH"; */
+"otL-qy-gjH.placeholder" = "password again";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "pt1-14-lcg"; */
+"pt1-14-lcg.normalTitle" = "Update";
+
+/* Class = "UIButton"; normalTitle = "Log in"; ObjectID = "rio-Sj-kXs"; */
+"rio-Sj-kXs.normalTitle" = "Log in";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "sbA-54-PDB"; */
+"sbA-54-PDB.title" = "Title";
+
+/* Class = "UILabel"; text = "Regular expense :"; ObjectID = "tkG-ta-c06"; */
+"tkG-ta-c06.text" = "Regular expense :";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "vmh-Em-qIU"; */
+"vmh-Em-qIU.title" = "Edit";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "wyX-fo-iGi"; */
+"wyX-fo-iGi.title" = "Title";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "xC3-bk-s0n"; */
+"xC3-bk-s0n.text" = "Label";
+
+/* Class = "UILabel"; text = "   (Like salary,pension, rent, devidents est.)"; ObjectID = "xIF-xb-PkF"; */
+"xIF-xb-PkF.text" = "   (Like salary,pension, rent, devidents est.)";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "zxc-Z8-TD4"; */
+"zxc-Z8-TD4.title" = "Title";

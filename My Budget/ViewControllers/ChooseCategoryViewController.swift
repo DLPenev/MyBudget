@@ -13,17 +13,20 @@ class ChooseCategoryViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet var categoriesTableView: UITableView!
  
     let numberOfCategories = 10
-    var categoryIndex: Int?
+    var categoryIndex = Int()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfCategories
+        return self.numberOfCategories
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = categoriesTableView?.dequeueReusableCell(withIdentifier: categoryCellId) as? CategoryViewCell {
-            cell.categoryLabel.text     = allCategoryesArray[indexPath.row].categoryFullName
-            cell.categoryIconView.image = allCategoryesArray[indexPath.row].categoryIcon
-            cell.categoryIconView.backgroundColor = allCategoryesArray[indexPath.row].categoryColor
+        
+        let category = allCategoryesArray[indexPath.row]
+        
+        if let cell = categoriesTableView?.dequeueReusableCell(withIdentifier: globalIdentificators.categoryCellId) as? CategoryViewCell {
+            cell.categoryLabel.text     = category.categoryFullName
+            cell.categoryIconView.image = category.categoryIcon
+            cell.categoryIconView.backgroundColor = category.categoryColor
             return cell
         }
         return UITableViewCell()
@@ -44,15 +47,15 @@ class ChooseCategoryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        categoryIndex = indexPath.row
-        performSegue(withIdentifier: segueToSubCategory, sender: nil)
+        self.categoryIndex = indexPath.row
+        performSegue(withIdentifier: globalIdentificators.segueToSubCategory, sender: nil)
         categoriesTableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == segueToSubCategory{
+        if  segue.identifier == globalIdentificators.segueToSubCategory{
             let destination = segue.destination as? ChooseSubCategoryViewController
-            destination?.selectedCategory = categoryIndex
+            destination?.selectedCategory = self.categoryIndex
         }
     }
 

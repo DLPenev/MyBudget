@@ -87,9 +87,8 @@ extension AppDelegate: GIDSignInDelegate {
             // User is signed in
 
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let tabBarController = storyboard.instantiateViewController(withIdentifier: tabBarControllerId) as? TabBarViewController{
-                let budgetCashFlowIsSet = UserDefaults.standard.bool(forKey: "cashFlowIsSet")
-                tabBarController.selectedViewController = tabBarController.viewControllers?[budgetCashFlowIsSet ? overviewTabViewControllerIndex : setUpCashFlowTabViewControllerIndex]
+            if let tabBarController = storyboard.instantiateViewController(withIdentifier: globalIdentificators.tabBarControllerId) as? TabBarViewController{
+                tabBarController.selectedViewController = tabBarController.viewControllers?[globalUserDefaults.cashFlowIsSet ? globalIndexes.overviewViewController : globalIndexes.setUpCashFlowViewController]
                 self.window?.rootViewController = tabBarController
             }
 
@@ -100,8 +99,7 @@ extension AppDelegate: GIDSignInDelegate {
         // Perform any operations when the user disconnects from app here.
         // ...
     }
-    
-   // try GIDSignIn.sharedInstance().signOut()
+ 
     
 }
 

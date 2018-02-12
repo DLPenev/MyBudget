@@ -10,7 +10,8 @@ import UIKit
 
 class SubCategoryTableViewCell: UITableViewCell {
 
-    @IBOutlet var subCategoryLabel: UILabel!
+    @IBOutlet var categoryLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,3 +25,5 @@ class SubCategoryTableViewCell: UITableViewCell {
     }
 
 }
+
+

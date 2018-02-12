@@ -1,0 +1,39 @@
+/* 
+  Localazable.strings
+  My Budget
+
+  Created by MacUSER on 9.02.18.
+  Copyright © 2018 MacUSER. All rights reserved.
+*/
+
+
+// English!!
+
+"balance"                = "Balance";
+"status1"                = "You are in the money";
+"status2"                = "You still got some money";
+"status3"                = "You are low on money";
+"status4"                = "You Are Broke";
+
+//categoryes
+"categoryFood"           = "Food & Drinks";
+"categoryShopping"       = "Shopping";
+"categoryHousing"        = "Housing";
+"categoryTransportation" = "Transportation";
+"categoryVehicle"        = "Vehicle";
+"categoryLife"           = "Life & Entertainment";
+"categoryComunication"   = "Communication, PC";
+"categoryFinancial"      = "Financial expenses";
+"categoryInvestments"    = "Investments";
+"categoryOthers"         = "Others";
+//popup
+"buttonEdit"             = "Edit";
+"buttonDelete"           = "Delete";
+//periods
+"today"                  = "Today";
+"thisWeek"               = "This Week";
+"thisMonth"              = "This Month";
+
+
+
+

@@ -14,28 +14,27 @@ class DBManager: NSObject {
     
     let databaseFileName = "budgetDB.db"
     
-    var pathToDatabase: String!
+    var pathToDatabase = String()
     var budgetDB: FMDatabase!
     
     override init() {
         super.init()
         let documentsDirectory = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString) as String
-        pathToDatabase = documentsDirectory.appending("/\(databaseFileName)")
+        self.pathToDatabase = documentsDirectory.appending("/\(self.databaseFileName)")
     }
     
     func createDatabaseIfNotExists(){
         
-        if !FileManager.default.fileExists(atPath: pathToDatabase) {
-            budgetDB = FMDatabase(path: pathToDatabase!)
-            if budgetDB != nil {
+        if !FileManager.default.fileExists(atPath: self.pathToDatabase) {
+            self.budgetDB = FMDatabase(path: self.pathToDatabase)
+            if self.budgetDB != nil {
                 initDB()
             }
         }
-        print(pathToDatabase)
+        print(self.pathToDatabase)
     }
     
     func initDB(){
-        
     
         let foodAndDrinksDefaultValues     = ["Groceries","Fast-food","Restaurant","Bar, cafe"]
         let shoppingDefaultValues          = ["Clothes & Shoes","Jewels, Accessories","Health and Beauty","Kids","Home, Garden","Pets, Animals","Accessories","Gifts, Joy","Stationery, Tools","Free time","Drug-store, Chemist"]
@@ -61,13 +60,13 @@ class DBManager: NSObject {
         
         func createTable(sqlStatement: String){
             
-            if (budgetDB.open()) {
-                if !(budgetDB.executeStatements(sqlStatement)) {
-                    print("Error: \(budgetDB.lastErrorMessage())")
+            if (self.budgetDB.open()) {
+                if !(self.budgetDB.executeStatements(sqlStatement)) {
+                    print("Error: \(self.budgetDB.lastErrorMessage())")
                 }
-                budgetDB.close()
+                self.budgetDB.close()
             } else {
-                print("Error: \(budgetDB.lastErrorMessage())")
+                print("Error: \(self.budgetDB.lastErrorMessage())")
             }
         }
 
@@ -76,21 +75,21 @@ class DBManager: NSObject {
                 DBManager.singleton.budgetDB.beginTransaction()
                 
                 for category in categoriesArray{
-                    let insertSQL = "INSERT INTO \(table) (\(fieldCategory)) VALUES (?)"
+                    let insertSQL = "INSERT INTO \(table) (\(globalTableConsts.fieldCategory)) VALUES (?)"
                     
-                    let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [category])
+                    let result = self.budgetDB.executeUpdate(insertSQL, withArgumentsIn: [category])
                     
                     if !result {
-                        print("Error: \(budgetDB.lastErrorMessage())")
+                        print("Error: \(self.budgetDB.lastErrorMessage())")
                     } else {
                         print ("Category Added")
                     }
                 }
                 DBManager.singleton.budgetDB.commit()
-                budgetDB.close()
+                self.budgetDB.close()
             } else {
                 DBManager.singleton.budgetDB.rollback()
-                print("Error: \(budgetDB.lastErrorMessage())")
+                print("Error: \(self.budgetDB.lastErrorMessage())")
             }
         }
         
@@ -105,11 +104,11 @@ class DBManager: NSObject {
 
                     for category in subCategoriesArray {
                       
-                        let insertSQL = "INSERT INTO \(table) (\(fieldSubcategory), \(fieldCategoryId) ) VALUES (?,?)"
-                        let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [category, categoryId])
+                        let insertSQL = "INSERT INTO \(table) (\(globalTableConsts.fieldSubcategory), \(globalTableConsts.fieldCategoryId) ) VALUES (?,?)"
+                        let result = self.budgetDB.executeUpdate(insertSQL, withArgumentsIn: [category, categoryId])
 
                         if !result {
-                            print("Error: \(budgetDB.lastErrorMessage())")
+                            print("Error: \(self.budgetDB.lastErrorMessage())")
                         } else {
                             print ("SubCategory Added")
                         }
@@ -117,23 +116,23 @@ class DBManager: NSObject {
                     }
                 }
                 DBManager.singleton.budgetDB.commit()
-                budgetDB.close()
+                self.budgetDB.close()
             } else {
                 DBManager.singleton.budgetDB.rollback()
-                print("Error: \(budgetDB.lastErrorMessage())")
+                print("Error: \(self.budgetDB.lastErrorMessage())")
             }
         }
         
-        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableCategories) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldCategory) TEXT)")
+        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(globalTableConsts.tableCategories) ( \(globalTableConsts.fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(globalTableConsts.fieldCategory) TEXT)")
 
-        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableSubCategories) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldSubcategory) TEXT, \(fieldCategoryId) INTEGER, foreign key(\(fieldCategoryId)) references \(tableCategories)(\(fieldId)) )")
+        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(globalTableConsts.tableSubCategories) ( \(globalTableConsts.fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(globalTableConsts.fieldSubcategory) TEXT, \(globalTableConsts.fieldCategoryId) INTEGER, foreign key(\(globalTableConsts.fieldCategoryId)) references \(globalTableConsts.tableCategories)(\(globalTableConsts.fieldId)) )")
         
-        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableExpenses) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldDate) INTEGER, \(fieldWeekOfYear) INTEGER, \(fieldValue) DOUBLE, \(fieldSubcategoryId) INTEGER, FOREIGN KEY(\(fieldSubcategoryId)) REFERENCES \(tableSubCategories)(\(fieldId)) )")
+        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(globalTableConsts.tableExpenses) ( \(globalTableConsts.fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(globalTableConsts.fieldDate) INTEGER, \(globalTableConsts.fieldWeekOfYear) INTEGER, \(globalTableConsts.fieldValue) DOUBLE, \(globalTableConsts.fieldSubcategoryId) INTEGER, FOREIGN KEY(\(globalTableConsts.fieldSubcategoryId)) REFERENCES \(globalTableConsts.tableSubCategories)(\(globalTableConsts.fieldId)) )")
         
-        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(tableCashFlow) ( \(fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(fieldRegularIncome) INTEGER, \(fieldRegularExpense) INTEGER, \(fieldSavingPercentage) INTEGER, \(fieldCurrency) STRING ) ")
+        createTable(sqlStatement: "CREATE TABLE IF NOT EXISTS \(globalTableConsts.tableCashFlow) ( \(globalTableConsts.fieldId) INTEGER PRIMARY KEY AUTOINCREMENT, \(globalTableConsts.fieldRegularIncome) INTEGER, \(globalTableConsts.fieldRegularExpense) INTEGER, \(globalTableConsts.fieldSavingPercentage) INTEGER, \(globalTableConsts.fieldCurrency) STRING ) ")
         
-        insertCategoriesDefaultValues(table: tableCategories, categoriesArray: categoriesDefaultValues)
-        insertSubCategoriesDefaultValues(table: tableSubCategories, allSubCategories: subCategoriesDefaultValues)
+        insertCategoriesDefaultValues(table: globalTableConsts.tableCategories, categoriesArray: categoriesDefaultValues)
+        insertSubCategoriesDefaultValues(table: globalTableConsts.tableSubCategories, allSubCategories: subCategoriesDefaultValues)
         insertCashFlowDefaultValues()
     }
     
@@ -142,53 +141,53 @@ class DBManager: NSObject {
             
             let defaultValue = 0
             
-            let insertSQL = "INSERT INTO \(tableCashFlow) (\(fieldRegularIncome), \(fieldRegularExpense), \(fieldSavingPercentage) ) VALUES (?,?,?)"
-            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [defaultValue, defaultValue, defaultValue])
+            let insertSQL = "INSERT INTO \(globalTableConsts.tableCashFlow) (\(globalTableConsts.fieldRegularIncome), \(globalTableConsts.fieldRegularExpense), \(globalTableConsts.fieldSavingPercentage) ) VALUES (?,?,?)"
+            let result = self.budgetDB.executeUpdate(insertSQL, withArgumentsIn: [defaultValue, defaultValue, defaultValue])
             
             if !result {
-                print("Error: \(budgetDB.lastErrorMessage())")
+                print("Error: \(self.budgetDB.lastErrorMessage())")
             } else {
                 print ("Cash Flow Added")
             }
-            budgetDB.close()
+            self.budgetDB.close()
         } else {
-            print("Error: \(budgetDB.lastErrorMessage())")
+            print("Error: \(self.budgetDB.lastErrorMessage())")
         }
     }
     
     func updateCashFlowValues(income: Int, expense: Int, savings: Int, currensy: String){
         if openDatabase() {
             
-            let insertSQL = "UPDATE \(tableCashFlow) SET \(fieldRegularIncome) = ? , \(fieldRegularExpense) = ? , \(fieldSavingPercentage) = ?, \(fieldCurrency) = ?  WHERE ID = 1 "
-            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [income, expense, savings, currensy])
+            let insertSQL = "UPDATE \(globalTableConsts.tableCashFlow) SET \(globalTableConsts.fieldRegularIncome) = ? , \(globalTableConsts.fieldRegularExpense) = ? , \(globalTableConsts.fieldSavingPercentage) = ?, \(globalTableConsts.fieldCurrency) = ?  WHERE ID = 1 "
+            let result = self.budgetDB.executeUpdate(insertSQL, withArgumentsIn: [income, expense, savings, currensy])
             
             if !result {
-                print("Error: \(budgetDB.lastErrorMessage())")
+                print("Error: \(self.budgetDB.lastErrorMessage())")
             } else {
                 print ("Cash Flow Updated")
             }
-            budgetDB.close()
+            self.budgetDB.close()
         } else {
-            print("Error: \(budgetDB.lastErrorMessage())")
+            print("Error: \(self.budgetDB.lastErrorMessage())")
         }
     }
     
     func updateExpense(value: Double, subcategory: Int, date: CLongLong, expenseId: Int ){
         if openDatabase() {
             
-            let weekOfYear = Global.singleton.getWeekOfYearFromDateInMillisec(dateInMillisec: date)
-            
-            let insertSQL = "UPDATE \(tableExpenses) SET \(fieldValue) = ? ,\(fieldWeekOfYear) = ? , \(fieldSubcategoryId) = ? , \(fieldDate) = ?  WHERE ID = \(expenseId) "
-            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [value, weekOfYear, subcategory, date, expenseId])
+            let weekOfYear = date.getWeekOfYearFromDateInMillisec(dateInMillisec: date)
+ 
+            let insertSQL = "UPDATE \(globalTableConsts.tableExpenses) SET \(globalTableConsts.fieldValue) = ? ,\(globalTableConsts.fieldWeekOfYear) = ? , \(globalTableConsts.fieldSubcategoryId) = ? , \(globalTableConsts.fieldDate) = ?  WHERE ID = \(expenseId) "
+            let result = self.budgetDB.executeUpdate(insertSQL, withArgumentsIn: [value, weekOfYear, subcategory, date, expenseId])
             
             if !result {
-                print("Error: \(budgetDB.lastErrorMessage())")
+                print("Error: \(self.budgetDB.lastErrorMessage())")
             } else {
                 print ("Expense Updated")
             }
-            budgetDB.close()
+            self.budgetDB.close()
         } else {
-            print("Error: \(budgetDB.lastErrorMessage())")
+            print("Error: \(self.budgetDB.lastErrorMessage())")
         }
     }
     
@@ -196,28 +195,28 @@ class DBManager: NSObject {
         
         if openDatabase() {
             
-            let insertSQL = "INSERT INTO \(tableExpenses) (\(fieldDate), \(fieldValue), \(fieldSubcategoryId), \(fieldWeekOfYear) ) VALUES (?,?,?,?)"
-            let result = budgetDB.executeUpdate(insertSQL, withArgumentsIn: [dateInMilliseconds, value, subcategory, thisWeek])
+            let insertSQL = "INSERT INTO \(globalTableConsts.tableExpenses) (\(globalTableConsts.fieldDate), \(globalTableConsts.fieldValue), \(globalTableConsts.fieldSubcategoryId), \(globalTableConsts.fieldWeekOfYear) ) VALUES (?,?,?,?)"
+            let result = self.budgetDB.executeUpdate(insertSQL, withArgumentsIn: [globalDateStruct.dateInMilliseconds, value, subcategory, globalDateStruct.thisWeek])
             
             if !result {
-                print("Error: \(budgetDB.lastErrorMessage())")
+                print("Error: \(self.budgetDB.lastErrorMessage())")
             } else {
                 print ("Expense Added")
             }
-            budgetDB.close()
+            self.budgetDB.close()
         } else {
-            print("Error: \(budgetDB.lastErrorMessage())")
+            print("Error: \(self.budgetDB.lastErrorMessage())")
         }
     }
     
     func openDatabase() -> Bool {
-        if budgetDB == nil {
-            if FileManager.default.fileExists(atPath: pathToDatabase) {
-                budgetDB = FMDatabase(path: pathToDatabase)
+        if self.budgetDB == nil {
+            if FileManager.default.fileExists(atPath: self.pathToDatabase) {
+                self.budgetDB = FMDatabase(path: self.pathToDatabase)
             }
         }
-        if budgetDB != nil {
-            if budgetDB.open() {
+        if self.budgetDB != nil {
+            if self.budgetDB.open() {
                 return true
             }
         }
@@ -228,19 +227,19 @@ class DBManager: NSObject {
 
         var categories:[(Int,  String)] = []
         if openDatabase() {
-            let query = "select * from \(tableSubCategories) where \(fieldCategoryId) = \(categoryId)"
+            let query = "select * from \(globalTableConsts.tableSubCategories) where \(globalTableConsts.fieldCategoryId) = \(categoryId)"
             
             do {
-                let results = try budgetDB.executeQuery(query, values: nil)
+                let results = try self.budgetDB.executeQuery(query, values: nil)
                 
                 while results.next() {
-                    categories.append(( Int(results.int(forColumn: fieldId)), results.string(forColumn: fieldSubcategory)!))
+                    categories.append(( Int(results.int(forColumn: globalTableConsts.fieldId)), results.string(forColumn: globalTableConsts.fieldSubcategory)!))
                 }
             }
             catch {
                 print(error.localizedDescription)
             }
-            budgetDB.close()
+            self.budgetDB.close()
         }
         return categories
     }
@@ -250,10 +249,10 @@ class DBManager: NSObject {
         var expenses:[Expense] = []
         if openDatabase() {
           
-            let  query = "select \(tableExpenses).\(fieldId) ,\(tableExpenses).\(fieldDate), \(tableExpenses).\(fieldValue), \(tableExpenses).\(fieldSubcategoryId), \(tableSubCategories).\(fieldCategoryId) , \(tableSubCategories).\(fieldSubcategory) from \(tableExpenses) inner join \(tableSubCategories) on \(tableSubCategories).\(fieldId) = \(tableExpenses).\(fieldSubcategoryId) "
+            let  query = "select \(globalTableConsts.tableExpenses).\(globalTableConsts.fieldId) ,\(globalTableConsts.tableExpenses).\(globalTableConsts.fieldDate), \(globalTableConsts.tableExpenses).\(globalTableConsts.fieldValue), \(globalTableConsts.tableExpenses).\(globalTableConsts.fieldSubcategoryId), \(globalTableConsts.tableSubCategories).\(globalTableConsts.fieldCategoryId) , \(globalTableConsts.tableSubCategories).\(globalTableConsts.fieldSubcategory) from \(globalTableConsts.tableExpenses) inner join \(globalTableConsts.tableSubCategories) on \(globalTableConsts.tableSubCategories).\(globalTableConsts.fieldId) = \(globalTableConsts.tableExpenses).\(globalTableConsts.fieldSubcategoryId) "
             
             do {
-                let results = try budgetDB.executeQuery(query, values: nil)
+                let results = try self.budgetDB.executeQuery(query, values: nil)
                 
                 while results.next() {
                     expenses.append(Expense(fmresultSet: results))
@@ -262,7 +261,7 @@ class DBManager: NSObject {
             catch {
                 print(error.localizedDescription)
             }
-            budgetDB.close()
+            self.budgetDB.close()
         }
         return expenses
     }
@@ -273,22 +272,22 @@ class DBManager: NSObject {
         var savingsPercentage = 0.0
         var currency          = ""
         
-        let query = "select * from \(tableCashFlow)"
+        let query = "select * from \(globalTableConsts.tableCashFlow)"
         
         if openDatabase() {
             do {
-                let result = try budgetDB.executeQuery(query, values: nil)
+                let result = try self.budgetDB.executeQuery(query, values: nil)
                 while result.next() {
-                    income            = Double(result.int(forColumn: fieldRegularIncome))
-                    expense           = Double(result.int(forColumn: fieldRegularExpense))
-                    savingsPercentage = Double(result.int(forColumn: fieldSavingPercentage))
-                    currency          = result.string(forColumn: fieldCurrency) ?? "cant get currancy?"
+                    income            = Double(result.int(forColumn: globalTableConsts.fieldRegularIncome))
+                    expense           = Double(result.int(forColumn: globalTableConsts.fieldRegularExpense))
+                    savingsPercentage = Double(result.int(forColumn: globalTableConsts.fieldSavingPercentage))
+                    currency          = result.string(forColumn: globalTableConsts.fieldCurrency) ?? "cant get currancy?"
                 }
             }
             catch {
                 print(error.localizedDescription)
             }
-            budgetDB.close()
+            self.budgetDB.close()
         }
         return (income,expense,savingsPercentage, currency)
     }
@@ -299,16 +298,16 @@ class DBManager: NSObject {
             
             let deleteSQL = "delete from \(table) where id = \(attributeID)"
             
-            let result = budgetDB.executeUpdate(deleteSQL, withArgumentsIn: [])
+            let result = self.budgetDB.executeUpdate(deleteSQL, withArgumentsIn: [])
             
             if !result {
-                print("Error: \(budgetDB.lastErrorMessage())")
+                print("Error: \(self.budgetDB.lastErrorMessage())")
             } else {
                 print ("Attribute deleted")
             }
-            budgetDB.close()
+            self.budgetDB.close()
         } else {
-            print("Error: \(budgetDB.lastErrorMessage())")
+            print("Error: \(self.budgetDB.lastErrorMessage())")
         }
     }
     
