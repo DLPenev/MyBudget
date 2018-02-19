@@ -14,24 +14,27 @@ class SendFileOrUploadPhotoViewController: UIViewController {
     @IBOutlet var receiverTextField: UITextField!
     
     let xmppOutgoingFileTransfer = XMPPOutgoingFileTransfer()
-    var xmppIncomingFileTransfer = XMPPIncomingFileTransfer()
+    
+    var jidVar = XMPPJID(string: "info-aqua-systems-com@xmpp.ipay.eu", resource: "yovko")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.xmppIncomingFileTransfer.activate(XmppManager.singleton.xmppStream)
-        self.xmppIncomingFileTransfer.addDelegate(self, delegateQueue: DispatchQueue.main)
+    
     }
 
     @IBAction func sendTouchUpInside(_ sender: UIButton) {
         print("send touchupinside")
-      let imageData = UIImagePNGRepresentation(#imageLiteral(resourceName: "richEmoji"))
-        self.xmppOutgoingFileTransfer.activate(XmppManager.singleton.xmppStream)
-        self.xmppOutgoingFileTransfer.addDelegate(self, delegateQueue: DispatchQueue.main)
-//        self.xmppOutgoingFileTransfer.send(imageData, toRecipient: XMPPJID(string: "info-\(receiverTextField.text!)-systems-com@xmpp.ipay.eu")) //temporary!!!
+        let imageData = UIImagePNGRepresentation( #imageLiteral(resourceName: "richEmoji") ) as Data?
         
-        self.xmppOutgoingFileTransfer.send(imageData, toRecipient: XMPPJID(string: "info-aqua-systems-com@xmpp.ipay.eu"))
-
-
+        self.xmppOutgoingFileTransfer.addDelegate(self, delegateQueue: DispatchQueue.main)
+        self.xmppOutgoingFileTransfer.activate(XmppManager.singleton.xmppStream)
+        
+        do {
+           try  self.xmppOutgoingFileTransfer.send(imageData, named: "LoreIpsum", toRecipient: jidVar, description: "LoreIpsumdolarsad!")
+        } catch {
+            print("=====")
+            print(error)
+        }
     }
     
 }
@@ -52,21 +55,21 @@ extension SendFileOrUploadPhotoViewController : XMPPOutgoingFileTransferDelegate
     
 }
 
-extension SendFileOrUploadPhotoViewController : XMPPIncomingFileTransferDelegate  {
-    
-    func xmppIncomingFileTransfer(_ sender: XMPPIncomingFileTransfer!, didFailWithError error: Error!) {
-        print("didFailWithError")
-    }
-    
-    func xmppIncomingFileTransfer(_ sender: XMPPIncomingFileTransfer!, didReceiveSIOffer offer: XMPPIQ!) {
-        print("didReceiveSIOffer")
-    }
-    
-    func xmppIncomingFileTransfer(_ sender: XMPPIncomingFileTransfer!, didSucceedWith data: Data!, named name: String!) {
-        print("didSucceedWith")
-    }
-    
-}
+//extension SendFileOrUploadPhotoViewController : XMPPIncomingFileTransferDelegate  {
+//    
+//    func xmppIncomingFileTransfer(_ sender: XMPPIncomingFileTransfer!, didFailWithError error: Error!) {
+//        print("didFailWithError")
+//    }
+//    
+//    func xmppIncomingFileTransfer(_ sender: XMPPIncomingFileTransfer!, didReceiveSIOffer offer: XMPPIQ!) {
+//        print("didReceiveSIOffer")
+//    }
+//    
+//    func xmppIncomingFileTransfer(_ sender: XMPPIncomingFileTransfer!, didSucceedWith data: Data!, named name: String!) {
+//        print("didSucceedWith")
+//    }
+//    
+//}
 
 
 

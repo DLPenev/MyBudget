@@ -18,6 +18,11 @@ class XmppManager: NSObject  {
     let hostName: String = "xmpp.ipay.eu"
     let hostPort: UInt16 = 5222
     
+    
+    
+    var xmppIncomingFileTransfer = XMPPIncomingFileTransfer()
+    
+    
     override init() {
         self.xmppStream.hostName = hostName
         self.xmppStream.hostPort = hostPort
@@ -42,5 +47,32 @@ class XmppManager: NSObject  {
         }
     }
     
+    func prepareForIncomingFileTransfer(){
+                self.xmppIncomingFileTransfer.activate(xmppStream)
+                self.xmppIncomingFileTransfer.addDelegate(self, delegateQueue: DispatchQueue.main)
+    }
+    
 }
 
+extension XmppManager : XMPPIncomingFileTransferDelegate {
+    
+    func xmppIncomingFileTransfer(_ sender: XMPPIncomingFileTransfer!, didFailWithError error: Error!) {
+        print("didFailWithError")
+    }
+    
+    func xmppIncomingFileTransfer(_ sender: XMPPIncomingFileTransfer!, didReceiveSIOffer offer: XMPPIQ!) {
+        print("didReceiveSIOffer")
+        xmppIncomingFileTransfer.acceptSIOffer(offer)
+    }
+    
+    func xmppIncomingFileTransfer(_ sender: XMPPIncomingFileTransfer!, didSucceedWith data: Data!, named name: String!) {
+        print("didSucceedWith")
+        var recivedImage = UIImage()
+        if let convertedDataToUIImage = data {
+            recivedImage = UIImage(data: convertedDataToUIImage)!
+        }
+    }
+    
+    
+    
+}

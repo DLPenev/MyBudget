@@ -53,8 +53,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDel
     
         if  jid != "" &&  pass != "" {
        let easyLogIn = "info-\(jid)-systems-com@xmpp.ipay.eu" // i will remove this later
+            let myJid = XMPPJID(string: easyLogIn, resource: "Kolio")
+
+            XmppManager.singleton.xmppStream.myJID = myJid
             
-            XmppManager.singleton.xmppStream.myJID = XMPPJID(string: easyLogIn)  // replace easyLogIn with jid
             self.password = pass
             XmppManager.singleton.streamConnect()
         } else {

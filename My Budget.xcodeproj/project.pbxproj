@@ -288,9 +288,9 @@
 				633974342018C587001B811D /* ExpenseDetailsViewController.swift */,
 				63F1917A1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift */,
 				63F1917F2003718A00F4CF1A /* ChooseSubCategoryViewController.swift */,
-				6333413D20298FC3006C733C /* SendFileOrUploadPhotoViewController.swift */,
 				6397C740200CD43C0031CA17 /* TabBarViewController.swift */,
 				6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */,
+				6333413D20298FC3006C733C /* SendFileOrUploadPhotoViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
