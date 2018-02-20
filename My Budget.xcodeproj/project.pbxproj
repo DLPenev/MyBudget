@@ -40,6 +40,7 @@
 		6397654B2008A41200993B7A /* SetUpBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */; };
 		6397C741200CD43C0031CA17 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6397C740200CD43C0031CA17 /* TabBarViewController.swift */; };
 		63B130B61FF6790600CEF561 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B130B51FF6790600CEF561 /* LogInViewController.swift */; };
+		63E29515203AEAE80019FC5A /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E29514203AEAE80019FC5A /* ARViewController.swift */; };
 		63F191791FFD258300F4CF1A /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F191781FFD258300F4CF1A /* Global.swift */; };
 		63F1917B1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F1917A1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift */; };
 		63F1917E1FFFBDDA00F4CF1A /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F1917D1FFFBDDA00F4CF1A /* CategoryViewCell.swift */; };
@@ -124,6 +125,7 @@
 		6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpBudgetViewController.swift; sourceTree = "<group>"; };
 		6397C740200CD43C0031CA17 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		63B130B51FF6790600CEF561 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		63E29514203AEAE80019FC5A /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		63F191781FFD258300F4CF1A /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		63F1917A1FFF7E5000F4CF1A /* ChooseCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategoryViewController.swift; sourceTree = "<group>"; };
 		63F1917D1FFFBDDA00F4CF1A /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				6397C740200CD43C0031CA17 /* TabBarViewController.swift */,
 				6397654A2008A41100993B7A /* SetUpBudgetViewController.swift */,
 				6333413D20298FC3006C733C /* SendFileOrUploadPhotoViewController.swift */,
+				63E29514203AEAE80019FC5A /* ARViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				630E85131FFD0CFB00C1DF77 /* FMDatabaseAdditions.m in Sources */,
 				6333413E20298FC3006C733C /* SendFileOrUploadPhotoViewController.swift in Sources */,
 				636EA0C72020A05A005F85B9 /* Regex.swift in Sources */,
+				63E29515203AEAE80019FC5A /* ARViewController.swift in Sources */,
 				630E85201FFD138E00C1DF77 /* DBManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

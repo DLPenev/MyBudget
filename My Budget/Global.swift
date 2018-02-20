@@ -58,6 +58,7 @@ struct Identificators {
     let unwindToPopUpViewId     = "unwindToPopUpViewControllerId"
     let segueToExpenseDetails   = "goToExpenseDetailViewControllerId"
     let segueToChooseCategoryId = "segueToChooseCategoryId"
+    let segueToARId             = "goToARSegueId"
 }
 
 struct CashStatus {

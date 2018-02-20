@@ -215,6 +215,11 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
             }
             destination?.expenseList  = listOfExpenseForSelectedCategoryAndPeriod
         }
+        
+        if  segue.identifier == globalIdentificators.segueToARId {
+            let destination = segue.destination as? ARViewController
+            destination?.arrayOfSumExpense = listOfExpensesByCategory
+        }
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
@@ -230,7 +235,7 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func addIncomePressed(_ sender: Int) {
         butonIndex = globalIndexes.popupIndexIncome
-        performSegue(withIdentifier: globalIdentificators.segueToPopup, sender: nil)
+        performSegue(withIdentifier: globalIdentificators.segueToPopup, sender: self)
     }
     
     @IBAction func logOutTouchUpInside(_ sender: UIButton) {
@@ -249,6 +254,11 @@ class OverviewViewController: UIViewController, UITableViewDelegate, UITableView
         }
         GIDSignIn.sharedInstance().signOut()
     }
+    
+    @IBAction func buttonArTouchUpInside(_ sender: UIButton) {
+        performSegue(withIdentifier: globalIdentificators.segueToARId, sender: self)
+    }
+    
 }
 
 extension OverviewViewController: PopupDelegate {

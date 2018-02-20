@@ -21,7 +21,6 @@ class FirstViewController: UIViewController {
         super.viewDidLoad()
         DBManager.singleton.createDatabaseIfNotExists()
         setupCategories()
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
