@@ -18,7 +18,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sceneView.delegate = self
+        self.sceneView.delegate = self
         sceneView.autoenablesDefaultLighting  = true
     }
 

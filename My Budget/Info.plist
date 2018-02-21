@@ -52,5 +52,7 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to camera in order to work with AR</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to Image Gallery in order to select an image</string>
 </dict>
 </plist>

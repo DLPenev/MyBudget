@@ -208,6 +208,26 @@
                                     <action selector="sendTouchUpInside:" destination="4wv-3e-XLT" eventType="touchUpInside" id="Lfa-bw-eFA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAH-A8-EA7">
+                                <rect key="frame" x="92" y="353" width="171" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="pick image to upload"/>
+                                <connections>
+                                    <action selector="openImageGallery:" destination="4wv-3e-XLT" eventType="touchUpInside" id="EVB-nw-ehE"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iv1-R8-JEM">
+                                <rect key="frame" x="40" y="217" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckm-V0-vDX">
+                                <rect key="frame" x="108" y="411" width="105" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="upload image"/>
+                                <connections>
+                                    <action selector="uploadWithSender:" destination="4wv-3e-XLT" eventType="touchUpInside" id="fqo-DY-7JB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -222,6 +242,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="rL6-vS-ygi"/>
                     <connections>
+                        <outlet property="imageView" destination="Iv1-R8-JEM" id="hAS-sA-nCU"/>
                         <outlet property="receiverTextField" destination="kgK-xm-iwr" id="PJI-Ai-Wuh"/>
                     </connections>
                 </viewController>

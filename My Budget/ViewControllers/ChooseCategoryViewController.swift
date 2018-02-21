@@ -13,7 +13,7 @@ class ChooseCategoryViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet var categoriesTableView: UITableView!
  
     let numberOfCategories = 10
-    var categoryIndex = Int()
+    var categoryIndex      = Int()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.numberOfCategories
